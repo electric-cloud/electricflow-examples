@@ -6,7 +6,7 @@ Different examples of how to use features in ElectricFlow.
 
 The requirement is that you are able to access the CLI and have signed on with ectool with permissions to change the system.
 
-* logon with something likek "ectool login <username> <password>"
+* logon with "ectool login <yourusername> <yourpassword>"
 * You have administrative rights and your account lets you create projects, resources, and other objects.  
 * This is not a production system and you are working on a system where you can make changes and mistakes.
 * You are able to create files on the local file system.
