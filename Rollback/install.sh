@@ -15,5 +15,5 @@ done
 
 ectool deleteProject "Rollback"
 
-ectool evalDsl --dslFile application.groovy
+ectool evalDsl --dslFile rollback.groovy
 
