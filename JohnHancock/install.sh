@@ -5,7 +5,7 @@ echo "text for file named pipeline" > pipeline.txt
 ectool createArtifact "com.johnhancock.example" "pipeline" --description "simple text file."
 
 for i in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
-  echo "Publishing com.johnhancock.example:rollback version $i..."
+  echo "Publishing com.johnhancock.example:pipeline version $i..."
   ectool --silent publishArtifactVersion \
 	--version $i --artifactName com.johnhancock.example:pipeline \
 	--fromDirectory . \
@@ -13,7 +13,7 @@ for i in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
 done
 
 
-ectool deleteProject "John Hancock"
+ectool deleteProject "John Hancock POC"
 
 ectool evalDsl --dslFile JohnHancock.groovy
 
