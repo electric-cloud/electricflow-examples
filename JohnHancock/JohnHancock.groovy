@@ -1,14 +1,14 @@
 // This is a stubbed implementation of a simple pipeline with three deployments to DEV-QA-PROD.
 // Some of the basic features in a pipeline are demonstrated here.
 
-def projName = "Simple Pipeline"
-def appNameOne = "Simple Application "
+def projName = "John Hancock"
+def appNameOne = "jh-dotNet"
 def appTiers = [ appTierOne: "App", appTierTwo: "DB"]
 def envNames = [ "DEV", "STest", "Stage", "Prod" ]
-def envTiers = [ envTierOne: "App Server", envTierTwo: "DB Server" ]
-def groupId = "com.ec.example"
-def resourceNameBase = ['simple-pipeline']
-def artifactId = 'simple-pipeline'
+def envTiers = [ envTierOne: "IIS", envTierTwo: "Paas SQL" ]
+def groupId = "com.johnhancock.example"
+def resourceNameBase = ['dotNet-Application']
+def artifactId = 'dotNet'
 
 envNames.each { eName->
 	resource  projName + '-' + eName, {
@@ -25,7 +25,7 @@ envNames.each { eName->
 
 // Create the project and define it's overall behavior
 project projName, {
-	description = "Simple Pipeline Example"
+	description = "John Hancockc POC project"
 }
 
 // Create environments for this project
@@ -43,8 +43,7 @@ project projName, {
 	}
 }
 
-
-project 'Simple Pipeline', {
+project projName, {
 
 	procedure 'Build Code', {
 		description = 'Stubbed procedure to give the impression of building code'
