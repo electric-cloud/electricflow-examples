@@ -1,19 +1,30 @@
-// This is a stubbed implementation of a simple pipeline with three deployments to DEV-QA-PROD.
+// This is a stubbed implementation of a simple pipeline with  deployments to Dev/STest/Stage/Prod
 // Some of the basic features in a pipeline are demonstrated here.
 
-def projName = "John Hancock POC"
-def component1 = "Binary"
-def component2 = "DB App"
+def projName = "JH POC"
+def component1 = "Web"
+def component2 = "DB"
 def appNameOne = "jh-dotNet"
 def appTiers = [ appTierOne: "App", appTierTwo: "DB"]
-def envNames = [ "DEV", "STest", "Stage", "Prod" ]
+def envNames = [ "Dev", "STest", "Stage", "Prod" ]
 def envTiers = [ envTierOne: "IIS", envTierTwo: "Paas SQL" ]
 def groupId = "com.johnhancock.example"
-def resourceNameBase = ['dotNet-Application']
-def artifactId = 'dotNet'
+def artifactId1 = 'web'
+def artifactId2 = 'db'
 
+// Create resources for each environment
 envNames.each { eName->
-	resource  projName + '-' + eName, {
+	resource  projName + '-' + eName + '-web', {
+		description = 'local resource for the sample application'
+		hostName = '127.0.0.1'
+		hostType = 'CONCURRENT'
+		port = '7800'
+		resourceDisabled = '0'
+		trusted = '0'
+		useSSL = '1'
+		zoneName = 'default'
+	}
+	resource  projName + '-' + eName + '-db', {
 		description = 'local resource for the sample application'
 		hostName = '127.0.0.1'
 		hostType = 'CONCURRENT'
@@ -27,7 +38,7 @@ envNames.each { eName->
 
 // Create the project and define it's overall behavior
 project projName, {
-	description = "John Hancockc POC project"
+	description = "John Hancock POC project"
 }
 
 // Create environments for this project
@@ -39,7 +50,10 @@ project projName, {
 			reservationRequired = '0'
 			
 			environmentTier envTiers.envTierOne, {
-				resourceName = [projName + '-' + eName,]
+				resourceName = [projName + '-' + eName + '-web',]
+			}
+			environmentTier envTiers.envTierTwo, {
+				resourceName = [projName + '-' + eName + '-db',]
 			}
 		}
 	}
@@ -131,7 +145,7 @@ project projName, {
 				pluginKey = 'EC-Artifact'
 				reference = '0'
 
-				process 'Deploy', {
+				process 'deploy-' + component1, {
 					description = 'Linear deploy process'
 					processType = 'DEPLOY'
 
@@ -150,7 +164,6 @@ project projName, {
 						actualParameter 'retrieveToDirectory', '$[/myComponent/ec_content_details/retrieveToDirectory]'
 						actualParameter 'versionRange', '$[/myJob/ec_' + component1 + '-version]'
 					}
-
 					processStep 'Transfer Artifact', {
 						description = 'Transfer the artifact to a destination.  TODO: Figure out the syntax to automatically pick up the filename'
 						applicationTierName = null
@@ -161,7 +174,7 @@ project projName, {
 						subproject = '/plugins/EC-Core/project'
 						actualParameter 'commandToRun', 'echo "file transfer happens here."'
 					}
-					 processDependency 'Acquire Artifact', targetProcessStepName: 'Transfer Artifact', {
+					processDependency 'Acquire Artifact', targetProcessStepName: 'Transfer Artifact', {
 						branchCondition = null
 						branchConditionName = null
 						branchConditionType = null
@@ -169,7 +182,7 @@ project projName, {
 					}
 				}
 
-				process 'UnDeploy ' + component1, {
+				process 'Undeploy-' + component1, {
 					description = 'Linear undeploy process'
 					processType = 'UNDEPLOY'
 
@@ -185,7 +198,7 @@ project projName, {
 					}
   				}
 				property 'ec_content_details', {
-					property 'artifactName', value: 'com.ec.example:a', {
+					property 'artifactName', value: groupId + ':' + artifactId1, {
 						expandable = '1'
 					}
 					artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
@@ -206,12 +219,12 @@ project projName, {
 		}
 
 		applicationTier appTiers.appTierTwo, {
-			component 'DB distribution', pluginName: null, {
+			component component2, pluginName: null, {
 				description = 'Database files'
 				pluginKey = 'EC-Artifact'
 				reference = '0'
 
-				process 'Deploy', {
+				process 'deploy-' + component2, {
 					description = 'Linear deploy process'
 					processType = 'DEPLOY'
 
@@ -249,7 +262,7 @@ project projName, {
 					}
 				}
 
-				process 'UnDeploy ' + component1, {
+				process 'UnDeploy-' + component2, {
 					description = 'Linear undeploy process'
 					processType = 'UNDEPLOY'
 
@@ -266,25 +279,25 @@ project projName, {
   				}
 				property 'ec_content_details', {
 
-				property 'artifactName', value: 'com.ec.example:b', {
-					expandable = '1'
-				}
-				artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
-				filterList = ''
-				overwrite = 'update'
-				pluginProcedure = 'Retrieve'
+					property 'artifactName', value: groupId + ':' + artifactId2, {
+						expandable = '1'
+					}
+					artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
+					filterList = ''
+					overwrite = 'update'
+					pluginProcedure = 'Retrieve'
 
-				property 'pluginProjectName', value: 'EC-Artifact', {
-					expandable = '1'
-				}
-				retrieveToDirectory = ''
+					property 'pluginProjectName', value: 'EC-Artifact', {
+						expandable = '1'
+					}
+					retrieveToDirectory = ''
 
-				property 'versionRange', value: '', {
-					expandable = '1'
+					property 'versionRange', value: '', {
+						expandable = '1'
+					}
 				}
 			}
 		}
-    }
 
 		process 'Deploy', {
 			applicationName = appNameOne
@@ -346,28 +359,28 @@ project projName, {
 				type = 'checkbox'
 			}
 
-			processStep 'Deploy ' + component1, {
+			processStep 'Deploy-' + component1, {
 				applicationTierName = appTiers.appTierOne
 				dependencyJoinType = 'and'
 				errorHandling = 'failProcedure'
 				processStepType = 'process'
 				subcomponent = component1
 				subcomponentApplicationName = appNameOne
-				subcomponentProcess = 'Deploy ' + component1
+				subcomponentProcess = 'deploy-' + component1
 
 				property 'ec_deploy', {
 					ec_notifierStatus = '0'
 				}
 			}
 
-			processStep 'Deploy ' + component2, {
+			processStep 'Deploy-' + component2, {
 				applicationTierName = appTiers.appTierTwo
 				dependencyJoinType = 'and'
 				errorHandling = 'failProcedure'
 				processStepType = 'process'
 				subcomponent = component2
 				subcomponentApplicationName = appNameOne
-				subcomponentProcess = 'Deploy ' + component2
+				subcomponentProcess = 'deploy-' + component2
 
 				property 'ec_deploy', {
 					ec_notifierStatus = '0'
@@ -385,9 +398,13 @@ project projName, {
 				environmentProjectName = projName
 				projectName = projName
 
-				tierMapping projName + '-' + envTiers.envTierOne + '-' + eName, {
+				tierMapping projName + '-' + envTiers.envTierOne + '-' + eName + 'web', {
 					applicationTierName = appTiers.appTierOne
 					environmentTierName = envTiers.envTierOne
+				}	
+				tierMapping projName + '-' + envTiers.envTierTwo + '-' + eName + 'db', {
+					applicationTierName = appTiers.appTierTwo
+					environmentTierName = envTiers.envTierTwo
 				}	
 			}
 		}
