@@ -4,7 +4,7 @@
 def projName = "Simple Pipeline"
 def appNameOne = "Simple Application "
 def appTiers = [ appTierOne: "App", appTierTwo: "DB"]
-def envNames = [ "DEV", "STest", "Stage", "Prod" ]
+def envNames = [ "DEV", "QA", "Prod" ]
 def envTiers = [ envTierOne: "App Server", envTierTwo: "DB Server" ]
 def groupId = "com.ec.example"
 def resourceNameBase = ['simple-pipeline']
