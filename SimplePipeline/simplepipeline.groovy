@@ -44,7 +44,7 @@ project projName, {
 }
 
 
-project 'Simple Pipeline', {
+project projName, {
 
 	procedure 'Build Code', {
 		description = 'Stubbed procedure to give the impression of building code'
