@@ -1,0 +1,1187 @@
+{
+	"projName" : "LotsOfResources",
+	"envTier" : "Element",
+	"elements" : 
+	[
+	 {
+	   "Atomic Number": 1,
+	   "Symbol": "H",
+	   "Element": "Hydrogen",
+	   "Description": "composed of the Greek elements hydro- and -gen meaning 'water-forming'",
+	   "Group": 1,
+	   "Period": 1,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 2,
+	   "Symbol": "He",
+	   "Element": "Helium",
+	   "Description": "the Greek helios, 'sun'",
+	   "Group": 18,
+	   "Period": 1,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 3,
+	   "Symbol": "Li",
+	   "Element": "Lithium",
+	   "Description": "the Greek lithos, 'stone'",
+	   "Group": 1,
+	   "Period": 2,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 4,
+	   "Symbol": "Be",
+	   "Element": "Beryllium",
+	   "Description": "beryl, a mineral",
+	   "Group": 2,
+	   "Period": 2,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 5,
+	   "Symbol": "B",
+	   "Element": "Boron",
+	   "Description": "borax, a mineral",
+	   "Group": 13,
+	   "Period": 2,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 6,
+	   "Symbol": "C",
+	   "Element": "Carbon",
+	   "Description": "the Latin carbo, 'coal'",
+	   "Group": 14,
+	   "Period": 2,
+	   "Subcategory": "Polyatomic Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 7,
+	   "Symbol": "N",
+	   "Element": "Nitrogen",
+	   "Description": "the Greek nitron and '-gen' meaning 'niter-forming'",
+	   "Group": 15,
+	   "Period": 2,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 8,
+	   "Symbol": "O",
+	   "Element": "Oxygen",
+	   "Description": "from the Greek oxy-, both 'sharp' and 'acid', and -gen, meaning 'acid-forming'",
+	   "Group": 16,
+	   "Period": 2,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 9,
+	   "Symbol": "F",
+	   "Element": "Fluorine",
+	   "Description": "the Latin fluere, 'to flow'",
+	   "Group": 17,
+	   "Period": 2,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 10,
+	   "Symbol": "Ne",
+	   "Element": "Neon",
+	   "Description": "the Greek neos, meaning 'new'",
+	   "Group": 18,
+	   "Period": 2,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 11,
+	   "Symbol": "Na",
+	   "Element": "Sodium",
+	   "Description": "the English word soda (natrium in Latin)",
+	   "Group": 1,
+	   "Period": 3,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 12,
+	   "Symbol": "Mg",
+	   "Element": "Magnesium",
+	   "Description": "Magnesia, a district of Eastern Thessaly in Greece",
+	   "Group": 2,
+	   "Period": 3,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 13,
+	   "Symbol": "Al",
+	   "Element": "Aluminium",
+	   "Description": "from alumina, a compound (originally aluminum)",
+	   "Group": 13,
+	   "Period": 3,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 14,
+	   "Symbol": "Si",
+	   "Element": "Silicon",
+	   "Description": "from the Latin silex, 'flint' (originally silicium)",
+	   "Group": 14,
+	   "Period": 3,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 15,
+	   "Symbol": "P",
+	   "Element": "Phosphorus",
+	   "Description": "the Greek phoosphoros, 'carrying light'",
+	   "Group": 15,
+	   "Period": 3,
+	   "Subcategory": "Polyatomic Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 16,
+	   "Symbol": "S",
+	   "Element": "Sulfur",
+	   "Description": "the Latin sulphur, 'fire and brimstone'",
+	   "Group": 16,
+	   "Period": 3,
+	   "Subcategory": "Polyatomic Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 17,
+	   "Symbol": "Cl",
+	   "Element": "Chlorine",
+	   "Description": "the Greek chloros, 'greenish yellow'",
+	   "Group": 17,
+	   "Period": 3,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 18,
+	   "Symbol": "Ar",
+	   "Element": "Argon",
+	   "Description": "the Greek argos, 'idle'",
+	   "Group": 18,
+	   "Period": 3,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 19,
+	   "Symbol": "K",
+	   "Element": "Potassium",
+	   "Description": "New Latin potassa, 'potash' (kalium in Latin)",
+	   "Group": 1,
+	   "Period": 4,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 20,
+	   "Symbol": "Ca",
+	   "Element": "Calcium",
+	   "Description": "the Latin calx, 'lime'",
+	   "Group": 2,
+	   "Period": 4,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 21,
+	   "Symbol": "Sc",
+	   "Element": "Scandium",
+	   "Description": "Scandia, the Latin name for Scandinavia",
+	   "Group": 3,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 22,
+	   "Symbol": "Ti",
+	   "Element": "Titanium",
+	   "Description": "Titans, the sons of the Earth goddess of Greek mythology",
+	   "Group": 4,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 23,
+	   "Symbol": "V",
+	   "Element": "Vanadium",
+	   "Description": "Vanadis, an Old Norse name for the Scandinavian goddess Freyja",
+	   "Group": 5,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 24,
+	   "Symbol": "Cr",
+	   "Element": "Chromium",
+	   "Description": "the Greek chroma, 'color'",
+	   "Group": 6,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 25,
+	   "Symbol": "Mn",
+	   "Element": "Manganese",
+	   "Description": "corrupted from magnesia negra, see Magnesium",
+	   "Group": 7,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 26,
+	   "Symbol": "Fe",
+	   "Element": "Iron",
+	   "Description": "English word (ferrum in Latin)",
+	   "Group": 8,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 27,
+	   "Symbol": "Co",
+	   "Element": "Cobalt",
+	   "Description": "the German word Kobold, 'goblin'",
+	   "Group": 9,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 28,
+	   "Symbol": "Ni",
+	   "Element": "Nickel",
+	   "Description": "from Swedish kopparnickel, containing the German word Nickel, 'goblin'",
+	   "Group": 10,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 29,
+	   "Symbol": "Cu",
+	   "Element": "Copper",
+	   "Description": "English word (Latin cuprum)",
+	   "Group": 11,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 30,
+	   "Symbol": "Zn",
+	   "Element": "Zinc",
+	   "Description": "the German Zink",
+	   "Group": 12,
+	   "Period": 4,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 31,
+	   "Symbol": "Ga",
+	   "Element": "Gallium",
+	   "Description": "Gallia, the Latin name for France",
+	   "Group": 13,
+	   "Period": 4,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 32,
+	   "Symbol": "Ge",
+	   "Element": "Germanium",
+	   "Description": "Germania, the Latin name for Germany",
+	   "Group": 14,
+	   "Period": 4,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 33,
+	   "Symbol": "As",
+	   "Element": "Arsenic",
+	   "Description": "English word (Latin arsenicum)",
+	   "Group": 15,
+	   "Period": 4,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 34,
+	   "Symbol": "Se",
+	   "Element": "Selenium",
+	   "Description": "the Greek selene, 'moon'",
+	   "Group": 16,
+	   "Period": 4,
+	   "Subcategory": "Polyatomic Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 35,
+	   "Symbol": "Br",
+	   "Element": "Bromine",
+	   "Description": "the Greek bromos, 'stench'",
+	   "Group": 17,
+	   "Period": 4,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 36,
+	   "Symbol": "Kr",
+	   "Element": "Krypton",
+	   "Description": "the Greek kryptos, 'hidden'",
+	   "Group": 18,
+	   "Period": 4,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 37,
+	   "Symbol": "Rb",
+	   "Element": "Rubidium",
+	   "Description": "the Latin rubidus, 'deep red'",
+	   "Group": 1,
+	   "Period": 5,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 38,
+	   "Symbol": "Sr",
+	   "Element": "Strontium",
+	   "Description": "Strontian, a small town in Scotland",
+	   "Group": 2,
+	   "Period": 5,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 39,
+	   "Symbol": "Y",
+	   "Element": "Yttrium",
+	   "Description": "Ytterby, Sweden",
+	   "Group": 3,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 40,
+	   "Symbol": "Zr",
+	   "Element": "Zirconium",
+	   "Description": "Persian Zargun, 'gold-colored'; German Zirkoon, 'jargoon'",
+	   "Group": 4,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 41,
+	   "Symbol": "Nb",
+	   "Element": "Niobium",
+	   "Description": "Niobe, daughter of king Tantalus from Greek mythology",
+	   "Group": 5,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 42,
+	   "Symbol": "Mo",
+	   "Element": "Molybdenum",
+	   "Description": "the Greek molybdos meaning 'lead'",
+	   "Group": 6,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 43,
+	   "Symbol": "Tc",
+	   "Element": "Technetium",
+	   "Description": "the Greek tekhnètos meaning 'artificial'",
+	   "Group": 7,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 44,
+	   "Symbol": "Ru",
+	   "Element": "Ruthenium",
+	   "Description": "Ruthenia, the New Latin name for Russia",
+	   "Group": 8,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 45,
+	   "Symbol": "Rh",
+	   "Element": "Rhodium",
+	   "Description": "the Greek rhodos, meaning 'rose coloured'",
+	   "Group": 9,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 46,
+	   "Symbol": "Pd",
+	   "Element": "Palladium",
+	   "Description": "the then recently discovered asteroid Pallas, considered a planet at the time",
+	   "Group": 10,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 47,
+	   "Symbol": "Ag",
+	   "Element": "Silver",
+	   "Description": "English word (argentum in Latin)",
+	   "Group": 11,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 48,
+	   "Symbol": "Cd",
+	   "Element": "Cadmium",
+	   "Description": "the New Latin cadmia, from King Kadmos",
+	   "Group": 12,
+	   "Period": 5,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 49,
+	   "Symbol": "In",
+	   "Element": "Indium",
+	   "Description": "indigo",
+	   "Group": 13,
+	   "Period": 5,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 50,
+	   "Symbol": "Sn",
+	   "Element": "Tin",
+	   "Description": "English word (stannum in Latin)",
+	   "Group": 14,
+	   "Period": 5,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 51,
+	   "Symbol": "Sb",
+	   "Element": "Antimony",
+	   "Description": "uncertain: perhaps from the Greek anti, 'against', and monos, 'alone', or the Old French antimoine, 'Monk's bane' (stibium in Latin)",
+	   "Group": 15,
+	   "Period": 5,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 52,
+	   "Symbol": "Te",
+	   "Element": "Tellurium",
+	   "Description": "Latin tellus, 'earth'",
+	   "Group": 16,
+	   "Period": 5,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 53,
+	   "Symbol": "I",
+	   "Element": "Iodine",
+	   "Description": "French iode (after the Greek ioeides, 'violet')",
+	   "Group": 17,
+	   "Period": 5,
+	   "Subcategory": "Diatomic Nonmetal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 54,
+	   "Symbol": "Xe",
+	   "Element": "Xenon",
+	   "Description": "the Greek xenos, 'strange'",
+	   "Group": 18,
+	   "Period": 5,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 55,
+	   "Symbol": "Cs",
+	   "Element": "Caesium",
+	   "Description": "the Latin caesius, 'sky blue'",
+	   "Group": 1,
+	   "Period": 6,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 56,
+	   "Symbol": "Ba",
+	   "Element": "Barium",
+	   "Description": "the Greek barys, 'heavy'",
+	   "Group": 2,
+	   "Period": 6,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 57,
+	   "Symbol": "La",
+	   "Element": "Lanthanum",
+	   "Description": "the Greek lanthanein, 'to lie hidden'",
+	   "Group": 3,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 58,
+	   "Symbol": "Ce",
+	   "Element": "Cerium",
+	   "Description": "the then recently discovered asteroid Ceres, considered a planet at the time",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 59,
+	   "Symbol": "Pr",
+	   "Element": "Praseodymium",
+	   "Description": "the Greek praseios didymos meaning 'green twin'",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 60,
+	   "Symbol": "Nd",
+	   "Element": "Neodymium",
+	   "Description": "the Greek neos didymos meaning 'new twin'",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 61,
+	   "Symbol": "Pm",
+	   "Element": "Promethium",
+	   "Description": "Prometheus of Greek mythology who stole fire from the Gods and gave it to humans",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 62,
+	   "Symbol": "Sm",
+	   "Element": "Samarium",
+	   "Description": "Samarskite, the name of the mineral from which it was first isolated",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 63,
+	   "Symbol": "Eu",
+	   "Element": "Europium",
+	   "Description": "Europe",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 64,
+	   "Symbol": "Gd",
+	   "Element": "Gadolinium",
+	   "Description": "Johan Gadolin, chemist, physicist and mineralogist",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 65,
+	   "Symbol": "Tb",
+	   "Element": "Terbium",
+	   "Description": "Ytterby, Sweden",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 66,
+	   "Symbol": "Dy",
+	   "Element": "Dysprosium",
+	   "Description": "the Greek dysprositos, 'hard to get'",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 67,
+	   "Symbol": "Ho",
+	   "Element": "Holmium",
+	   "Description": "Holmia, the New Latin name for Stockholm",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 68,
+	   "Symbol": "Er",
+	   "Element": "Erbium",
+	   "Description": "Ytterby, Sweden",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 69,
+	   "Symbol": "Tm",
+	   "Element": "Thulium",
+	   "Description": "Thule, the ancient name for Scandinavia",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 70,
+	   "Symbol": "Yb",
+	   "Element": "Ytterbium",
+	   "Description": "Ytterby, Sweden",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 71,
+	   "Symbol": "Lu",
+	   "Element": "Lutetium",
+	   "Description": "Lutetia, the Latin name for Paris",
+	   "Group": null,
+	   "Period": 6,
+	   "Subcategory": "Lanthanide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 72,
+	   "Symbol": "Hf",
+	   "Element": "Hafnium",
+	   "Description": "Hafnia, the New Latin name for Copenhagen",
+	   "Group": 4,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 73,
+	   "Symbol": "Ta",
+	   "Element": "Tantalum",
+	   "Description": "King Tantalus, father of Niobe from Greek mythology",
+	   "Group": 5,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 74,
+	   "Symbol": "W",
+	   "Element": "Tungsten",
+	   "Description": "the Swedish tung sten, 'heavy stone' (W is wolfram, the old name of the tungsten mineral wolframite)",
+	   "Group": 6,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 75,
+	   "Symbol": "Re",
+	   "Element": "Rhenium",
+	   "Description": "Rhenus, the Latin name for the river Rhine",
+	   "Group": 7,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 76,
+	   "Symbol": "Os",
+	   "Element": "Osmium",
+	   "Description": "the Greek osmè, meaning 'smell'",
+	   "Group": 8,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 77,
+	   "Symbol": "Ir",
+	   "Element": "Iridium",
+	   "Description": "Iris, the Greek goddess of the rainbow",
+	   "Group": 9,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 78,
+	   "Symbol": "Pt",
+	   "Element": "Platinum",
+	   "Description": "the Spanish platina, meaning 'little silver'",
+	   "Group": 10,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 79,
+	   "Symbol": "Au",
+	   "Element": "Gold",
+	   "Description": "English word (aurum in Latin)",
+	   "Group": 11,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 80,
+	   "Symbol": "Hg",
+	   "Element": "Mercury",
+	   "Description": "the New Latin name mercurius, named after the Roman god (Hg from former name hydrargyrum, from Greek hydr-, 'water', and argyros, 'silver')",
+	   "Group": 12,
+	   "Period": 6,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 81,
+	   "Symbol": "Tl",
+	   "Element": "Thallium",
+	   "Description": "the Greek thallos, 'green twig'",
+	   "Group": 13,
+	   "Period": 6,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 82,
+	   "Symbol": "Pb",
+	   "Element": "Lead",
+	   "Description": "English word (plumbum in Latin)",
+	   "Group": 14,
+	   "Period": 6,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 83,
+	   "Symbol": "Bi",
+	   "Element": "Bismuth",
+	   "Description": "Uncertain, possibly Arabic or German",
+	   "Group": 15,
+	   "Period": 6,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 84,
+	   "Symbol": "Po",
+	   "Element": "Polonium",
+	   "Description": "Named after the home country of Marie Curie (Polonia, Latin for Poland), who is also the discoverer of Radium",
+	   "Group": 16,
+	   "Period": 6,
+	   "Subcategory": "Post Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 85,
+	   "Symbol": "At",
+	   "Element": "Astatine",
+	   "Description": "the Greek astatos, 'unstable'",
+	   "Group": 17,
+	   "Period": 6,
+	   "Subcategory": "Metalloid",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 86,
+	   "Symbol": "Rn",
+	   "Element": "Radon",
+	   "Description": "From radium, as it was first detected as an emission from radium during radioactive decay",
+	   "Group": 18,
+	   "Period": 6,
+	   "Subcategory": "Noble Gas",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 87,
+	   "Symbol": "Fr",
+	   "Element": "Francium",
+	   "Description": "Francia, the New Latin name for France",
+	   "Group": 1,
+	   "Period": 7,
+	   "Subcategory": "Alkali Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 88,
+	   "Symbol": "Ra",
+	   "Element": "Radium",
+	   "Description": "the Latin radius, 'ray'",
+	   "Group": 2,
+	   "Period": 7,
+	   "Subcategory": "Alkaline Earth Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 89,
+	   "Symbol": "Ac",
+	   "Element": "Actinium",
+	   "Description": "the Greek aktis, 'ray'",
+	   "Group": 3,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 90,
+	   "Symbol": "Th",
+	   "Element": "Thorium",
+	   "Description": "Thor, the Scandinavian god of thunder",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 91,
+	   "Symbol": "Pa",
+	   "Element": "Protactinium",
+	   "Description": "the Greek protos, 'first', and actinium, which is produced through the radioactive decay of protactinium",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 92,
+	   "Symbol": "U",
+	   "Element": "Uranium",
+	   "Description": "Uranus, the seventh planet in the Solar System",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 93,
+	   "Symbol": "Np",
+	   "Element": "Neptunium",
+	   "Description": "Neptune, the eighth planet in the Solar System",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 94,
+	   "Symbol": "Pu",
+	   "Element": "Plutonium",
+	   "Description": "Pluto, a dwarf planet in the Solar System (then considered the ninth planet)",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 95,
+	   "Symbol": "Am",
+	   "Element": "Americium",
+	   "Description": "The Americas, as the element was first synthesized on the continent, by analogy with europium",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 96,
+	   "Symbol": "Cm",
+	   "Element": "Curium",
+	   "Description": "Pierre Curie, a physicist, and Marie Curie, a physicist and chemist, named after great scientists by analogy with gadolinium",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 97,
+	   "Symbol": "Bk",
+	   "Element": "Berkelium",
+	   "Description": "Berkeley, California, where the element was first synthesized, by analogy with terbium",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 98,
+	   "Symbol": "Cf",
+	   "Element": "Californium",
+	   "Description": "California, where the element was first synthesized",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 99,
+	   "Symbol": "Es",
+	   "Element": "Einsteinium",
+	   "Description": "Albert Einstein, physicist",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 100,
+	   "Symbol": "Fm",
+	   "Element": "Fermium",
+	   "Description": "Enrico Fermi, physicist",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 101,
+	   "Symbol": "Md",
+	   "Element": "Mendelevium",
+	   "Description": "Dmitri Mendeleev, chemist and inventor",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 102,
+	   "Symbol": "No",
+	   "Element": "Nobelium",
+	   "Description": "Alfred Nobel, chemist, engineer, innovator, and armaments manufacturer",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 103,
+	   "Symbol": "Lr",
+	   "Element": "Lawrencium",
+	   "Description": "Ernest O. Lawrence, physicist",
+	   "Group": null,
+	   "Period": 7,
+	   "Subcategory": "Actinide",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 104,
+	   "Symbol": "Rf",
+	   "Element": "Rutherfordium",
+	   "Description": "Ernest Rutherford, chemist and physicist",
+	   "Group": 4,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 105,
+	   "Symbol": "Db",
+	   "Element": "Dubnium",
+	   "Description": "Dubna, Russia",
+	   "Group": 5,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 106,
+	   "Symbol": "Sg",
+	   "Element": "Seaborgium",
+	   "Description": "Glenn T. Seaborg, scientist",
+	   "Group": 6,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 107,
+	   "Symbol": "Bh",
+	   "Element": "Bohrium",
+	   "Description": "Niels Bohr, physicist",
+	   "Group": 7,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 108,
+	   "Symbol": "Hs",
+	   "Element": "Hassium",
+	   "Description": "Hesse, Germany, where the element was first synthesized",
+	   "Group": 8,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 109,
+	   "Symbol": "Mt",
+	   "Element": "Meitnerium",
+	   "Description": "Lise Meitner, physicist",
+	   "Group": 9,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 110,
+	   "Symbol": "Ds",
+	   "Element": "Darmstadtium",
+	   "Description": "Darmstadt, Germany, where the element was first synthesized",
+	   "Group": 10,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 111,
+	   "Symbol": "Rg",
+	   "Element": "Roentgenium",
+	   "Description": "Wilhelm Conrad Röntgen, physicist",
+	   "Group": 11,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 112,
+	   "Symbol": "Cn",
+	   "Element": "Copernicium",
+	   "Description": "Nicolaus Copernicus, astronomer",
+	   "Group": 12,
+	   "Period": 7,
+	   "Subcategory": "Transition Metal",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 113,
+	   "Symbol": "Nh",
+	   "Element": "Nihonium",
+	   "Description": "the Japanese name for Japan, Nihon, where the element was first synthesized",
+	   "Group": 13,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 114,
+	   "Symbol": "Fl",
+	   "Element": "Flerovium",
+	   "Description": "Flerov Laboratory of Nuclear Reactions, part of JINR where the element was synthesized; itself named for Georgy Flyorov, physicist",
+	   "Group": 14,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 115,
+	   "Symbol": "Mc",
+	   "Element": "Moscovium",
+	   "Description": "Moscow Oblast, Russia, where the element was first synthesized",
+	   "Group": 15,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 116,
+	   "Symbol": "Lv",
+	   "Element": "Livermorium",
+	   "Description": "Lawrence Livermore National Laboratory (in Livermore, California) which collaborated with JINR on its synthesis",
+	   "Group": 16,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 117,
+	   "Symbol": "Ts",
+	   "Element": "Tennessine",
+	   "Description": "Tennessee, United States",
+	   "Group": 17,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 },
+	 {
+	   "Atomic Number": 118,
+	   "Symbol": "Og",
+	   "Element": "Oganesson",
+	   "Description": "Yuri Oganessian, physicist",
+	   "Group": 18,
+	   "Period": 7,
+	   "Subcategory": "Unknown",
+	   "Hostname": "localhost"
+	 }
+	]
+}
