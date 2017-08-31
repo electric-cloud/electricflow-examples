@@ -12,3 +12,4 @@ ARTIFACTS=$ROOT/downloads
 echo "Adding third-party bin directories to the flow user's path for ease of use"
 PROFILE=.profile
 
+echo 'export PATH=$PATH:/usr/local/mysql/bin:/opt/wildfly/bin' >> /home/flow/$PROFILE
