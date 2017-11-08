@@ -1,0 +1,10 @@
+<view><base>base</base>
+	<tab><label>Administration</label>
+		<tab><label>Plugins</label><url>pages/EC-PluginManager/pluginmanager</url></tab>
+		<tab><label>Source Control</label><url>pages/ECSCM/configurations</url></tab>
+		<tab><label>Defect Tracking</label><url>pages/EC-DefectTracking/configurations</url></tab>
+		</tab><tab><label>Home</label><tab><label>Overview</label><accesskey>h</accesskey><url>pages/EC-Homepage/homepage</url></tab>
+		<tab><label>Continuous Integration</label><url>pages/EC-CIManager/configure</url></tab>
+		<tab><label>Stores</label><url>pages/unplug/un_run1</url></tab>
+	</tab>
+</view>
