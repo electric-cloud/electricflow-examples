@@ -21,7 +21,7 @@ sleep 20
 
 ectool runProcess Stores "Sample App" Deploy --environmentName "Philadelphia-3" \
 --actualParameter "ec_web1-run=1" --actualParameter "ec_web1-version=2.0" \
---actualParameter "ec_web2-dtf-run=1" --actualParameter "ec_web2-dtf-version=2.0" \
+--actualParameter "ec_web2-service-run=1" --actualParameter "ec_web2-service-version=2.0" \
 --actualParameter "ec_db-run=1" --actualParameter "ec_db-version=2.0"
 sleep 20
 
@@ -68,6 +68,6 @@ sleep 20
 
 ectool runProcess Stores "Sample App" Deploy --environmentName "Miami-8" \
 --actualParameter "ec_web1-run=1" --actualParameter "ec_web1-version=2.0" \
---actualParameter "ec_web2-dtf-run=1" --actualParameter "ec_web2-dtf-version=2.1" \
+--actualParameter "ec_web2-service-run=1" --actualParameter "ec_web2-service-version=2.1" \
 --actualParameter "ec_db-run=1" --actualParameter "ec_db-version=2.2"
 sleep 20
