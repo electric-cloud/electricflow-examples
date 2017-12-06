@@ -1,0 +1,95 @@
+{
+	"projName" : "Stores",
+	"pipelineName" : "Deployment Pipeline",
+	"appName" : "Sample App",
+	"appTier" : "App",
+	"appEnvTier" : "Store",
+	"appDescription" : "Store location",
+	"pipelineStages" : ["Stores" ],
+	"pipelineTypes" : ["Store", "Region", "State"],
+	
+	"parameters" : [
+		{ "name" : "web1",    "run" : "0" , "version" : "2.0"},
+		{ "name" : "web2",    "run" : "0" , "version" : "2.0"},
+		{ "name" : "db",      "run" : "0" , "version" : "2.0"},
+		{ "name" : "backend", "run" : "1" , "version" : "1.1"},
+		{ "name" : "service", "run" : "1" , "version" : "1.1"}
+	],
+
+	"components" : [
+		{	"appName" : "web1",
+			"description" : "Web Application"
+		}, 
+		{	"appName" : "db",
+			"description" : "DB"
+		}, 
+		{	"appName" : "backend",
+			"description" : "backend"
+		}, 
+		{	"appName" : "web2",
+			"description" : "Web Application"
+		}, 
+		{	"appName" : "service",
+			"description" : "Services"
+		}
+	],
+	"qaEnvironments" : [ "qa1", "qa2" ],
+	"stores" :	[
+	 {
+	   "Store": "Chicago",
+	   "ID": 1,
+	   "Region": "Central",
+	   "State": "IL",
+	   "TimeZone": "CT"
+	 },
+	 {
+	   "Store": "Detroit",
+	   "ID": 2,
+	   "Region": "Central",
+	   "State": "MI",
+	   "TimeZone": "ET"
+	 },
+	 {
+	   "Store": "Philadelphia",
+	   "ID": 3,
+	   "Region": "East",
+	   "State": "PA",
+	   "TimeZone": "ET"
+	 },
+	 {
+	   "Store": "San Jose",
+	   "ID": 4,
+	   "Region": "West",
+	   "State": "CA",
+	   "TimeZone": "PT"
+	 },
+	 {
+	   "Store": "Austin",
+	   "ID": 5,
+	   "Region": "Southwest",
+	   "State": "TX",
+	   "TimeZone": "CT"
+	 },
+	 {
+	   "Store": "New York",
+	   "ID": 6,
+	   "Region": "East",
+	   "State": "NY",
+	   "TimeZone": "ET"
+	 },
+	 {
+	   "Store": "St. Louis",
+	   "ID": 7,
+	   "Region": "Central",
+	   "State": "MO",
+	   "TimeZone": "CT"
+	 },
+	 {
+	   "Store": "Miami",
+	   "ID": 8,
+	   "Region": "SouthEast",
+	   "State": "FL",
+	   "TimeZone": "ET"
+	 }
+	]
+}
