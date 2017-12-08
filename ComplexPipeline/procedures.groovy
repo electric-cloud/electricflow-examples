@@ -1,7 +1,7 @@
-def myProject = args.projectName
+def myProject = args.project
 
-project myProject, {
-    args.procedures.each { myProcedure ->
+project myProject.name, {
+    myProject.procedures.each { myProcedure ->
         procedure myProcedure.name, {
             description = myProcedure.description
             timeLimitUnits = 'minutes'

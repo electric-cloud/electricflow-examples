@@ -1,286 +1,309 @@
 {
-  "projectName" : "ComplexPipeline",
-  "description" : "Example of a pipeline with entry points of each type",
-
   "project" : {
     "name" : "ComplexPipeline",
-    "description" : "Example of a pipeline with entry points of each type"
+    "description" : "Example of a pipeline with entry points of each type",
+
+    "procedures" : [
+      {"name" : "Stub",
+        "description" : "Placeholder that shows a really fast SUCCESS"}
+    ],
+
+    "workflows" : [
+      { "name" : "Prototypical Workflow",
+        "description" : "Typical simple workflow to illustrate a point",
+        "stateDefinitions" : [
+          { "name" : "Initialize System",
+            "subprocedure" : "Stub"},
+          { "name" : "Checkout",
+            "subprocedure" : "Stub"},
+          { "name" : "Build",
+            "subprocedure" : "Stub"},
+          { "name" : "Test",
+            "subprocedure" : "Stub"},
+          { "name" : "Success",
+            "subprocedure" : "Stub"},
+          { "name" : "Fail - Remediate",
+            "subprocedure" : "Stub"},
+          { "name" : "Quit",
+            "subprocedure" : "Stub"}
+        ],
+        "transitionDefinitions" : [
+          { "name": "T1",
+            "condition" : "",
+            "stateDefinitionName" : "Initialize System",
+            "targetState" : "Checkout",
+            "trigger" : "onCompletion"
+          },
+          { "name" : "T2",
+            "condition" : "$[/javascript mySubjob.outcome == \"success\";]",
+            "stateDefinitionName" : "Checkout",
+            "targetState" : "Build",
+            "trigger" : "onCompletion"
+          },
+          { "name": "T2",
+            "condition" : "",
+            "stateDefinitionName" : "Build",
+            "targetState" : "Test",
+            "trigger" : "onCompletion"
+          },
+          { "name" : "F1",
+            "condition" : "$[/javascript mySubjob.outcome != \"success\";]",
+            "stateDefinitionName" : "Test",
+            "targetState" : "Fail - Remediate",
+            "trigger" : "onCompletion"
+          },
+          { "name" : "T3",
+            "condition" : "$[/javascript mySubjob.outcome == \"success\";]",
+            "stateDefinitionName" : "Test",
+            "targetState" : "Success",
+            "trigger" : "onCompletion"
+          },
+          { "name" : "Restart",
+            "condition" : "",
+            "stateDefinitionName" : "Fail - Remediate",
+            "targetState" : "Checkout",
+            "trigger" : "manual"
+          },
+          { "name" : "F2",
+            "condition" : "",
+            "stateDefinitionName" : "Fail - Remediate",
+            "targetState" : "Quit",
+            "trigger" : "manual"
+          }
+        ]
+      }
+    ],
+
+    "applications" : [
+      {
+        "name" : "Two-Tier",
+        "description" : "My application description",
+        "applicationTiers" : [
+          {
+            "name" : "User Interface",
+            "components" : [
+              {
+                "name" : "web1"
+              },
+              {
+                "name" : "web2"
+              }
+            ]
+          },
+          {
+            "name" : "Database",
+            "components" : [
+              {
+                "name" : "db"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "pipelines" : [
+      {
+        "name": "Multi-purpose Pipeline",
+        "description" : "Example of a pipeline with multiple types of task types and other features",
+
+        "formalParameters": [
+          {
+            "name" : "doSnapshot",
+            "type" : "checkbox",
+            "description" : "Enable if we should take a snapshot on each deployment",
+            "defaultValue" : "true",
+            "orderIndex" : "1",
+            "label" : "Take snapshot?",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "true",
+            "uncheckedValue" : "false"
+          }
+        ],
+
+        "stages": [
+          {
+            "name": "DEV",
+            "description" : "This stage contains entry points to illustrate different types of tasks",
+            "gates" : [
+              {
+                "gateType" : "POST",
+                "task" :
+                {
+                  "name" : "Gate out of First Stage",
+                  "description" : "Show an approval gate out of a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Procedure",
+                "description" : "Run a procedure",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline"
+              },
+              {
+                "name": "Command line",
+                "description" : "Run a command-line expression",
+                "taskType" : "COMMAND",
+                "commandToRun" : "echo \"Hello world\""
+              },
+              {
+                "name": "Workflow",
+                "description" : "Run workflow we have developed",
+                "taskType" : "WORKFLOW",
+                "subproject" : "ComplexPipeline",
+                "subworkflowDefinition" : "Prototypical Workflow",
+                "subworkflowStartingState" : "Initialize System"
+              },
+              {
+                "name": "Plugin",
+                "description": "Run a plugin",
+                "taskType": "PLUGIN",
+                "subpluginKey": "EC-FileOps",
+                "subprocedure": "CreateEmptyFile",
+                "actualParameters": [
+                  {
+                    "name": "Name",
+                    "value": "foo.txt"
+                  }
+                ]
+              },
+              {
+                "name": "Manual Task",
+                "description" : "Manual intervention",
+                "taskType" : "MANUAL",
+                "instruction" : "Approve to continue the pipeline",
+                "notificationTemplate" : "ec_default_pipeline_manual_task_notification_template",
+                "approver" : [ "admin", "marco" ]
+              },
+              {
+                "name": "Utility - Create Snapshot",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "$[/myApplication/applicationName]"},
+                  {"name" : "EnvironmentName", "value" : "$[/myEnvironment/environmentName]"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/projectName]"},
+                  {"name" : "Overwrite", "value" : "false"},
+                  {"name" : "ProjectName", "value" : "$[/myApplication/projectName]"},
+                  {"name" : "ServiceName", "value" : "$[/myService/serviceName]"},
+                  {"name" : "SnapshotName", "value" : "mysnap-1.0"}
+                ]
+              }
+            ]
+          },
+          {
+            "name": "STAGE",
+            "description" : "This stage contains variations of task conditions, groups, and more",
+            "gates" : [
+              {
+                "gateType" : "PRE",
+                "task" :
+                {
+                  "name" : "Gate into the Second Stage",
+                  "description" : "Show an approval gate into a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "seymour"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Group",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP",
+                "projectName" : "ComplexPipeline",
+                "subproject" : "ComplexPipeline"
+              },
+              {
+                "name": "Deploy-Application",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline",
+                "groupName" : "Deploy Group"
+              },
+              {
+                "name": "Deploy-Service",
+                "description" : "Deploy a Service",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline",
+                "groupName" : "Deploy Group"
+              },
+              {
+                "name": "Test",
+                "description" : "Test the deployed software",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline"
+              }
+            ]
+          },
+          {
+            "name": "PROD",
+            "description" : "This stage contains variations of task conditions, groups, and more",
+            "gates" : [
+              {
+                "gateType" : "PRE",
+                "task" :
+                {
+                  "name" : "Gate into the PROD Stage",
+                  "description" : "Show an approval gate into a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "seymour"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Group",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP",
+                "projectName" : "ComplexPipeline",
+                "subproject" : "ComplexPipeline"
+              },
+              {
+                "name": "Deploy-Application",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline",
+                "groupName" : "Deploy Group"
+              },
+              {
+                "name": "Deploy-Service",
+                "description" : "Deploy a Service",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline",
+                "groupName" : "Deploy Group"
+              },
+              {
+                "name": "Test",
+                "description" : "Test the deployed software",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
   },
 
   "resources" : [
     "complex-1"
-  ],
-
-  "procedures" : [
-    {"name" : "Stub",
-     "description" : "Placeholder that shows a really fast SUCCESS"}
-  ],
-
-  "workflows" : [
-    { "name" : "Prototypical Workflow",
-      "description" : "Typical simple workflow to illustrate a point",
-      "stateDefinitions" : [
-        { "name" : "Initialize System",
-          "subprocedure" : "Stub"},
-        { "name" : "Checkout",
-          "subprocedure" : "Stub"},
-        { "name" : "Build",
-          "subprocedure" : "Stub"},
-        { "name" : "Test",
-          "subprocedure" : "Stub"},
-        { "name" : "Success",
-          "subprocedure" : "Stub"},
-        { "name" : "Fail - Remediate",
-          "subprocedure" : "Stub"},
-        { "name" : "Quit",
-          "subprocedure" : "Stub"}
-      ],
-      "transitionDefinitions" : [
-        { "name": "T1",
-          "condition" : "",
-          "stateDefinitionName" : "Initialize System",
-          "targetState" : "Checkout",
-          "trigger" : "onCompletion"
-        },
-        { "name" : "T2",
-          "condition" : "$[/javascript mySubjob.outcome == \"success\";]",
-          "stateDefinitionName" : "Checkout",
-          "targetState" : "Build",
-          "trigger" : "onCompletion"
-        },
-        { "name": "T2",
-          "condition" : "",
-          "stateDefinitionName" : "Build",
-          "targetState" : "Test",
-          "trigger" : "onCompletion"
-        },
-        { "name" : "F1",
-          "condition" : "$[/javascript mySubjob.outcome != \"success\";]",
-          "stateDefinitionName" : "Test",
-          "targetState" : "Fail - Remediate",
-          "trigger" : "onCompletion"
-        },
-        { "name" : "T3",
-          "condition" : "$[/javascript mySubjob.outcome == \"success\";]",
-          "stateDefinitionName" : "Test",
-          "targetState" : "Success",
-          "trigger" : "onCompletion"
-        },
-        { "name" : "Restart",
-          "condition" : "",
-          "stateDefinitionName" : "Fail - Remediate",
-          "targetState" : "Checkout",
-          "trigger" : "manual"
-        },
-        { "name" : "F2",
-          "condition" : "",
-          "stateDefinitionName" : "Fail - Remediate",
-          "targetState" : "Quit",
-          "trigger" : "manual"
-        }
-      ]
-    }
-  ],
-
-  "applications" : [
-
-  ],
-
-  "pipelines" : [
-    {
-      "name": "Multi-purpose Pipeline",
-      "description" : "Example of a pipeline with multiple types of task types and other features",
-
-      "formalParameters": [
-        {
-          "name" : "doSnapshot",
-          "type" : "checkbox",
-          "description" : "Enable if we should take a snapshot on each deployment",
-          "defaultValue" : "true",
-          "orderIndex" : "1",
-          "label" : "Take snapshot?",
-          "expansionDeferred" : "0",
-          "checkedValue" : "true",
-          "initiallyChecked" : "true",
-          "uncheckedValue" : "false"
-        }
-      ],
-
-      "stages": [
-        {
-          "name": "DEV",
-          "description" : "This stage contains entry points to illustrate different types of tasks",
-          "gates" : [
-            {
-              "gateType" : "POST",
-              "task" :
-              {
-                "name" : "Gate out of First Stage",
-                "description" : "Show an approval gate out of a stage",
-                "taskType" : "APPROVAL",
-                "approver" : "marco"
-              }
-            }
-          ],
-          "tasks": [
-            {
-              "name": "Procedure",
-              "description" : "Run a procedure",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline"
-            },
-            {
-              "name": "Command line",
-              "description" : "Run a command-line expression",
-              "taskType" : "COMMAND",
-              "commandToRun" : "echo \"Hello world\""
-            },
-            {
-              "name": "Workflow",
-              "description" : "Run workflow we have developed",
-              "taskType" : "WORKFLOW",
-              "subproject" : "ComplexPipeline",
-              "subworkflowDefinition" : "Prototypical Workflow",
-              "subworkflowStartingState" : "Initialize System"
-            },
-            {
-              "name": "Plugin",
-              "description": "Run a plugin",
-              "taskType": "PLUGIN",
-              "subpluginKey": "EC-FileOps",
-              "subprocedure": "CreateEmptyFile",
-              "actualParameters": [
-                {
-                  "name": "Name",
-                  "value": "foo.txt"
-                }
-              ]
-            },
-            {
-              "name": "Manual Task",
-              "description" : "Manual intervention",
-              "taskType" : "MANUAL",
-              "instruction" : "Approve to continue the pipeline",
-              "notificationTemplate" : "ec_default_pipeline_manual_task_notification_template",
-              "approver" : [ "admin", "marco" ]
-            },
-            {
-              "name": "Utility - Create Snapshot",
-              "description" : "Run a utility function",
-              "condition" : "$[doSnapshot]",
-              "taskType" : "UTILITY",
-              "subpluginKey" : "EF-Utilities",
-              "subprocedure" : "Create Snapshot",
-              "actualParameters" : [
-                {"name" : "ApplicationName", "value" : "$[/myApplication/applicationName]"},
-                {"name" : "EnvironmentName", "value" : "$[/myEnvironment/environmentName]"},
-                {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/projectName]"},
-                {"name" : "Overwrite", "value" : "false"},
-                {"name" : "ProjectName", "value" : "$[/myApplication/projectName]"},
-                {"name" : "ServiceName", "value" : "$[/myService/serviceName]"},
-                {"name" : "SnapshotName", "value" : "mysnap-1.0"}
-              ]
-            }
-          ]
-        },
-        {
-          "name": "STAGE",
-          "description" : "This stage contains variations of task conditions, groups, and more",
-          "gates" : [
-            {
-              "gateType" : "PRE",
-              "task" :
-              {
-                "name" : "Gate into the Second Stage",
-                "description" : "Show an approval gate into a stage",
-                "taskType" : "APPROVAL",
-                "approver" : "seymour"
-              }
-            }
-          ],
-          "tasks": [
-            {
-              "name": "Deploy Group",
-              "description" : "Group the software into one",
-              "taskType" : "GROUP",
-              "projectName" : "ComplexPipeline",
-              "subproject" : "ComplexPipeline"
-            },
-            {
-              "name": "Deploy-Application",
-              "description" : "Deploy an Application",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline",
-              "groupName" : "Deploy Group"
-            },
-            {
-              "name": "Deploy-Service",
-              "description" : "Deploy a Service",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline",
-              "groupName" : "Deploy Group"
-            },
-            {
-              "name": "Test",
-              "description" : "Test the deployed software",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline"
-            }
-          ]
-        },
-        {
-          "name": "PROD",
-          "description" : "This stage contains variations of task conditions, groups, and more",
-          "gates" : [
-            {
-              "gateType" : "PRE",
-              "task" :
-              {
-                "name" : "Gate into the PROD Stage",
-                "description" : "Show an approval gate into a stage",
-                "taskType" : "APPROVAL",
-                "approver" : "seymour"
-              }
-            }
-          ],
-          "tasks": [
-            {
-              "name": "Deploy Group",
-              "description" : "Group the software into one",
-              "taskType" : "GROUP",
-              "projectName" : "ComplexPipeline",
-              "subproject" : "ComplexPipeline"
-            },
-            {
-              "name": "Deploy-Application",
-              "description" : "Deploy an Application",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline",
-              "groupName" : "Deploy Group"
-            },
-            {
-              "name": "Deploy-Service",
-              "description" : "Deploy a Service",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline",
-              "groupName" : "Deploy Group"
-            },
-            {
-              "name": "Test",
-              "description" : "Test the deployed software",
-              "taskType" : "PROCEDURE",
-              "subprocedure" : "Stub",
-              "subproject" : "ComplexPipeline"
-            }
-          ]
-        }
-      ]
-    }
   ]
+
 }

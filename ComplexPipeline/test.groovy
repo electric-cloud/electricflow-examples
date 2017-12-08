@@ -1,16 +1,16 @@
-def myProject = args.projectName
+def myProject = args.project
 
-println "myProject is $myProject"
+println "myProject is $myProject.name"
 
 args.resources.each { myResource ->
     println "myResource is $myResource"
 }
 
-args.procedures.each { myProcedure ->
+myProject.procedures.each { myProcedure ->
     println "myProcedure is $myProcedure.name"
 }
 
-args.workflows?.each { myWorkflow ->
+myProject.workflows?.each { myWorkflow ->
     println "myWorkflow is $myWorkflow.name"
     myWorkflow.stateDefinitions?.each { myState ->
         println "  myState is $myState.name"
@@ -26,10 +26,33 @@ args.workflows?.each { myWorkflow ->
     }
 }
 
-args.pipelines?.each { myPipeline ->
+myProject.applications?.each { myApplication ->
+    println "myApplication is $myApplication.name"
+    myApplication.applicationTiers?.each { myApplicationTier ->
+        println "   myApplicationTier is $myApplicationTier.name"
+        myApplicationTier.components?.each { myComponent ->
+            println "       myComponent is $myComponent.name"
+        }
+    }
+}
+
+myProject.pipelines?.each { myPipeline ->
     println "myPipeline is $myPipeline.name"
+    myPipeline.formalParameters?.each { myParameter ->
+        println "  formalParameter is $myParameter.name of type $myParameter.type"
+        switch (myParameter.type) {
+            case ~/checkbox/:
+                println "    ->checkbox"
+                break
+            default:
+                println "    ->other"
+                break
+        }
+    }
+
     myPipeline.stages?.each { myStage ->
         println "  myStage is $myStage.name"
+
         myStage.gates?.each { myGate ->
             println "    myGate is $myGate.task.name of type $myGate.gateType"
         }
@@ -57,6 +80,9 @@ args.pipelines?.each { myPipeline ->
                     break
                 case ~/UTILITY/:
                     println "      Type Utility"
+                    break
+                case ~/GROUP/:
+                    println "      Type Group"
                     break
                 default:
                     println "      Type Unhandled"

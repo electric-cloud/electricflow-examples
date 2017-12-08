@@ -3,7 +3,7 @@ def myProject = args.project
 project myProject.name, {
     description = myProject.description
 
-    args.pipelines.each { myPipeline ->
+    myProject.pipelines.each { myPipeline ->
         pipeline myPipeline.name, {
             description = myPipeline.description
             enabled = "1"
