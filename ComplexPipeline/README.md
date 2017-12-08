@@ -3,7 +3,7 @@
 This project exists because I found people wanted to see a Pipeline with multiple features enabled.  In short, this Pipeline contains a little bit of a lot (not a little bit of everything, because there is too much).  You will see the following items complete or _incomplete_:
 
 * Pipeline
-  * _Parameters_
+  * Parameters
   * Stages
       * Gates - Entry and Exit
         * Approvals with 2 people
@@ -13,10 +13,10 @@ This project exists because I found people wanted to see a Pipeline with multipl
         * Manual
         * Plugin
         * Utility
+        * Run Conditions
+        * Groups
         * _Application Processes_
         * _Skipped Steps_
-        * _Run Conditions_
-        * _Groups_
         * _Retry logic_
 * Users
 * Examples of Email Configurations
