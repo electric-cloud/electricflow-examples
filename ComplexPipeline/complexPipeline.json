@@ -108,7 +108,7 @@
 
       "stages": [
         {
-          "name": "Stage 1",
+          "name": "DEV",
           "description" : "This stage contains entry points to illustrate different types of tasks",
           "gates" : [
             {
@@ -185,7 +185,7 @@
           ]
         },
         {
-          "name": "Stage 2",
+          "name": "STAGE",
           "description" : "This stage contains variations of task conditions, groups, and more",
           "gates" : [
             {
@@ -201,8 +201,79 @@
           ],
           "tasks": [
             {
-              "name": "Task 1",
-              "description" : "This first tasks shows a procedure call",
+              "name": "Deploy Group",
+              "description" : "Group the software into one",
+              "taskType" : "GROUP",
+              "projectName" : "ComplexPipeline",
+              "subproject" : "ComplexPipeline"
+            },
+            {
+              "name": "Deploy-Application",
+              "description" : "Deploy an Application",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline",
+              "groupName" : "Deploy Group"
+            },
+            {
+              "name": "Deploy-Service",
+              "description" : "Deploy a Service",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline",
+              "groupName" : "Deploy Group"
+            },
+            {
+              "name": "Test",
+              "description" : "Test the deployed software",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline"
+            }
+          ]
+        },
+        {
+          "name": "PROD",
+          "description" : "This stage contains variations of task conditions, groups, and more",
+          "gates" : [
+            {
+              "gateType" : "PRE",
+              "task" :
+              {
+                "name" : "Gate into the PROD Stage",
+                "description" : "Show an approval gate into a stage",
+                "taskType" : "APPROVAL",
+                "approver" : "seymour"
+              }
+            }
+          ],
+          "tasks": [
+            {
+              "name": "Deploy Group",
+              "description" : "Group the software into one",
+              "taskType" : "GROUP",
+              "projectName" : "ComplexPipeline",
+              "subproject" : "ComplexPipeline"
+            },
+            {
+              "name": "Deploy-Application",
+              "description" : "Deploy an Application",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline",
+              "groupName" : "Deploy Group"
+            },
+            {
+              "name": "Deploy-Service",
+              "description" : "Deploy a Service",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline",
+              "groupName" : "Deploy Group"
+            },
+            {
+              "name": "Test",
+              "description" : "Test the deployed software",
               "taskType" : "PROCEDURE",
               "subprocedure" : "Stub",
               "subproject" : "ComplexPipeline"

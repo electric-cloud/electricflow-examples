@@ -93,6 +93,9 @@ project myProject.name, {
                             insertRollingDeployManualStep = '0'
                             skippable = '0'
                             taskType = myTask.taskType
+                            // TODO: Need to verify this is the right way to make the assignment.  If the field .groupName
+                            // does not exist, the intention is to define the object groupName = null.
+                            groupName = myTask.groupName
 
                             switch (myTask.taskType) {
                                 case ~/PROCEDURE/:
@@ -154,6 +157,11 @@ project myProject.name, {
                                                 (aParam.name) : aParam.value,
                                         ]
                                     }
+                                    break
+                                case ~/GROUP/:
+                                    println "      Type GROUP"
+                                    projectName = myTask.projectName
+                                    subproject = myTask.subproject
                                     break
                                 default:
                                     println "      Type Unhandled"
