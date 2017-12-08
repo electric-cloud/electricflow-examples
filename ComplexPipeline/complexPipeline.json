@@ -108,32 +108,53 @@
             {
               "name": "Command line",
               "description" : "Run a command-line expression",
-              "taskType" : "COMMAND"
+              "taskType" : "COMMAND",
+              "commandToRun" : "echo \"Hello world\""
             },
             {
               "name": "Workflow",
               "description" : "Run workflow we have developed",
-              "taskType" : "WORKFLOW"
-            },
-            {
-              "name": "Application Process",
-              "description" : "Run an application process",
-              "taskType" : "PROCESS"
+              "taskType" : "WORKFLOW",
+              "subproject" : "ComplexPipeline",
+              "subworkflowDefinition" : "Prototypical Workflow",
+              "subworkflowStartingState" : "Initialize System"
             },
             {
               "name": "Plugin",
-              "description" : "Run a plugin",
-              "taskType" : "PLUGIN"
+              "description": "Run a plugin",
+              "taskType": "PLUGIN",
+              "subpluginKey": "EC-FileOps",
+              "subprocedure": "CreateEmptyFile",
+              "actualParameters": [
+                {
+                  "name": "Name",
+                  "value": "foo.txt"
+                }
+              ]
             },
             {
               "name": "Manual Task",
               "description" : "Manual intervention",
-              "taskType" : "MANUAL"
+              "taskType" : "MANUAL",
+              "instruction" : "Approve to continue the pipeline",
+              "notificationTemplate" : "ec_default_pipeline_manual_task_notification_template",
+              "approver" : [ "admin", "marco" ]
             },
             {
               "name": "Utility - Create Snapshot",
               "description" : "Run a utility function",
-              "taskType" : "UTILITY"
+              "taskType" : "UTILITY",
+              "subpluginKey" : "EF-Utilities",
+              "subprocedure" : "Create Snapshot",
+              "actualParameters" : [
+                {"name" : "ApplicationName", "value" : "$[/myApplication/applicationName]"},
+                {"name" : "EnvironmentName", "value" : "$[/myEnvironment/environmentName]"},
+                {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/projectName]"},
+                {"name" : "Overwrite", "value" : "false"},
+                {"name" : "ProjectName", "value" : "$[/myApplication/projectName]"},
+                {"name" : "ServiceName", "value" : "$[/myService/serviceName]"},
+                {"name" : "SnapshotName", "value" : "mysnap-1.0"}
+              ]
             }
           ]
         },
@@ -155,7 +176,10 @@
           "tasks": [
             {
               "name": "Task 1",
-              "description" : "This first tasks shows a procedure call"
+              "description" : "This first tasks shows a procedure call",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline"
             }
           ]
         }

@@ -51,27 +51,74 @@ project myProject, {
                     myStage.tasks.each { myTask ->
                         task myTask.name, {
                             description = myTask.description
+                            advancedMode = '0'
+                            alwaysRun = '0'
+                            condition = null
+                            enabled = '1'
+                            errorHandling = 'stopOnError'
+                            insertRollingDeployManualStep = '0'
+                            skippable = '0'
+                            taskType = myTask.taskType
+
                             switch (myTask.taskType) {
                                 case ~/PROCEDURE/:
-                                    println "      Type Procedure"
+                                    subprocedure = myTask.subprocedure
+                                    subproject = myTask.subproject
                                     break
                                 case ~/COMMAND/:
                                     println "      Type Command"
+                                    actualParameter = [
+                                        'commandToRun': myTask.commandToRun,
+                                    ]
+                                    subpluginKey = 'EC-Core'
+                                    subprocedure = 'RunCommand'
                                     break
                                 case ~/PROCESS/:
                                     println "      Type Process"
+                                    actualParameter = [
+                                            'ec_enforceDependencies': '0',
+                                            'ec_smartDeployOption': '0',
+                                            'ec_stageArtifacts': '0',
+                                    ]
+                                    environmentName = myTask.environmentName
+                                    environmentProjectName = myTask.environmentProjectName
+                                    subapplication = myTask.subapplication
+                                    subprocess = myTask.subprocess
+                                    subproject = myTask.subproject
+                                    // TODO : Need to be smart here when we do microservices.
+                                    taskProcessType = myTask.taskProcessType
                                     break
                                 case ~/MANUAL/:
                                     println "      Type Manual"
+                                    instruction = myTask.instruction
+                                    notificationTemplate = myTask.notificationTemplate
+                                    approver = myTask.approver
                                     break
                                 case ~/PLUGIN/:
                                     println "      Type Plugin"
+                                    subpluginKey = myTask.subpluginKey
+                                    subprocedure = myTask.subprocedure
+                                    actualParameter = myTask.actualParameters?.collectEntries {aParam->
+                                        [
+                                                (aParam.name) : aParam.value,
+                                        ]
+                                    }
                                     break
                                 case ~/WORKFLOW/:
                                     println "      Type Workflow"
+                                    subproject = myTask.subproject
+                                    subworkflowDefinition = myTask.subworkflowDefinition
+                                    subworkflowStartingState = myTask.subworkflowStartingState
                                     break
                                 case ~/UTILITY/:
                                     println "      Type Utility"
+                                    subpluginKey = myTask.subpluginKey
+                                    subprocedure = myTask.subprocedure
+                                    actualParameter = myTask.actualParameters?.collectEntries {aParam->
+                                        [
+                                                (aParam.name) : aParam.value,
+                                        ]
+                                    }
                                     break
                                 default:
                                     println "      Type Unhandled"
