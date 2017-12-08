@@ -93,14 +93,47 @@
                 "name" : "Gate out of First Stage",
                 "description" : "Show an approval gate out of a stage",
                 "taskType" : "APPROVAL",
-                "approver" : "admin"
+                "approver" : "marco"
               }
             }
           ],
           "tasks": [
             {
-              "name": "Task 1",
-              "description" : "This first tasks shows a procedure call"
+              "name": "Procedure",
+              "description" : "Run a procedure",
+              "taskType" : "PROCEDURE",
+              "subprocedure" : "Stub",
+              "subproject" : "ComplexPipeline"
+            },
+            {
+              "name": "Command line",
+              "description" : "Run a command-line expression",
+              "taskType" : "COMMAND"
+            },
+            {
+              "name": "Workflow",
+              "description" : "Run workflow we have developed",
+              "taskType" : "WORKFLOW"
+            },
+            {
+              "name": "Application Process",
+              "description" : "Run an application process",
+              "taskType" : "PROCESS"
+            },
+            {
+              "name": "Plugin",
+              "description" : "Run a plugin",
+              "taskType" : "PLUGIN"
+            },
+            {
+              "name": "Manual Task",
+              "description" : "Manual intervention",
+              "taskType" : "MANUAL"
+            },
+            {
+              "name": "Utility - Create Snapshot",
+              "description" : "Run a utility function",
+              "taskType" : "UTILITY"
             }
           ]
         },
@@ -115,7 +148,7 @@
                 "name" : "Gate into the Second Stage",
                 "description" : "Show an approval gate into a stage",
                 "taskType" : "APPROVAL",
-                "approver" : "admin"
+                "approver" : "seymour"
               }
             }
           ],

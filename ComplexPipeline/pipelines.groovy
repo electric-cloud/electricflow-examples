@@ -51,6 +51,32 @@ project myProject, {
                     myStage.tasks.each { myTask ->
                         task myTask.name, {
                             description = myTask.description
+                            switch (myTask.taskType) {
+                                case ~/PROCEDURE/:
+                                    println "      Type Procedure"
+                                    break
+                                case ~/COMMAND/:
+                                    println "      Type Command"
+                                    break
+                                case ~/PROCESS/:
+                                    println "      Type Process"
+                                    break
+                                case ~/MANUAL/:
+                                    println "      Type Manual"
+                                    break
+                                case ~/PLUGIN/:
+                                    println "      Type Plugin"
+                                    break
+                                case ~/WORKFLOW/:
+                                    println "      Type Workflow"
+                                    break
+                                case ~/UTILITY/:
+                                    println "      Type Utility"
+                                    break
+                                default:
+                                    println "      Type Unhandled"
+                                    break
+                            }
                         }
                     }
                 }

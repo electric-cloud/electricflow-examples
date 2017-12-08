@@ -2,8 +2,6 @@
 
 ectool evalDsl --dslFile test.groovy --parametersFile complexPipeline.json
 
-# Add Configurations, Credentials, ACL entries, special users for email notifications
-
 ectool evalDsl --dslFile resources.groovy --parametersFile complexPipeline.json
 
 ectool evalDsl --dslFile environments.groovy --parametersFile complexPipeline.json
