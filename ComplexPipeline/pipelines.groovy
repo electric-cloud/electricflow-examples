@@ -1,7 +1,7 @@
-def myProject = args.projectName
+def myProject = args.project
 
-project myProject, {
-    description = args.description
+project myProject.name, {
+    description = myProject.description
 
     args.pipelines.each { myPipeline ->
         pipeline myPipeline.name, {
@@ -16,6 +16,40 @@ project myProject, {
                 type = null
             }
 
+            myPipeline.formalParameters?.each { myParameter ->
+                formalParameter myParameter.name, {
+                    type = myParameter.type
+                    defaultValue = myParameter.defaultValue
+                    description = myParameter.description
+                    expansionDeferred = myParameter.expansionDeferred
+                    label = myParameter.label
+                    orderIndex = myParameter.orderIndex
+                    required = myParameter.required
+
+                    switch (myParameter.type) {
+                        case ~/checkbox/:
+                            break
+                        default:
+                            break
+                    }
+                }
+                property 'ec_customEditorData', {
+                    property 'parameters', {
+                        property myParameter.name, {
+                            switch (myParameter.type) {
+                                case ~/checkbox/:
+                                    checkedValue = myParameter.checkedValue
+                                    initiallyChecked = myParameter.initiallyChecked
+                                    uncheckedValue = myParameter.uncheckedValue
+                                    break
+                                default:
+                                    break
+                            }
+                        }
+                    }
+                }
+            }
+
             myPipeline.stages.each { myStage ->
                 stage myStage.name, {
                     description = myStage.description
@@ -24,7 +58,7 @@ project myProject, {
                         gate myGate.gateType, {
                             condition = null
                             precondition = null
-                            projectName = myProject
+                            projectName = myProject.name
 
                             task myGate.task.name, {
                                 description = myGate.task.description
@@ -37,7 +71,7 @@ project myProject, {
                                 insertRollingDeployManualStep = '0'
                                 instruction = null
                                 notificationTemplate = 'ec_default_gate_task_notification_template'
-                                projectName = myProject
+                                projectName = myProject.name
                                 skippable = '0'
                                 subproject = args.projName
                                 taskType = myGate.task.type
@@ -112,6 +146,7 @@ project myProject, {
                                     break
                                 case ~/UTILITY/:
                                     println "      Type Utility"
+                                    condition = myTask.condition
                                     subpluginKey = myTask.subpluginKey
                                     subprocedure = myTask.subprocedure
                                     actualParameter = myTask.actualParameters?.collectEntries {aParam->

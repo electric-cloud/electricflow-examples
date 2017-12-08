@@ -2,6 +2,11 @@
   "projectName" : "ComplexPipeline",
   "description" : "Example of a pipeline with entry points of each type",
 
+  "project" : {
+    "name" : "ComplexPipeline",
+    "description" : "Example of a pipeline with entry points of each type"
+  },
+
   "resources" : [
     "complex-1"
   ],
@@ -77,10 +82,30 @@
     }
   ],
 
+  "applications" : [
+
+  ],
+
   "pipelines" : [
     {
       "name": "Multi-purpose Pipeline",
       "description" : "Example of a pipeline with multiple types of task types and other features",
+
+      "formalParameters": [
+        {
+          "name" : "doSnapshot",
+          "type" : "checkbox",
+          "description" : "Enable if we should take a snapshot on each deployment",
+          "defaultValue" : "true",
+          "orderIndex" : "1",
+          "label" : "Take snapshot?",
+          "expansionDeferred" : "0",
+          "checkedValue" : "true",
+          "initiallyChecked" : "true",
+          "uncheckedValue" : "false"
+        }
+      ],
+
       "stages": [
         {
           "name": "Stage 1",
@@ -143,6 +168,7 @@
             {
               "name": "Utility - Create Snapshot",
               "description" : "Run a utility function",
+              "condition" : "$[doSnapshot]",
               "taskType" : "UTILITY",
               "subpluginKey" : "EF-Utilities",
               "subprocedure" : "Create Snapshot",
