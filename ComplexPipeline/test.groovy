@@ -38,10 +38,10 @@ args.pipelines?.each { myPipeline ->
 
             switch (myTask.taskType) {
                 case ~/PROCEDURE/:
-                    println "      Type Procedure"
+                    println "      Type Procedure $myTask.subproject : $myTask.subprocedure"
                     break
                 case ~/COMMAND/:
-                    println "      Type Command"
+                    println "      Type Command : $myTask.commandToRun"
                     break
                 case ~/PROCESS/:
                     println "      Type Process"
