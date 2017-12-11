@@ -1,5 +1,19 @@
 def myProject = args.project
 
+// Application Models have these objects:
+// Project -
+//      Applications -
+//          ApplicationTiers
+//              Components
+//                  Processes
+//                      Process Steps
+//          Processes
+//              Process Steps
+//          TierMaps
+//              TierMappings
+// The structure in this groovy model will match this overall object model.
+
+
 project myProject.name, {
     description = myProject.description
     myProject.applications.each { myApplication ->
@@ -7,151 +21,120 @@ project myProject.name, {
             println "Application $myApplication.name"
             description = myApplication.description
 
-            myApplication.applicationTiers?.each { myApplicationTier->
+            myApplication.applicationTiers?.each { myApplicationTier ->
                 applicationTier myApplicationTier.name, {
                     println "  ApplicationTier $myApplicationTier.name"
                     applicationName = myApplication.name
                     projectName = myProject.name
 
-                    myApplicationTier.components?.each { myComponent->
+                    myApplicationTier.components?.each { myComponent ->
                         println "    Component $myComponent.name"
 
                         component myComponent.name, pluginName: null, {
-                            actualParameter = [
-                                    'artifactId': myComponent.name
-                            ]
                             applicationName = myApplication.name
+                            description = "$myComponent.groupId : $myComponent.artifactId"
                             // TODO : For now, we handle components directly defined.
                             // We do not yet handle Master Components, or those components defined from them.
                             // The difference is in how we specify the pluginName / pluginKey
                             pluginKey = 'EC-Artifact'
                             //pluginKey = null
                             reference = "1"
-                            // sourceComponentName = myComponent.name
-                            // sourceProjectName = myProject.Name
-							
-							myComponent.processes?.each { myProcess->
-								process myProcess.name, {
-								}
-							}
-							property 'artifactName', value: "$myComponent.groupId:$myComponent.artifactId", {
-								expandable = '1'
-							}
-							artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
-							filterList = ''
-							overwrite = 'update'
-							pluginProcedure = 'Retrieve'
+                            sourceComponentName = null
+                            sourceProjectName = null
 
-							property 'pluginProjectName', value: 'EC-Artifact', {
-								expandable = '1'
-							}
-							retrieveToDirectory = ''
+                            myComponent.processes?.each { myProcess ->
+                                println "       Process $myProcess.name"
+                                process myProcess.name, {
+                                    description = myProcess.name
+                                    processType = myProcess.processType
+                                    myProcess.processSteps?.each { myProcessStep ->
+                                        println "           ProcessStep $myProcessStep.name"
+                                        processStep myProcessStep.name, {
+                                            actualParameter = myProcessStep.actualParameters?.collectEntries { aParam ->
+                                                [
+                                                        (aParam.name): aParam.value,
+                                                ]
+                                            }
+                                            description = myProcessStep.description
+                                            // Here, we will use the name of the process Step to guide us.  This forms a
+                                            // Dependency on the name and the behavior, which we should optimize.
 
-							property 'versionRange', value: '', {
-								expandable = '1'
-							}
+                                            // These should become JSON-level details
+                                            alwaysRun = '0'
+                                            dependencyJoinType = 'and'
+                                            errorHandling = 'abortJob'
 
-                        }
-                    }
-                }
+                                            // There are a number of null assignments not included here.  These are either
+                                            // utilized rarely, or are for specific types of process steps.
 
-                process 'Deploy', {
+                                            // In the following switch statements, we have limited custom information.
+                                            // The reason is simple - we have a demonstration system and we want to make
+                                            // the JSON model the "data entry" screen for our automations.
+                                            // Here, we're leveraging the names of the step names to
 
-                    args.components.each { comp ->
-                        formalParameter 'ec_' + comp.appName + '-run', defaultValue: '1', {
-                            expansionDeferred = '1'
-                            label = null
-                            orderIndex = null
-                            required = '0'
-                            type = 'checkbox'
-                        }
+                                            // TODO: Notice how we are not doing the switch statement on the processStepType,
+                                            // and the consequence is that we have duplicate entries for some fields
 
-                        formalParameter 'ec_' + comp.appName + '-version', defaultValue: '$[/projects/CarMax/components/carmax-app/ec_content_details/versionRange]', {
-                            expansionDeferred = '1'
-                            label = null
-                            orderIndex = null
-                            required = '0'
-                            type = 'entry'
-                        }
-                    }
+                                            switch (myProcessStep.name) {
+                                                case ~/acquire artifact/:
+                                                    println "Handling acquire case"
+                                                    processStepType = myProcessStep.processStepType
+                                                    // TODO : We have an EF-centric view of artifact repositories.  When we
+                                                    // add Artifactory, we'll need to adjust this code.
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                case ~/deployit/:
+                                                    println "Handling deploy"
+                                                    processStepType = myProcessStep.processStepType
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                case ~/removeit/:
+                                                    println "Handling undeploy"
+                                                    processStepType = myProcessStep.processStepType
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                default:
+                                                    break
+                                            }
+                                        }
+                                    }
 
-                    formalParameter 'ec_enforceDependencies', defaultValue: '0', {
-                        expansionDeferred = '1'
-                        label = null
-                        orderIndex = null
-                        required = '0'
-                        type = 'checkbox'
-                    }
+                                    // Each processStep has a dependency, defined at the Process Level
+                                    myProcess.processDependencies?.each { myProcessDependency ->
+                                        processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
+                                            branchCondition = null
+                                            branchConditionName = null
+                                            branchConditionType = null
+                                            branchType = myProcessDependency.branchType
+                                        }
+                                    }
+                                }
+                            }
 
-                    formalParameter 'ec_smartDeployOption', defaultValue: '1', {
-                        expansionDeferred = '1'
-                        label = null
-                        orderIndex = null
-                        required = '0'
-                        type = 'checkbox'
-                    }
+                            // These details are for each Component.
+                            property 'ec_content_details', {
+                                property 'artifactName', value: "$myComponent.groupId:$myComponent.artifactId", {
+                                    expandable = '1'
+                                }
+                                artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
+                                filterList = ''
+                                overwrite = 'update'
+                                pluginProcedure = 'Retrieve'
 
-                    formalParameter 'ec_stageArtifacts', defaultValue: '0', {
-                        expansionDeferred = '1'
-                        label = null
-                        orderIndex = null
-                        required = '0'
-                        type = 'checkbox'
-                    }
-
-                    args.components.each { comp ->
-                        processStep 'deploy ' + comp.appName, {
-                            afterLastRetry = null
-                            alwaysRun = '0'
-                            applicationTierName = args.appTier
-                            componentRollback = null
-                            dependencyJoinType = 'and'
-                            errorHandling = 'abortJob'
-                            instruction = null
-                            notificationTemplate = null
-                            processStepType = 'process'
-                            retryCount = null
-                            retryInterval = null
-                            retryType = null
-                            rollbackSnapshot = null
-                            rollbackType = null
-                            rollbackUndeployProcess = null
-                            skipRollbackIfUndeployFails = null
-                            smartRollback = null
-                            subcomponent = comp.appName
-                            subcomponentApplicationName = args.appName
-                            subcomponentProcess = 'Deploy'
-                            subprocedure = null
-                            subproject = null
-                            subservice = null
-                            timeLimitUnits = null
-                            workspaceName = null
-
-                            property 'ec_deploy', {
-                                ec_notifierStatus = '0'
+                                property 'pluginProjectName', value: 'EC-Artifact', { expandable = '1' }
+                                retrieveToDirectory = ''
+                                property 'versionRange', value: '', { expandable = '1' }
                             }
                         }
                     }
-                    property 'ec_deploy', {
-                        ec_notifierStatus = '0'
-                    }
                 }
+            }
+            // Define Application Processes
+            myApplication.processesq?.each { myProcess->
 
-                args.stores.each { store ->
-                    def storeName = store.Store + '-' + store.ID
-                    tierMap args.appName + '-' + storeName + '-map', {
-                        applicationName = args.appName
-                        environmentName = storeName
-                        environmentProjectName = args.projName
-                        projectName = args.projName
-
-                        tierMapping args.appName + args.appTier + args.appEnvTier + storeName, {
-                            applicationTierName = args.appTier
-                            environmentTierName = args.appEnvTier
-                            tierMapName = args.appName + '-' + storeName + '-map'
-                        }
-                    }
-                }
             }
         }
     }

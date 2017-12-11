@@ -45,6 +45,9 @@ myProject.applications?.each { myApplication ->
     }
     myApplication.processes?.each { myProcess->
         println "   my(application)Process is $myProcess.name"
+        myProcess.processSteps?.each { myProcessStep ->
+            println "       myProcessStep is $myProcessStep.name"
+        }
     }
 }
 

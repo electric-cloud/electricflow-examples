@@ -87,10 +87,53 @@
 				"groupId" : "com.ec.samples",
 				"artifactId" : "web1",
 				"processes" : [
-					{	"name" : "deploy",
-					},
-					{	"name" : "undeploy",
-					}
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web1 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_web1-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "always"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web1 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processStepType" : "procedure",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ]
+                  }
 				]
               },
               {
@@ -98,10 +141,52 @@
 				"groupId" : "com.ec.samples",
 				"artifactId" : "web2",
 				"processes" : [
-					{	"name" : "deploy",
-					},
-					{	"name" : "undeploy",
-					}
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web2 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_web2-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "always"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web2 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ]
+                  }
 				]
               }
             ]
@@ -113,8 +198,89 @@
                 "name" : "db",
 				"groupId" : "com.ec.samples",
 				"artifactId" : "db",
+                "processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web2 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_db-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "always"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web2 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "ComplexPipeline"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
+          }
+        ],
+        "processes" : [
+          {
+            "name" : "Deploy Application",
+            "description" : "An application-level process that deploys multiple components",
+            "processType" : "OTHER",
+            "processSteps" : [
+              {
+                "name" : "deploy web1",
+                "description" : "Execute the web1 Component process "
+              },
+              {
+                "name" : "deploy web2",
+                "description" : "Execute the web1 Component process "
+              },
+              {
+                "name" : "deploy db",
+                "description" : "Execute the web1 Component process "
+              }
+            ],
+            "processDependencies" : [
+              { "source" : "web1",
+                "target" : "db",
+                "branchType" : "always"
+              },
+              { "source" : "web2",
+                "target" : "db",
+                "branchType" : "always"
+              }
+            ]
+
+
           }
         ]
       }
@@ -321,7 +487,10 @@
   },
 
   "resources" : [
-    "complex-1"
+    "complex-1",
+    "complex-dev",
+    "complex-uat",
+    "complex-prod"
   ]
 
 }
