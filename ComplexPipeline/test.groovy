@@ -31,9 +31,20 @@ myProject.applications?.each { myApplication ->
     myApplication.applicationTiers?.each { myApplicationTier ->
         println "   myApplicationTier is $myApplicationTier.name"
         myApplicationTier.components?.each { myComponent ->
-            println "       myComponent is $myComponent.name"
-			println "		$myComponent.groupId:$myComponent.artifactId"
+            println "       myComponent is $myComponent.name, $myComponent.groupId:$myComponent.artifactId"
+            myComponent.processes?.each { myProcess ->
+                println "         myProcess is $myProcess.name"
+                myProcess.processSteps?.each { myProcessStep ->
+                    println "           myProcessStep is $myProcessStep.name"
+                }
+                myProcess.processDependencies?.each { myProcessDependency ->
+                    println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
+                }
+            }
         }
+    }
+    myApplication.processes?.each { myProcess->
+        println "   my(application)Process is $myProcess.name"
     }
 }
 
