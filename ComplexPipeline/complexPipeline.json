@@ -83,10 +83,26 @@
             "name" : "User Interface",
             "components" : [
               {
-                "name" : "web1"
+                "name" : "web1",
+				"groupId" : "com.ec.samples",
+				"artifactId" : "web1",
+				"processes" : [
+					{	"name" : "deploy",
+					},
+					{	"name" : "undeploy",
+					}
+				]
               },
               {
-                "name" : "web2"
+                "name" : "web2",
+				"groupId" : "com.ec.samples",
+				"artifactId" : "web2",
+				"processes" : [
+					{	"name" : "deploy",
+					},
+					{	"name" : "undeploy",
+					}
+				]
               }
             ]
           },
@@ -94,7 +110,9 @@
             "name" : "Database",
             "components" : [
               {
-                "name" : "db"
+                "name" : "db",
+				"groupId" : "com.ec.samples",
+				"artifactId" : "db",
               }
             ]
           }

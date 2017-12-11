@@ -29,6 +29,28 @@ project myProject.name, {
                             reference = "1"
                             // sourceComponentName = myComponent.name
                             // sourceProjectName = myProject.Name
+							
+							myComponent.processes?.each { myProcess->
+								process myProcess.name, {
+								}
+							}
+							property 'artifactName', value: "$myComponent.groupId:$myComponent.artifactId", {
+								expandable = '1'
+							}
+							artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
+							filterList = ''
+							overwrite = 'update'
+							pluginProcedure = 'Retrieve'
+
+							property 'pluginProjectName', value: 'EC-Artifact', {
+								expandable = '1'
+							}
+							retrieveToDirectory = ''
+
+							property 'versionRange', value: '', {
+								expandable = '1'
+							}
+
                         }
                     }
                 }

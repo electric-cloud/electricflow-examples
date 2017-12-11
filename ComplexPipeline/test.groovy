@@ -32,6 +32,7 @@ myProject.applications?.each { myApplication ->
         println "   myApplicationTier is $myApplicationTier.name"
         myApplicationTier.components?.each { myComponent ->
             println "       myComponent is $myComponent.name"
+			println "		$myComponent.groupId:$myComponent.artifactId"
         }
     }
 }
