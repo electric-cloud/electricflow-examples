@@ -15,20 +15,29 @@ This project exists because I found people wanted to see a Pipeline with multipl
         * Utility
         * Run Conditions
         * Groups
-        * _Application Processes_
-        * _Skipped Steps_
+        * Application Processes
+        * Skipped Steps
         * _Retry logic_
 * Users
 * Examples of Email Configurations
 * Examples of Credentials
+* Artifacts
 * _Applications_
   * _Snapshots_
 * _Services_
-* _Artifacts_
+
 
 # Setup
 
-There are two sets of scripts to set up the system.  
+To setup, start with these commands:
+
+```
+ectool login admin <your password>
+./install-config.sh
+./install.sh
+```
+
+There are two sets of scripts to set up the system, described next.
 
 ## Essential Configuration
 
@@ -43,11 +52,10 @@ These setup files are roughly one-time operations.  For your system, you need to
 
 ## Models
 
-The next set of files setup the models within.  The data file `complexPipeline.json` contains all of the data-input for the models.  The bulk of the remaining `*.groovy` scripts contain the definitions of the different object types in this model.  The best place to look for a top-level view is the installation script, which you invoke with:
+The next set of files setup the models within.  The data file `complexPipeline.json` contains all of the data-input for the models.  The bulk of the remaining `*.groovy` scripts contain the definitions of the different object types in this model.  The best place to look for a top-level view is the installation script:
 
 ```
-ectool login <your username> <your password>
-./install.sh
+install.sh
 ```
 
 The sequence may change, but it is roughly:
