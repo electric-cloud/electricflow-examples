@@ -72,8 +72,10 @@ project myProject.name, {
                                             dependencyJoinType = 'and'
                                             errorHandling = 'abortJob'
 
-                                            afterLastRetry = null
+                                            // TODO : Need to understand why applicationTierName has to be present.  All others do not
                                             applicationTierName = null
+
+                                            afterLastRetry = null
                                             componentRollback = null
                                             instruction = null
                                             notificationTemplate = null
