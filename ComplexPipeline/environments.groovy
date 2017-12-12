@@ -10,6 +10,8 @@ project myProject.name, {
             rollingDeployEnabled = null
             rollingDeployType = null
 
+            // TODO: These environment Tiers should be looked up from JSON, not hard-coded here.
+
             environmentTier 'AppTier', {
                 batchSize = null
                 batchSizeType = null

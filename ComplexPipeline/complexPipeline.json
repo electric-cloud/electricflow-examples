@@ -8,6 +8,63 @@
         "description" : "Placeholder that shows a really fast SUCCESS"}
     ],
 
+    "environments" : [
+      {
+        "name" : "complex-dev",
+        "description" : "DEV Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "complex-dev"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "complex-dev"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "complex-uat",
+        "description" : "UAT Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "complex-uat"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "complex-uat"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "complex-prod",
+        "description" : "PROD Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "complex-prod"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "complex-prod"
+            ]
+          }
+        ]
+      }
+    ],
+
     "workflows" : [
       { "name" : "Prototypical Workflow",
         "description" : "Typical simple workflow to illustrate a point",
