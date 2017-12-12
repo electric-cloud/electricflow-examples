@@ -134,6 +134,15 @@ project myProject.name, {
                     }
                 }
 
+                myService.processes?.each { myProcess->
+                    myProcess.processSteps?.each {myProcessStep->
+                        println " ADDING processSteps $myProcessStep.name for $myContainer.name"
+                    }
+
+                    myProcess.processDependencies?.each {myProcessDependency->
+                    }
+                }
+
                 process "Deploy", {
                     // When we shift to service-oriented objects, use the serviceName property.
                     // serviceName = myApplication.name
@@ -151,7 +160,6 @@ project myProject.name, {
                         type = 'checkbox'
                     }
 
-                    // TODO - make sure we have this right for the services model.
                     formalParameter "ec_" + $myContainer.name + "-run", defaultValue: '1', {
                         expansionDeferred = '1'
                         label = null
@@ -161,40 +169,6 @@ project myProject.name, {
                     }
 
                     myService.containers.each { myContainer ->
-                        println " ADDING processSteps for $myContainer.name"
-                        processStep 'Configure LB', {
-                            actualParameter = [
-                                    'env': '$[/myEnvironment/nameForScript]',
-                                    'service': myContainer.name
-                            ]
-                            alwaysRun = '0'
-                            dependencyJoinType = 'and'
-                            errorHandling = 'abortJob'
-                            processStepType = 'procedure'
-                            subprocedure = 'script-Configure the Load Balancer'
-                            subproject = myProject.name
-
-                            property 'ec_deploy', {
-                                ec_notifierStatus = '0'
-                            }
-                        }
-
-                        processStep 'Configure NFS Mounts', {
-                            actualParameter = [
-                                    'env': '$[/myEnvironment]',
-                                    'service': myContainer.name
-                            ]
-                            alwaysRun = '0'
-                            dependencyJoinType = 'and'
-                            errorHandling = 'abortJob'
-                            processStepType = 'procedure'
-                            subprocedure = 'script-Configure the NFS Mounts'
-                            subproject = myProject.name
-
-                            property 'ec_deploy', {
-                                ec_notifierStatus = '0'
-                            }
-                        }
 
                         processStep myContainer.name, {
                             alwaysRun = '0'
@@ -206,14 +180,6 @@ project myProject.name, {
                             property 'ec_deploy', {
                                 ec_notifierStatus = '0'
                             }
-                        }
-
-                        processDependency myContainer.name, targetProcessStepName: 'Configure LB', {
-                            branchType = 'ALWAYS'
-                        }
-
-                        processDependency 'Configure LB', targetProcessStepName: 'Configure NFS Mounts', {
-                            branchType = 'ALWAYS'
                         }
                     }
                 }
