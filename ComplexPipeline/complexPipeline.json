@@ -84,6 +84,7 @@
             "components" : [
               {
                 "name" : "web1",
+                "description" : "One of the web components",
 				"groupId" : "com.ec.samples",
 				"artifactId" : "web1",
 				"processes" : [
@@ -258,29 +259,39 @@
             "processSteps" : [
               {
                 "name" : "deploy web1",
-                "description" : "Execute the web1 Component process "
+                "description" : "Execute the web1 Component process",
+                "applicationTierName" : "User Interface",
+                "processStepType" : "process",
+                "subcomponent" : "web1",
+                "subcomponentProcess" : "deploy"
               },
               {
                 "name" : "deploy web2",
-                "description" : "Execute the web1 Component process "
+                "description" : "Execute the web1 Component process",
+                "applicationTierName" : "User Interface",
+                "processStepType" : "process",
+                "subcomponent" : "web2",
+                "subcomponentProcess" : "deploy"
               },
               {
                 "name" : "deploy db",
-                "description" : "Execute the web1 Component process "
+                "description" : "Execute the web1 Component process",
+                "applicationTierName" : "Database",
+                "processStepType" : "process",
+                "subcomponent" : "db",
+                "subcomponentProcess" : "deploy"
               }
             ],
             "processDependencies" : [
-              { "source" : "web1",
-                "target" : "db",
-                "branchType" : "always"
+              { "source" : "deploy web1",
+                "target" : "deploy db",
+                "branchType" : "ALWAYS"
               },
-              { "source" : "web2",
-                "target" : "db",
-                "branchType" : "always"
+              { "source" : "deploy web2",
+                "target" : "deploy db",
+                "branchType" : "ALWAYS"
               }
             ]
-
-
           }
         ]
       }

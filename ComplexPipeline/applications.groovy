@@ -28,92 +28,38 @@ project myProject.name, {
                     projectName = myProject.name
 
                     myApplicationTier.components?.each { myComponent ->
-                        println "    Component $myComponent.name"
+                        println "       myComponent is $myComponent.name, $myComponent.groupId:$myComponent.artifactId"
 
                         component myComponent.name, pluginName: null, {
-                            applicationName = myApplication.name
-                            description = "$myComponent.groupId : $myComponent.artifactId"
-                            // TODO : For now, we handle components directly defined.
-                            // We do not yet handle Master Components, or those components defined from them.
-                            // The difference is in how we specify the pluginName / pluginKey
+                            description = myComponent.description
                             pluginKey = 'EC-Artifact'
-                            //pluginKey = null
-                            reference = "1"
-                            sourceComponentName = null
-                            sourceProjectName = null
+                            reference = '0'
 
-                            myComponent.processes?.each { myProcess ->
-                                println "       Process $myProcess.name"
-                                process myProcess.name, {
-                                    description = myProcess.name
-                                    processType = myProcess.processType
-                                    myProcess.processSteps?.each { myProcessStep ->
-                                        println "           ProcessStep $myProcessStep.name"
-                                        processStep myProcessStep.name, {
-                                            actualParameter = myProcessStep.actualParameters?.collectEntries { aParam ->
-                                                [
-                                                        (aParam.name): aParam.value,
-                                                ]
-                                            }
-                                            description = myProcessStep.description
-                                            // Here, we will use the name of the process Step to guide us.  This forms a
-                                            // Dependency on the name and the behavior, which we should optimize.
+                            property 'ec_content_details', {
+                                property 'artifactName', value: "$myComponent.groupId:$myComponent.artifactId", { expandable = '1' }
+                                artifactVersionLocationProperty = '/myJob/retrievedArtifactVersions/$[assignedResourceName]'
+                                filterList = ''
+                                overwrite = 'update'
+                                pluginProcedure = 'Retrieve'
 
-                                            // These should become JSON-level details
-                                            alwaysRun = '0'
-                                            dependencyJoinType = 'and'
-                                            errorHandling = 'abortJob'
+                                property 'pluginProjectName', value: 'EC-Artifact', { expandable = '1' }
+                                retrieveToDirectory = ''
 
-                                            // There are a number of null assignments not included here.  These are either
-                                            // utilized rarely, or are for specific types of process steps.
-
-                                            // In the following switch statements, we have limited custom information.
-                                            // The reason is simple - we have a demonstration system and we want to make
-                                            // the JSON model the "data entry" screen for our automations.
-                                            // Here, we're leveraging the names of the step names to
-
-                                            // TODO: Notice how we are not doing the switch statement on the processStepType,
-                                            // and the consequence is that we have duplicate entries for some fields
-
-                                            switch (myProcessStep.name) {
-                                                case ~/acquire artifact/:
-                                                    println "Handling acquire case"
-                                                    processStepType = myProcessStep.processStepType
-                                                    // TODO : We have an EF-centric view of artifact repositories.  When we
-                                                    // add Artifactory, we'll need to adjust this code.
-                                                    subprocedure = myProcessStep.subprocedure
-                                                    subproject = myProcessStep.subproject
-                                                    break
-                                                case ~/deployit/:
-                                                    println "Handling deploy"
-                                                    processStepType = myProcessStep.processStepType
-                                                    subprocedure = myProcessStep.subprocedure
-                                                    subproject = myProcessStep.subproject
-                                                    break
-                                                case ~/removeit/:
-                                                    println "Handling undeploy"
-                                                    processStepType = myProcessStep.processStepType
-                                                    subprocedure = myProcessStep.subprocedure
-                                                    subproject = myProcessStep.subproject
-                                                    break
-                                                default:
-                                                    break
-                                            }
-                                        }
-                                    }
-
-                                    // Each processStep has a dependency, defined at the Process Level
-                                    myProcess.processDependencies?.each { myProcessDependency ->
-                                        processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
-                                            branchCondition = null
-                                            branchConditionName = null
-                                            branchConditionType = null
-                                            branchType = myProcessDependency.branchType
-                                        }
-                                    }
-                                }
+                                property 'versionRange', value: '', { expandable = '1' }
                             }
 
+                            myComponent.processes?.each { myProcess ->
+                                println "         myProcess is $myProcess.name"
+                                process myProcess.name, {
+                                    myProcess.processSteps?.each { myProcessStep ->
+                                        println "           myProcessStep is $myProcessStep.name"
+                                    }
+
+                                }
+                                myProcess.processDependencies?.each { myProcessDependency ->
+                                    println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
+                                }
+                            }
                             // These details are for each Component.
                             property 'ec_content_details', {
                                 property 'artifactName', value: "$myComponent.groupId:$myComponent.artifactId", {
@@ -132,10 +78,82 @@ project myProject.name, {
                     }
                 }
             }
-            // Define Application Processes
-            myApplication.processesq?.each { myProcess->
+            myApplication.processes?.each { myProcess->
+                process myProcess.name, {
+                    println "   my(application)Process is $myProcess.name"
+                    applicationName = myApplication.name
+                    processType = 'DEPLOY'
 
+                    formalParameter 'ec_enforceDependencies', defaultValue: '0', {
+                        expansionDeferred = '1'
+                        required = '0'
+                        type = 'checkbox'
+                    }
+                    formalParameter 'ec_smartDeployOption', defaultValue: '1', {
+                        expansionDeferred = '1'
+                        required = '0'
+                        type = 'checkbox'
+                    }
+
+                    formalParameter 'ec_stageArtifacts', defaultValue: '0', {
+                        expansionDeferred = '1'
+                        required = '0'
+                        type = 'checkbox'
+                    }
+
+                    myApplication.applicationTiers?.each { myApplicationTier->
+                        myApplicationTier.components?.each {myComponent ->
+                            formalParameter 'ec_' + myComponent.name + '-run', defaultValue: '1', {
+                                expansionDeferred = '1'
+                                label = null
+                                orderIndex = null
+                                required = '0'
+                                type = 'checkbox'
+                            }
+
+                            formalParameter 'ec_' + myComponent.name + '-version', defaultValue: "\$[/projects/ComplexPipeline/applications/Two-Tier/components/$myComponent.name/ec_content_details/versionRange]", {
+                                expansionDeferred = '1'
+                                label = null
+                                orderIndex = null
+                                required = '0'
+                                type = 'entry'
+                            }
+                        }
+                    }
+
+                    myProcess.processSteps?.each { myProcessStep ->
+                        processStep myProcessStep.name, {
+                            println "       myProcessStep is $myProcessStep.name"
+                            applicationTierName = myProcessStep.applicationTierName
+                            dependencyJoinType = 'and'
+                            errorHandling = 'failProcedure'
+                            processStepType = myProcessStep.processStepType
+                            subcomponent = myProcessStep.subcomponent
+                            subcomponentApplicationName = myApplication.name
+                            subcomponentProcess = myProcessStep.subcomponentProcess
+
+                            property 'ec_deploy', {
+                                ec_notifierStatus = '0'
+                            }
+
+                        }
+                    }
+
+                    // Each processStep has a dependency, defined at the Process Level
+                    myProcess.processDependencies?.each { myProcessDependency ->
+                        processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
+                            branchType = myProcessDependency.branchType
+                        }
+                    }
+                    property 'ec_deploy', {
+                        ec_notifierStatus = '0'
+                    }
+                }
             }
+            property 'ec_deploy', {
+                ec_notifierStatus = '0'
+            }
+
         }
     }
 }
