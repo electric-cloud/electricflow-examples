@@ -412,6 +412,30 @@
             "checkedValue" : "true",
             "initiallyChecked" : "true",
             "uncheckedValue" : "false"
+          },
+          {
+            "name" : "doService",
+            "type" : "checkbox",
+            "description" : "Enable if we should deploy the Service",
+            "defaultValue" : "true",
+            "orderIndex" : "1",
+            "label" : "Deploy Service?",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "true",
+            "uncheckedValue" : "false"
+          },
+          {
+            "name" : "enableGates",
+            "type" : "checkbox",
+            "description" : "Enable if we should enable gates in this run",
+            "defaultValue" : "true",
+            "orderIndex" : "1",
+            "label" : "Enable Gates?",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "true",
+            "uncheckedValue" : "false"
           }
         ],
 
@@ -427,7 +451,8 @@
                   "name" : "Gate out of First Stage",
                   "description" : "Show an approval gate out of a stage",
                   "taskType" : "APPROVAL",
-                  "approver" : "marco"
+                  "approver" : "marco",
+                  "condition" : "$[enableGates]"
                 }
               }
             ],
@@ -456,7 +481,8 @@
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
                 "subproject" : "ComplexPipeline",
-                "groupName" : "Deploy Group"
+                "groupName" : "Deploy Group",
+                "condition" : "$[doService]"
               },
               {
                 "name": "Procedure",
@@ -490,7 +516,8 @@
                     "name": "Name",
                     "value": "foo.txt"
                   }
-                ]
+                ],
+                "condition" : "$[doSnapshot]"
               },
               {
                 "name": "Manual Task",
@@ -559,7 +586,8 @@
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
                 "subproject" : "ComplexPipeline",
-                "groupName" : "Deploy Group"
+                "groupName" : "Deploy Group",
+                "condition" : "$[doService]"
               },
               {
                 "name": "Test",
@@ -610,7 +638,8 @@
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
                 "subproject" : "ComplexPipeline",
-                "groupName" : "Deploy Group"
+                "groupName" : "Deploy Group",
+                "condition" : "$[doService]"
               },
               {
                 "name": "Test",

@@ -64,7 +64,7 @@ project myProject.name, {
                                 description = myGate.task.description
                                 advancedMode = '0'
                                 alwaysRun = '0'
-                                condition = '$[suitableForRelease]'
+                                condition = myGate.task.condition
                                 enabled = '1'
                                 errorHandling = 'stopOnError'
                                 gateType = myGate.gateType
@@ -87,7 +87,7 @@ project myProject.name, {
                             description = myTask.description
                             advancedMode = '0'
                             alwaysRun = '0'
-                            condition = null
+                            condition = myTask.condition
                             enabled = '1'
                             errorHandling = 'stopOnError'
                             insertRollingDeployManualStep = '0'

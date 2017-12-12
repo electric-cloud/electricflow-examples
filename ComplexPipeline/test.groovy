@@ -13,16 +13,12 @@ myProject.procedures.each { myProcedure ->
 myProject.workflows?.each { myWorkflow ->
     println "myWorkflow is $myWorkflow.name"
     myWorkflow.stateDefinitions?.each { myState ->
-        println "  myState is $myState.name"
-        println "    subprocedure = $myState.subprocedure"
+        println "  myState is $myState.name - subprocedure = $myState.subprocedure"
     }
 
     myWorkflow.transitionDefinitions?.each { myTransition ->
         println "  myTransition is $myTransition.name"
-        println "    condition = $myTransition.condition"
-        println "    stateDefinitionName = $myTransition.stateDefinitionName"
-        println "    targetState= $myTransition.targetState"
-        println "    trigger = $myTransition.trigger"
+        println "    condition, stateDefinitionName, targetState, trigger = $myTransition.condition, $myTransition.stateDefinitionName, $myTransition.targetState, $myTransition.trigger"
     }
 }
 
@@ -55,19 +51,29 @@ myProject.applications?.each { myApplication ->
             println "       myTierMapping is $myTierMapping.applicationTierName: $myTierMapping.environmentTierName"
         }
     }
+}
 
+myProject.environments?.each { myEnvironment ->
+    println "myEnvironment is $myEnvironment.name"
+
+    myEnvironment.environmentTiers?.each {myEnvironmentTier->
+        println "   myEnvironmentTier is $myEnvironmentTier.name"
+
+        myEnvironmentTier.resources?.each {myResource ->
+            println "       resource: $myResource"
+        }
+    }
 }
 
 myProject.pipelines?.each { myPipeline ->
     println "myPipeline is $myPipeline.name"
     myPipeline.formalParameters?.each { myParameter ->
-        println "  formalParameter is $myParameter.name of type $myParameter.type"
         switch (myParameter.type) {
             case ~/checkbox/:
-                println "    ->checkbox"
+                println "  checkbox $myParameter.name of type $myParameter.type"
                 break
             default:
-                println "    ->other"
+                println "  default $myParameter.name of type $myParameter.type"
                 break
         }
     }
@@ -79,35 +85,33 @@ myProject.pipelines?.each { myPipeline ->
             println "    myGate is $myGate.task.name of type $myGate.gateType"
         }
         myStage.tasks?.each { myTask ->
-            println "    myTask is $myTask.name"
-
             switch (myTask.taskType) {
                 case ~/PROCEDURE/:
-                    println "      Type Procedure $myTask.subproject : $myTask.subprocedure"
+                    println "      myTask $myTask.name type Procedure $myTask.subproject : $myTask.subprocedure"
                     break
                 case ~/COMMAND/:
-                    println "      Type Command : $myTask.commandToRun"
+                    println "      myTask $myTask.name type Command : $myTask.commandToRun"
                     break
                 case ~/PROCESS/:
-                    println "      Type Process"
+                    println "      myTask $myTask.name type Process"
                     break
                 case ~/MANUAL/:
-                    println "      Type Manual"
+                    println "      myTask $myTask.name type Manual"
                     break
                 case ~/PLUGIN/:
-                    println "      Type Plugin"
+                    println "      myTask $myTask.name type Plugin"
                     break
                 case ~/WORKFLOW/:
-                    println "      Type Workflow"
+                    println "      myTask $myTask.name type Workflow"
                     break
                 case ~/UTILITY/:
-                    println "      Type Utility"
+                    println "      myTask $myTask.name type Utility"
                     break
                 case ~/GROUP/:
-                    println "      Type Group"
+                    println "      myTask $myTask.name type Group"
                     break
                 default:
-                    println "      Type Unhandled"
+                    println "      myTask $myTask.name type Unhandled"
                     break
             }
         }
