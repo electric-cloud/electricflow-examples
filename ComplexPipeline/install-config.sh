@@ -8,8 +8,8 @@ ectool evalDsl --dslFile configuration.groovy --parametersFile configuration.jso
 echo "Add passwords to configurations"
 ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
 ectool modifyEmailConfig "test" --mailUserPassword < passwords/password-email-test.txt
-ectool modifyCredential --projectName "My Project" --credentialName "Artifactory" --password < passwords/password-credential-artifactory.txt
-ectool modifyCredential --projectName "My Project" --credentialName "Jenkins" --password < passwords/password-credential-jenkins.txt
+ectool modifyCredential --projectName "ComplexPipeline" --credentialName "Artifactory" --password < passwords/password-credential-artifactory.txt
+ectool modifyCredential --projectName "ComplexPipeline" --credentialName "Jenkins" --password < passwords/password-credential-jenkins.txt
 
 ectool modifyUser "marco" --password "marco"  --sessionPassword < passwords/password-user-admin.txt
 ectool modifyUser "seymour" --password "seymour"  --sessionPassword < passwords/password-user-admin.txt
@@ -22,7 +22,7 @@ GROUPID=com.ec.samples
 #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
 for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
 	echo "Creating $GROUPID:$artifactId "
-	echo "Creating $GROUPID:$artifactId " > $artifactId.txt
+	echo "Creating $GROUPID:$artifactId " > artifacts/$artifactId.txt
 	ectool createArtifact "$GROUPID" "$artifactId" --description "simple text file."
 
 	for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
@@ -30,6 +30,6 @@ for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
 		ectool --silent publishArtifactVersion \
 			--version $version --artifactName $GROUPID:$artifactId \
 			--fromDirectory . \
-			--includePatterns $artifactId.txt
+			--includePatterns artifacts/$artifactId.txt
 		done
 done
