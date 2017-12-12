@@ -18,6 +18,20 @@ project myProject.name, {
                     resourceName = myEnvironmentTier.resources
                 }
             }
+            myEnvironment.clusters.each {myCluster ->
+                cluster myCluster.name, {
+                    environmentName = myEnvironment.name
+                    pluginProjectName = null
+                    pluginKey = myCluster.pluginKey
+                    providerClusterName = null
+                    providerProjectName = null
+                    provisionParameter = [
+                            'config': myCluster.provisionParameter.config,
+                            'project': myCluster.provisionParameter.project
+                    ]
+                    provisionProcedure = 'Check Cluster'
+                }
+            }
         }
     }
 }

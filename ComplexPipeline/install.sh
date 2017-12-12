@@ -12,5 +12,7 @@ ectool evalDsl --dslFile workflows.groovy --parametersFile complexPipeline.json
 
 ectool evalDsl --dslFile applications.groovy --parametersFile complexPipeline.json
 
+ectool evalDsl --dslFile services.groovy --parametersFile complexPipeline.json
+
 ectool evalDsl --dslFile pipelines.groovy --parametersFile complexPipeline.json
 
