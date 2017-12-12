@@ -112,11 +112,11 @@ project myProject.name, {
                                     break
                                 case ~/PROCESS/:
                                     println "      Type Process"
-                                    actualParameter = [
-                                            'ec_enforceDependencies': '0',
-                                            'ec_smartDeployOption': '0',
-                                            'ec_stageArtifacts': '0',
-                                    ]
+                                    actualParameter = myTask.actualParameters?.collectEntries {aParam->
+                                        [
+                                                (aParam.name) : aParam.value,
+                                        ]
+                                    }
                                     environmentName = myTask.environmentName
                                     environmentProjectName = myTask.environmentProjectName
                                     subapplication = myTask.subapplication

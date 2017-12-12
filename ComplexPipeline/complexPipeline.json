@@ -28,19 +28,19 @@
         ]
       },
       {
-        "name" : "complex-uat",
-        "description" : "UAT Environment",
+        "name" : "complex-qa",
+        "description" : "QA Environment",
         "environmentTiers" : [
           {
             "name":  "AppTier",
             "resources" : [
-              "complex-uat"
+              "complex-qa"
             ]
           },
           {
             "name" : "DBTier",
             "resources" : [
-              "complex-uat"
+              "complex-qa"
             ]
           }
         ]
@@ -405,7 +405,7 @@
             ]
           },
           { "applicationName" : "Two-Tier",
-            "environmentName" : "complex-uat",
+            "environmentName" : "complex-qa",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -604,16 +604,28 @@
                 "environmentProjectName": "ComplexPipeline",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "ComplexPipeline"
+                "subproject" : "ComplexPipeline",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
               },
               {
                 "name": "Deploy-Service",
                 "description" : "Deploy a Service",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "ComplexPipeline",
+                "taskType" : "PROCESS",
+                "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
-                "condition" : "$[doService]"
+                "condition" : "$[doService]",
+                "environmentName" : "complex-cluster-dev",
+                "environmentProjectName" : "ComplexPipeline",
+                "subapplication" : "WeaveWorks Front End",
+                "subprocess" : "Deploy",
+                "subproject" : "ComplexPipeline",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" }
+                ]
               },
               {
                 "name": "Procedure",
@@ -643,10 +655,7 @@
                 "subpluginKey": "EC-FileOps",
                 "subprocedure": "CreateEmptyFile",
                 "actualParameters": [
-                  {
-                    "name": "Name",
-                    "value": "foo.txt"
-                  }
+                  { "name": "Name", "value": "foo.txt" }
                 ],
                 "condition" : "$[doSnapshot]"
               },
@@ -705,7 +714,7 @@
                 "description" : "Deploy an Application",
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
-                "environmentName" : "complex-uat",
+                "environmentName" : "complex-qa",
                 "environmentProjectName": "ComplexPipeline",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
@@ -714,11 +723,18 @@
               {
                 "name": "Deploy-Service",
                 "description" : "Deploy a Service",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "ComplexPipeline",
+                "taskType" : "PROCESS",
+                "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
-                "condition" : "$[doService]"
+                "condition" : "$[doService]",
+                "environmentName" : "complex-cluster-qa",
+                "environmentProjectName" : "ComplexPipeline",
+                "subapplication" : "WeaveWorks Front End",
+                "subprocess" : "Deploy",
+                "subproject" : "ComplexPipeline",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" }
+                ]
               },
               {
                 "name": "Test",
@@ -766,11 +782,18 @@
               {
                 "name": "Deploy-Service",
                 "description" : "Deploy a Service",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "ComplexPipeline",
+                "taskType" : "PROCESS",
+                "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
-                "condition" : "$[doService]"
+                "condition" : "$[doService]",
+                "environmentName" : "complex-cluster-prod",
+                "environmentProjectName" : "ComplexPipeline",
+                "subapplication" : "WeaveWorks Front End",
+                "subprocess" : "Deploy",
+                "subproject" : "ComplexPipeline",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" }
+                ]
               },
               {
                 "name": "Test",
@@ -790,7 +813,7 @@
   "resources" : [
     "complex-1",
     "complex-dev",
-    "complex-uat",
+    "complex-qa",
     "complex-prod"
   ]
 
