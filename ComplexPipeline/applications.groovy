@@ -24,13 +24,14 @@ project myProject.name, {
             myApplication.applicationTiers?.each { myApplicationTier ->
                 applicationTier myApplicationTier.name, {
                     println "  ApplicationTier $myApplicationTier.name"
-                    applicationName = myApplication.name
-                    projectName = myProject.name
+//                    applicationName = myApplication.name
+//                    projectName = myProject.name
 
                     myApplicationTier.components?.each { myComponent ->
                         println "       myComponent is $myComponent.name, $myComponent.groupId:$myComponent.artifactId"
 
                         component myComponent.name, pluginName: null, {
+//                            applicationName = myApplication.name
                             description = myComponent.description
                             pluginKey = 'EC-Artifact'
                             reference = '0'
@@ -49,15 +50,82 @@ project myProject.name, {
                             }
 
                             myComponent.processes?.each { myProcess ->
-                                println "         myProcess is $myProcess.name"
                                 process myProcess.name, {
-                                    myProcess.processSteps?.each { myProcessStep ->
-                                        println "           myProcessStep is $myProcessStep.name"
-                                    }
+                                    println "         myProcess is $myProcess.name"
+                                    description = myProcess.description
+                                    processType = myProcess.processType
+                                    applicationName = null
+                                    serviceName = null
+                                    smartUndeployEnabled = null
 
-                                }
-                                myProcess.processDependencies?.each { myProcessDependency ->
-                                    println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
+
+                                    myProcess.processSteps?.each { myProcessStep ->
+                                        processStep myProcessStep.name, {
+                                            actualParameter = myProcessStep.actualParameters?.collectEntries { aParam ->
+                                                [
+                                                        (aParam.name): aParam.value,
+                                                ]
+                                            }
+                                            description = myProcessStep.description
+
+                                            alwaysRun = '0'
+                                            dependencyJoinType = 'and'
+                                            errorHandling = 'abortJob'
+
+                                            afterLastRetry = null
+                                            applicationTierName = null
+                                            componentRollback = null
+                                            instruction = null
+                                            notificationTemplate = null
+                                            retryCount = null
+                                            retryInterval = null
+                                            retryType = null
+                                            rollbackSnapshot = null
+                                            rollbackType = null
+                                            rollbackUndeployProcess = null
+                                            skipRollbackIfUndeployFails = null
+                                            smartRollback = null
+                                            subcomponent = null
+                                            subcomponentApplicationName = null
+                                            subcomponentProcess = null
+                                            subservice = null
+                                            subserviceProcess = null
+                                            timeLimitUnits = null
+                                            workspaceName = null
+
+                                            switch (myProcessStep.name) {
+                                                case ~/acquire artifact/:
+                                                    println "               Handling acquire case"
+                                                    processStepType = myProcessStep.processStepType
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                case ~/deployit/:
+                                                    println "               Handling deploy"
+                                                    processStepType = myProcessStep.processStepType
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                case ~/removeit/:
+                                                    println "               Handling undeploy"
+                                                    processStepType = myProcessStep.processStepType
+                                                    subprocedure = myProcessStep.subprocedure
+                                                    subproject = myProcessStep.subproject
+                                                    break
+                                                default:
+                                                    break
+                                            }
+                                        }
+                                    }
+                                    myProcess.processDependencies?.each { myProcessDependency ->
+                                        processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
+                                            branchCondition = null
+                                            branchConditionName = null
+                                            branchConditionType = null
+                                            branchType = myProcessDependency.branchType
+                                        }
+                                        println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
+                                    }
                                 }
                             }
                             // These details are for each Component.

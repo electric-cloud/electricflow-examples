@@ -117,7 +117,7 @@
                     "processDependencies" : [
                       { "source" : "acquire artifact",
                         "target" : "deployit",
-                        "branchtype" : "always"
+                        "branchtype" : "ALWAYS"
                       }
                     ]
                   },
