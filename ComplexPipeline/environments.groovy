@@ -10,7 +10,12 @@ project myProject.name, {
             rollingDeployEnabled = null
             rollingDeployType = null
 
-            environmentTier 'EnvTier', {
+            environmentTier 'AppTier', {
+                batchSize = null
+                batchSizeType = null
+                resourceName = myResource
+            }
+            environmentTier 'DBTier', {
                 batchSize = null
                 batchSizeType = null
                 resourceName = myResource

@@ -49,6 +49,13 @@ myProject.applications?.each { myApplication ->
             println "       myProcessStep is $myProcessStep.name"
         }
     }
+    myApplication.tierMaps?.each { myTierMap->
+        println "   myTierMap is $myTierMap.applicationName : $myTierMap.environmentName"
+        myTierMap.tierMappings?.each { myTierMapping->
+            println "       myTierMapping is $myTierMapping.applicationTierName: $myTierMapping.environmentTierName"
+        }
+    }
+
 }
 
 myProject.pipelines?.each { myPipeline ->

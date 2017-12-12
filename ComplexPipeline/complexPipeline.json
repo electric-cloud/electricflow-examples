@@ -293,6 +293,47 @@
               }
             ]
           }
+        ],
+        "tierMaps" : [
+          { "applicationName" : "Two-Tier",
+            "environmentName" : "complex-dev",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Two-Tier",
+            "environmentName" : "complex-uat",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Two-Tier",
+            "environmentName" : "complex-prod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          }
         ]
       }
     ],

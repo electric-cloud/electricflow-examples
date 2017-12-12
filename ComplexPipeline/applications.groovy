@@ -75,6 +75,7 @@ project myProject.name, {
                                             // TODO : Need to understand why applicationTierName has to be present.  All others do not
                                             applicationTierName = null
 
+                                            // This next list seems largely optional, or at least not primary fields
                                             afterLastRetry = null
                                             componentRollback = null
                                             instruction = null
@@ -224,6 +225,25 @@ project myProject.name, {
                 ec_notifierStatus = '0'
             }
 
+            // When we build TierMaps in the UI, we get UUIDs for the names of the mappings.  As far as I can tell, what we
+            // need to do is provide unique names.  Here, we state the combination of :
+            //      application name + environment name + apptier name + envtier name
+            //
+            myApplication.tierMaps?.each { myTierMap ->
+                def myMapName = "$myTierMap.applicationName-$myTierMap.environmentName"
+                tierMap myMapName, {
+                    applicationName = myTierMap.applicationName
+                    environmentName = myTierMap.environmentName
+                    environmentProjectName = myProject.name
+                    projectName = myProject.name
+                    myTierMap.tierMappings?.each { myTierMapping->
+                        tierMapping myMapName + "-" + myTierMapping.applicationTierName + "-" + myTierMapping.environmentTierName, {
+                            applicationTierName = myTierMapping.applicationTierName
+                            environmentTierName = myTierMapping.environmentTierName
+                        }
+                    }
+                }
+            }
         }
     }
 }
