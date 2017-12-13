@@ -135,55 +135,58 @@ project myProject.name, {
                 }
 
                 myService.processes?.each { myProcess->
-                    myProcess.processSteps?.each {myProcessStep->
-                        println " ADDING processSteps $myProcessStep.name for $myContainer.name"
-                    }
+                    process myProcess.name, {
+                        applicationName = myApplication.name
+                        description = myProcess.description
+                        processType = myProcess.processType
+                        smartUndeployEnabled = null
+                        timeLimitUnits = null
+                        workspaceName = null
 
-                    myProcess.processDependencies?.each {myProcessDependency->
-                    }
-                }
 
-                process "Deploy", {
-                    // When we shift to service-oriented objects, use the serviceName property.
-                    // serviceName = myApplication.name
-                    applicationName = myApplication.name
-                    processType = 'DEPLOY'
-                    smartUndeployEnabled = null
-                    timeLimitUnits = null
-                    workspaceName = null
+                        myProcess.processSteps?.each {myProcessStep->
+                            processStep myProcessStep.name, {
+                                println " ADDING processSteps $myProcess.name : $myProcessStep.name"
+                                actualParameter = myProcessStep.actualParameters?.collectEntries { aParam ->
+                                    [
+                                            (aParam.name): aParam.value,
+                                    ]
+                                }
 
-                    formalParameter 'ec_enforceDependencies', defaultValue: '0', {
-                        expansionDeferred = '1'
-                        label = null
-                        orderIndex = null
-                        required = '0'
-                        type = 'checkbox'
-                    }
+                                alwaysRun = '0'
+                                dependencyJoinType = 'and'
+                                description = myProcessStep.description
+                                errorHandling = 'abortJob'
+                                processStepType = myProcessStep.processStepType
 
-                    formalParameter "ec_" + $myContainer.name + "-run", defaultValue: '1', {
-                        expansionDeferred = '1'
-                        label = null
-                        orderIndex = null
-                        required = '0'
-                        type = 'checkbox'
-                    }
-
-                    myService.containers.each { myContainer ->
-
-                        processStep myContainer.name, {
-                            alwaysRun = '0'
-                            dependencyJoinType = 'and'
-                            errorHandling = 'abortJob'
-                            processStepType = 'service'
-                            subservice = myService.name
-
-                            property 'ec_deploy', {
-                                ec_notifierStatus = '0'
+                                switch (myProcessStep.name) {
+                                    case ~/deploy service/:
+                                        subservice = myService.name
+                                        property 'ec_deploy', {
+                                            ec_notifierStatus = '0'
+                                        }
+                                        break
+                                    case ~/configure load/:
+                                        subprocedure = myProcessStep.subprocedure
+                                        subproject = myProcessStep.subproject
+                                        break
+                                    default:
+                                        break
+                                }
                             }
                         }
+                        myProcess.processDependencies?.each { myProcessDependency ->
+                            processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
+                                branchCondition = null
+                                branchConditionName = null
+                                branchConditionType = null
+                                branchType = myProcessDependency.branchType
+                            }
+                            println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
+                        }
                     }
-                }
 
+                }
                 property 'ec_deploy', {
                     ec_notifierStatus = '0'
                 }

@@ -483,10 +483,24 @@
                     "processStepType" : "service",
                     "description" : "Deploy the weaveworks services",
                     "applicationTierName" : "WeaveWorks Front End",
-                    "subservice" : "WeaveWorks Front End"
+                    "subservice" : "WeaveWorks Front End",
+                    "container" : "WeaveWorks Front End Micro"
+                  },
+                  {
+                    "name" : "configure load balancer",
+                    "processStepType" : "procedure",
+                    "description" : "run a script to configure the load balancer",
+                    "applicationTierName" : "WeaveWorks Front End",
+                    "subprocedure" : "Stub",
+                    "subproject" : "ComplexPipeline"
+                  }
+                ],
+                "processDependencies" : [
+                  { "source" : "deploy service",
+                    "target" : "configure load balancer",
+                    "branchType" : "ALWAYS"
                   }
                 ]
-                "processDependencies" : []
               }
             ],
             "tierMaps" : [
@@ -638,7 +652,7 @@
                 "environmentName" : "complex-cluster-dev",
                 "environmentProjectName" : "ComplexPipeline",
                 "subapplication" : "WeaveWorks Front End",
-                "subprocess" : "Deploy",
+                "subprocess" : "Deploy Service",
                 "subproject" : "ComplexPipeline",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
@@ -747,7 +761,7 @@
                 "environmentName" : "complex-cluster-qa",
                 "environmentProjectName" : "ComplexPipeline",
                 "subapplication" : "WeaveWorks Front End",
-                "subprocess" : "Deploy",
+                "subprocess" : "Deploy Service",
                 "subproject" : "ComplexPipeline",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
@@ -806,7 +820,7 @@
                 "environmentName" : "complex-cluster-prod",
                 "environmentProjectName" : "ComplexPipeline",
                 "subapplication" : "WeaveWorks Front End",
-                "subprocess" : "Deploy",
+                "subprocess" : "Deploy Service",
                 "subproject" : "ComplexPipeline",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
