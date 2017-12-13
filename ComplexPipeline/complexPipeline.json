@@ -101,6 +101,45 @@
             }
           }
         ]
+      },
+      {
+        "name" : "ww-cluster-dev",
+        "clusters" : [
+          {
+            "name" : "openshiftcluster",
+            "pluginKey" : "EC-OpenShift",
+            "provisionParameter" : {
+              "config": "complex-demo",
+              "project": "ww-demo-dev"
+            }
+          }
+        ]
+      },
+      {
+        "name" : "ww-cluster-qa",
+        "clusters" : [
+          {
+            "name" : "openshiftcluster",
+            "pluginKey" : "EC-OpenShift",
+            "provisionParameter" : {
+              "config": "complex-demo",
+              "project": "ww-demo-qa"
+            }
+          }
+        ]
+      },
+      {
+        "name" : "ww-cluster-prod",
+        "clusters" : [
+          {
+            "name" : "openshiftcluster",
+            "pluginKey" : "EC-OpenShift",
+            "provisionParameter" : {
+              "config": "complex-demo",
+              "project": "ww-demo-prod"
+            }
+          }
+        ]
       }
     ],
 
@@ -552,6 +591,121 @@
                 }
               }
             ]
+          }
+        ]
+      }
+    ],
+
+    "services" : [
+      {
+        "name" : "WeaveWorks FE Service",
+        "description" : "Another Front End",
+        "containers" : [
+          {
+            "name" : "WW FE Micro",
+            "description" : "A Front End component",
+            "command" : "null",
+            "cpuCount" : "0.1",
+            "cpuLimit" : "0.3",
+            "credentialName" : "null",
+            "entryPoint" : "null",
+            "imageName" : "weaveworksdemos/front-end",
+            "imageVersion" : "0.3.12",
+            "memoryLimit" : "1024",
+            "memorySize" : "100",
+            "registryUri" : "null",
+            "serviceName" : "File Transfer",
+            "environmentVariables" : [
+              {
+                "name" : "SESSION_REDIS",
+                "type" : "string",
+                "value" : "true"
+              }
+            ],
+            "ports" : [
+              {
+                "name" : "uiport",
+                "containerPort" : "8079"
+              }
+            ]
+          }
+        ],
+        "processes" : [
+          {
+            "name" : "Deploy Service",
+            "description" : "An application-level process that deploys microservices",
+            "processType" : "DEPLOY",
+            "processSteps" : [
+              {
+                "name" : "deploy service",
+                "processStepType" : "service",
+                "description" : "Deploy the weaveworks services",
+                "subservice" : "WeaveWorks FE Service",
+                "container" : "WW FE Micro"
+              },
+              {
+                "name" : "configure load balancer",
+                "processStepType" : "procedure",
+                "description" : "run a script to configure the load balancer",
+                "subprocedure" : "Stub",
+                "subproject" : "ComplexPipeline"
+              }
+            ],
+            "processDependencies" : [
+              { "source" : "deploy service",
+                "target" : "configure load balancer",
+                "branchType" : "ALWAYS"
+              }
+            ]
+          }
+        ],
+        "tierMaps" : [
+          {
+            "serviceName" : "WeaveWorks FE Service",
+            "environmentName" : "ww-cluster-dev",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "WeaveWorks FE Service",
+            "environmentName": "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "update" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "WeaveWorks FE Service",
+            "environmentName": "ww-cluster-prod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "update" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "2"},
+                {"name" : "cpuLimit", "text" : "3"},
+                {"name" : "memoryLimit", "text" : "3072"},
+                {"name" : "memorySize", "text" : "2048"}
+              ]
+            }
           }
         ]
       }
