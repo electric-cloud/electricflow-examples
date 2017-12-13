@@ -159,19 +159,21 @@ project myProject.name, {
                                 errorHandling = 'abortJob'
                                 processStepType = myProcessStep.processStepType
 
-                                switch (myProcessStep.name) {
-                                    case ~/deploy service/:
-                                        subservice = myService.name
-                                        property 'ec_deploy', {
-                                            ec_notifierStatus = '0'
-                                        }
+                                switch (myProcessStep.processStepType) {
+                                    case ~/service/:
+                                        subservice = myProcessStep.subservice
                                         break
-                                    case ~/configure load/:
+                                    case ~/procedure/:
                                         subprocedure = myProcessStep.subprocedure
                                         subproject = myProcessStep.subproject
+                                        project = myProject.name
                                         break
                                     default:
                                         break
+                                }
+
+                                property 'ec_deploy', {
+                                    ec_notifierStatus = '0'
                                 }
                             }
                         }
