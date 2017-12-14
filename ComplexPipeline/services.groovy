@@ -92,25 +92,25 @@ project myProject.name, {
             // NOTE: The service contains the mapping information.
             myService.containers.each {myContainer->
 
-                myService.tierMaps.each {myTierMap ->
-                    def myMapName = "$myTierMap.serviceName-$myTierMap.environmentName"
+                myService.environmentMaps.each {myEnvironmentMap ->
+                    def myMapName = "$myEnvironmentMap.serviceName-$myEnvironmentMap.environmentName"
                     println " ADDING TierMap $myMapName for $myService.name"
                     environmentMap myMapName, {
                         serviceName = myService.name
-                        environmentName = myTierMap.environmentName
+                        environmentName = myEnvironmentMap.environmentName
                         environmentProjectName = myProject.name
 
-                        def scmName = myService.name + myTierMap.environmentName + 'map'
+                        def scmName = myService.name + myEnvironmentMap.environmentName + 'map'
                         // This next section contains syntactic sugar to create an array of actualParameters from
                         // JSON data, if the data is there.  The loop will create array entries in the JSON args
                         // file and assign it to the 'actualParameter' property
                         serviceClusterMapping scmName, {
-                            actualParameter = myTierMap.serviceClusterMapping?.actualParameters?.collectEntries {aParam->
+                            actualParameter = myEnvironmentMap.serviceClusterMapping?.actualParameters?.collectEntries {aParam->
                                 [
                                         (aParam.name) : aParam.text,
                                 ]
                             }
-                            clusterName = myTierMap.clusterName
+                            clusterName = myEnvironmentMap.clusterName
                             serviceName = myService.name
                             environmentMapName= myMapName
 
@@ -122,13 +122,26 @@ project myProject.name, {
                                 // from the data in the JSON file.  The () assignment in the actualParameter section
                                 // does not work, probably because it is easier to use for the definition of items in an array.
                                 // Here, we want to create a list of properties.
-                                myTierMap.serviceClusterMapping?.serviceMapDetail?.each { entry ->
+                                myEnvironmentMap.serviceClusterMapping?.serviceMapDetail?.each { entry ->
                                     println "  ADD Detail: $entry.name = $entry.text"
                                     this[entry.name] = entry.text
                                 }
                             }
 
                             //TODO: Need ports for the configuration-level definition, mapping into the cluster.
+                            // These are the ports on the serviceCluster definition.
+                            myEnvironmentMap.serviceClusterMapping.ports?.each {myPort ->
+                                println "  ADDING Service Port: $myPort.name"
+                                port myPort.name, {
+                                    environmentName = myEnvironmentMap.environmentName
+                                    listenerPort = myPort.listenerPort
+                                    protocol = null
+                                    serviceClusterMappingName = scmName
+                                    subcontainer = myPort.subcontainer
+                                    subport = myPort.subport
+                                }
+                            }
+
                         }
                     }
                 }

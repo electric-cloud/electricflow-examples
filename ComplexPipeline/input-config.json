@@ -1,0 +1,44 @@
+{
+  "emailConfigs" : [
+    { "name" : "gmail",
+      "description" : "gmail account access in EF",
+      "mailFrom" : "mr.marco.a.morales@gmail.com",
+      "mailHost" : "smtp.gmail.com",
+      "mailPort" : "465",
+      "mailProtocol" : "SMTPS",
+      "mailUser" : "mr.marco.a.morales@gmail.com"
+    },
+    { "name" : "test",
+      "description" : "gmail account access in EF",
+      "mailFrom" : "mr.marco.a.morales@gmail.com",
+      "mailHost" : "smtp.gmail.com",
+      "mailPort" : "465",
+      "mailProtocol" : "SMTPS",
+      "mailUser" : "mr.marco.a.morales@gmail.com"
+    }
+  ],
+
+  "credentials" : [
+    { "name" : "Artifactory",
+      "project" : "ComplexPipeline",
+      "UserName" : "myusername",
+      "passwordFile" : "password-artifactory.txt"
+    },
+    { "name" : "Jenkins",
+      "project" : "ComplexPipeline",
+      "UserName" : "myusername",
+      "passwordFile" : "password-jenkins.txt"
+    }
+  ],
+
+  "users" : [
+    { "name" : "marco",
+      "fullUserName" : "Marco Morales",
+      "email" : "mmorales@electric-cloud.com"
+    },
+    { "name" : "seymour",
+      "fullUserName" : "Seymour Butz",
+      "email" : "sbutz@electric-cloud.com"
+    }
+  ]
+}
