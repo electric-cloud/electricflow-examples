@@ -79,7 +79,7 @@ while getopts ":ActrepwaspRG:N:P:" opt; do
     \?)
       echo "Invalid option: -$OPTARG" >&2
       echo "Usage:" >&2
-      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-P <PARAMETERSFILE>]" >&2
+      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-N <PROJECT NAME>] [-G <GROUPID>] [-P <PARAMETERSFILE>]" >&2
       echo "  -A Do everything"
       echo "  -t run unit tests on the model.  No objects are modified"
       echo "  -c run the configuration"
