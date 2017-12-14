@@ -16,11 +16,12 @@ RESOURCES=0
 SERVICES=0
 TEST=0
 WORKFLOWS=0
+JSONONLY=0
 
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":ActrepwaspRG:N:P:" opt; do
+while getopts ":ActrepwaspjRG:N:P:" opt; do
   case $opt in
     A)
         TEST=1
@@ -61,6 +62,10 @@ while getopts ":ActrepwaspRG:N:P:" opt; do
     p)
         PIPELINES=1
         ;;
+    j)
+        JSONONLY=1
+        echo "Will only transform JSON file"
+        ;;
     R)
         RELEASES=1
         ;;
@@ -99,8 +104,15 @@ while getopts ":ActrepwaspRG:N:P:" opt; do
   esac
 done
 
+
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $PARAMETERSFILE > $MYJSONFILE
+
+if [ $JSONONLY = "1" ]; then
+    echo "Tranformed JSON file only."
+    exit 0
+fi
+
 
 
 if [ $CONFIG = "1" ]; then
