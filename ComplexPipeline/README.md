@@ -97,3 +97,10 @@ You are encouraged to look through the installation script `install.sh` to gain 
 * `services.groovy` creates service models.
 * `pipelines.groovy` creates pipeline models.  Depends on everything to exist.
 
+## The ElectricFlow Object Model
+
+The models in this example attempt to map over to this object model.  The JSON input file feeds the respectrive groovy files for each object.
+
+![ElectricFlow Object Model](https://github.com/electric-cloud/electricflow-examples/blob/master/ComplexPipeline/EF-ObjectModel.PNG "ElectricFlow Object Model")
+
+
