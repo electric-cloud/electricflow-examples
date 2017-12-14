@@ -182,7 +182,7 @@ project myProject.name, {
                                 type = 'checkbox'
                             }
 
-                            formalParameter 'ec_' + myComponent.name + '-version', defaultValue: "\$[/projects/ComplexPipeline/applications/Two-Tier/components/$myComponent.name/ec_content_details/versionRange]", {
+                            formalParameter 'ec_' + myComponent.name + '-version', defaultValue: "\$[/projects/" + myProject.name + " /applications/Two-Tier/components/$myComponent.name/ec_content_details/versionRange]", {
                                 expansionDeferred = '1'
                                 label = null
                                 orderIndex = null

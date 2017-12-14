@@ -20,12 +20,12 @@
 
   "credentials" : [
     { "name" : "Artifactory",
-      "project" : "@@PROJECTNAMETOKEN@@",
+      "project" : "XebiaLabs",
       "UserName" : "myusername",
       "passwordFile" : "password-artifactory.txt"
     },
     { "name" : "Jenkins",
-      "project" : "@@PROJECTNAMETOKEN@@",
+      "project" : "XebiaLabs",
       "UserName" : "myusername",
       "passwordFile" : "password-jenkins.txt"
     }
@@ -42,7 +42,7 @@
     }
   ],
   "project" : {
-    "name" : "@@PROJECTNAMETOKEN@@",
+    "name" : "XebiaLabs",
     "description" : "Example of a pipeline with entry points of each type",
 
     "procedures" : [
@@ -58,13 +58,13 @@
           {
             "name":  "AppTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-dev"
+              "XebiaLabs-dev"
             ]
           },
           {
             "name" : "DBTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-dev"
+              "XebiaLabs-dev"
             ]
           }
         ]
@@ -76,13 +76,13 @@
           {
             "name":  "AppTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-qa"
+              "XebiaLabs-qa"
             ]
           },
           {
             "name" : "DBTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-qa"
+              "XebiaLabs-qa"
             ]
           }
         ]
@@ -94,13 +94,13 @@
           {
             "name":  "AppTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-prod"
+              "XebiaLabs-prod"
             ]
           },
           {
             "name" : "DBTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-prod"
+              "XebiaLabs-prod"
             ]
           }
         ]
@@ -288,7 +288,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ],
                     "processDependencies" : [
@@ -308,7 +308,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ]
                   }
@@ -342,7 +342,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ],
                     "processDependencies" : [
@@ -361,7 +361,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ]
                   }
@@ -400,7 +400,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ],
                     "processDependencies" : [
@@ -419,7 +419,7 @@
                         "description" : "deploy the software",
                         "processStepType" : "procedure",
                         "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subproject" : "XebiaLabs"
                       }
                     ]
                   }
@@ -547,7 +547,7 @@
                     "microserviceName" : "WeaveWorks Front End",
                     "containerName" : "WeaveWorks Front End Micro",
                     "containerPort" : "8079",
-                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "projectName" : "XebiaLabs",
                     "serviceName" : "WeaveWorks Front End"
                   }
                 ]
@@ -573,7 +573,7 @@
                     "description" : "run a script to configure the load balancer",
                     "applicationTierName" : "WeaveWorks Front End",
                     "subprocedure" : "Stub",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                    "subproject" : "XebiaLabs"
                   }
                 ],
                 "processDependencies" : [
@@ -690,7 +690,7 @@
                 "processStepType" : "procedure",
                 "description" : "run a script to configure the load balancer",
                 "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               }
             ],
             "processDependencies" : [
@@ -827,8 +827,8 @@
                 "name": "Deploy Group",
                 "description" : "Group the software into one",
                 "taskType" : "GROUP",
-                "projectName" : "@@PROJECTNAMETOKEN@@",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "projectName" : "XebiaLabs",
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Deploy-Application",
@@ -836,10 +836,10 @@
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
                 "environmentName" : "dev",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName": "XebiaLabs",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "XebiaLabs",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" },
                   { "name": "ec_smartDeployOption", "value" : "0" },
@@ -854,10 +854,10 @@
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
                 "environmentName" : "cluster-dev",
-                "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName" : "XebiaLabs",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "XebiaLabs",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
                 ]
@@ -867,7 +867,7 @@
                 "description" : "Run a procedure",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Command line",
@@ -879,7 +879,7 @@
                 "name": "Workflow",
                 "description" : "Run workflow we have developed",
                 "taskType" : "WORKFLOW",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "XebiaLabs",
                 "subworkflowDefinition" : "Prototypical Workflow",
                 "subworkflowStartingState" : "Starting State"
               },
@@ -912,9 +912,9 @@
                 "actualParameters" : [
                   {"name" : "ApplicationName", "value" : "$[/myApplication/applicationName]"},
                   {"name" : "EnvironmentName", "value" : "$[/myEnvironment/environmentName]"},
-                  {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/@@PROJECTNAMETOKEN@@]"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/XebiaLabs]"},
                   {"name" : "Overwrite", "value" : "false"},
-                  {"name" : "ProjectName", "value" : "$[/myApplication/@@PROJECTNAMETOKEN@@]"},
+                  {"name" : "ProjectName", "value" : "$[/myApplication/XebiaLabs]"},
                   {"name" : "ServiceName", "value" : "$[/myService/serviceName]"},
                   {"name" : "SnapshotName", "value" : "mysnap-1.0"}
                 ]
@@ -941,8 +941,8 @@
                 "name": "Deploy Group",
                 "description" : "Group the software into one",
                 "taskType" : "GROUP",
-                "projectName" : "@@PROJECTNAMETOKEN@@",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "projectName" : "XebiaLabs",
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Deploy-Application",
@@ -950,10 +950,10 @@
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
                 "environmentName" : "qa",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName": "XebiaLabs",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Deploy-Service",
@@ -963,10 +963,10 @@
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
                 "environmentName" : "cluster-qa",
-                "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName" : "XebiaLabs",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "XebiaLabs",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
                 ]
@@ -976,7 +976,7 @@
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               }
             ]
           },
@@ -1000,8 +1000,8 @@
                 "name": "Deploy Group",
                 "description" : "Group the software into one",
                 "taskType" : "GROUP",
-                "projectName" : "@@PROJECTNAMETOKEN@@",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "projectName" : "XebiaLabs",
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Deploy-Application",
@@ -1009,10 +1009,10 @@
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
                 "environmentName" : "prod",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName": "XebiaLabs",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               },
               {
                 "name": "Deploy-Service",
@@ -1022,10 +1022,10 @@
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
                 "environmentName" : "cluster-prod",
-                "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName" : "XebiaLabs",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "XebiaLabs",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
                 ]
@@ -1035,7 +1035,7 @@
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "XebiaLabs"
               }
             ]
           }
@@ -1046,9 +1046,9 @@
   },
 
   "resources" : [
-    "@@PROJECTNAMETOKEN@@-dev",
-    "@@PROJECTNAMETOKEN@@-qa",
-    "@@PROJECTNAMETOKEN@@-prod"
+    "XebiaLabs-dev",
+    "XebiaLabs-qa",
+    "XebiaLabs-prod"
   ]
 
 }

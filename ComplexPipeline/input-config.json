@@ -20,12 +20,12 @@
 
   "credentials" : [
     { "name" : "Artifactory",
-      "project" : "ComplexPipeline",
+      "project" : "@@PROJECTNAMETOKEN@@",
       "UserName" : "myusername",
       "passwordFile" : "password-artifactory.txt"
     },
     { "name" : "Jenkins",
-      "project" : "ComplexPipeline",
+      "project" : "@@PROJECTNAMETOKEN@@",
       "UserName" : "myusername",
       "passwordFile" : "password-jenkins.txt"
     }

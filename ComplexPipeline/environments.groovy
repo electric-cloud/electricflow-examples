@@ -4,6 +4,7 @@ def myProject = args.project
 project myProject.name, {
     myProject.environments?.each { myEnvironment->
         environment myEnvironment.name, {
+            println "Environment: $myEnvironment.name"
             description = myEnvironment.description
             environmentEnabled = '1'
             projectName = myProject.name
@@ -13,6 +14,7 @@ project myProject.name, {
 
             myEnvironment.environmentTiers?.each {myEnvironmentTier ->
                 environmentTier myEnvironmentTier.name, {
+                    println "   EnvironmentTier : $myEnvironmentTier.name "
                     batchSize = null
                     batchSizeType = null
                     resourceName = myEnvironmentTier.resources
@@ -20,6 +22,7 @@ project myProject.name, {
             }
             myEnvironment.clusters.each {myCluster ->
                 cluster myCluster.name, {
+                    println "   Cluster : $myCluster.name "
                     environmentName = myEnvironment.name
                     pluginProjectName = null
                     pluginKey = myCluster.pluginKey

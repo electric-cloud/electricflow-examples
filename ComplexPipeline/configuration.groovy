@@ -1,3 +1,9 @@
+def myProject = args.project
+
+project myProject.name, {
+    description = myProject.description
+}
+
 args.emailConfigs.each { myEmailConfig ->
     emailConfig myEmailConfig.name, {
         description = myEmailConfig.desription

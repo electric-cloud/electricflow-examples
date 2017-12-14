@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-set -e
-PARAMETERSFILE=complexPipeline.json
+PARAMETERSFILE=input-model.json
+MYJSONFILE=model.json
+PROJECTNAME=ComplexPipeline
+GROUPID=com.ec.samples
+
 ALL=1
 APPLICATIONS=0
 CONFIG=0
@@ -14,14 +17,12 @@ SERVICES=0
 TEST=0
 WORKFLOWS=0
 
-PROJECTNAME=ComplexPipeline
-GROUPID=com.ec.samples
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":actrepwaspRN:P:" opt; do
+while getopts ":ActrepwaspRG:N:P:" opt; do
   case $opt in
-    a)
+    A)
         TEST=1
         CONFIG=1
         RESOURCES=1
@@ -65,14 +66,21 @@ while getopts ":actrepwaspRN:P:" opt; do
         ;;
     N)
         PROJECTNAME=$OPTARG
+        echo "New project name is $PROJECTNAME"
         ;;
     P)
         PARAMETERSFILE=$OPTARG
+        echo "new parameters file is $PARAMETERSFILE"
+        ;;
+    G)
+        GROUPID=$OPTARG
+        echo "new groupId is $GROUPID"
         ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       echo "Usage:" >&2
-      echo "$0 [-a] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-P <PARAMETERSFILE>]" >&2
+      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-P <PARAMETERSFILE>]" >&2
+      echo "  -A Do everything"
       echo "  -t run unit tests on the model.  No objects are modified"
       echo "  -c run the configuration"
       echo "  -r create resources"
@@ -83,15 +91,21 @@ while getopts ":actrepwaspRN:P:" opt; do
       echo "  -s create services"
       echo "  -p create pipelines"
       echo "  -R create releases"
-      echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format"
+      echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
+      echo "  -N <PROJECTNAME> specify the name of the project"
+      echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input"
       exit 1
       ;;
   esac
 done
 
+# Replace tokens with real names
+sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $PARAMETERSFILE > $MYJSONFILE
+
+
 if [ $CONFIG = "1" ]; then
     echo "Add configurations via DSL"
-    ectool evalDsl --dslFile configuration.groovy --parametersFile configuration.json
+    ectool evalDsl --dslFile configuration.groovy --parametersFile $MYJSONFILE
 
     echo "Add passwords to configurations"
     ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
@@ -103,9 +117,6 @@ if [ $CONFIG = "1" ]; then
     ectool modifyUser "marco" --password "marco"  --sessionPassword < passwords/password-user-admin.txt
     ectool modifyUser "seymour" --password "seymour"  --sessionPassword < passwords/password-user-admin.txt
 
-    ectool createCredential --projectName "$PROJECTNAME" \
-    --credentialName "artifactory" --userName "admin" --password "artifactorypassword"
-
     echo "Create artifacts for this example."
 
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
@@ -115,7 +126,7 @@ if [ $CONFIG = "1" ]; then
         ectool createArtifact "$GROUPID" "$artifactId" --description "simple text file."
 
         for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
-            echo "Publishing com.ec.samples:$artifactId version $version..."
+            echo "Publishing $GROUPID:$artifactId version $version..."
             ectool --silent publishArtifactVersion \
                 --version $version --artifactName $GROUPID:$artifactId \
                 --fromDirectory . \
@@ -126,45 +137,54 @@ fi
 
 # Run some essential tests to show the system works.  Good hygiene.
 if [ $TEST = "1" ] ; then
-    ectool evalDsl --dslFile test.groovy --parametersFile $PARAMETERSFILE
+    echo "######### TESTING #########"
+    ectool evalDsl --dslFile test.groovy --parametersFile $MYJSONFILE
 fi
 
 # Create the resources needed in this project.
 if [ $RESOURCES = "1" ] ; then
-    ectool evalDsl --dslFile resources.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING RESOURCES #########"
+    ectool evalDsl --dslFile resources.groovy --parametersFile $MYJSONFILE
 fi
 
 # Create the environments needed in this project.
 if [ $ENVIRONMENTS = "1" ] ; then
-    ectool evalDsl --dslFile environments.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING ENVIRONMENTS #########"
+    ectool evalDsl --dslFile environments.groovy --parametersFile $MYJSONFILE
 fi
 
 # all of the helper procedures are defined here.  This includes stubs.  We'll refer to procedures by name.
 if [ $PROCEDURES = "1" ] ; then
-    ectool evalDsl --dslFile procedures.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING PROCEDURES #########"
+    ectool evalDsl --dslFile procedures.groovy --parametersFile $MYJSONFILE
 fi
 
 # If you have workflows, define them here.  NOTE: Helper procedures should be already defined.
 if [ $WORKFLOWS = "1" ] ; then
-    ectool evalDsl --dslFile workflows.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING WORKFLOWS #########"
+    ectool evalDsl --dslFile workflows.groovy --parametersFile $MYJSONFILE
 fi
 
 # Your application model uses existing artifacts, procedures, and environments.
 if [ $APPLICATIONS = "1" ] ; then
-    ectool evalDsl --dslFile applications.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING APPLICATIONS #########"
+    ectool evalDsl --dslFile applications.groovy --parametersFile $MYJSONFILE
 fi
 
 # Your services model uses existing procedures
 if [ $SERVICES = "1" ] ; then
-    ectool evalDsl --dslFile services.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING SERVICES #########"
+    ectool evalDsl --dslFile services.groovy --parametersFile $MYJSONFILE
 fi
 
 # The pipelines tie most things together.  One of the last steps.
 if [ $PIPELINES = "1" ] ; then
-    ectool evalDsl --dslFile pipelines.groovy --parametersFile $PARAMETERSFILE
+    echo "######### CREATING PIPELINES #########"
+    ectool evalDsl --dslFile pipelines.groovy --parametersFile $MYJSONFILE
 fi
 
 # When we're ready, do the same for releases.
 #if [ $RELEASES = "1" ] ; then
-#   ectool evalDsl --dslFile releases.groovy --parametersFile $PARAMETERSFILE
+#    echo "######### TESTING #########"
+#   ectool evalDsl --dslFile releases.groovy --parametersFile $MYJSONFILE
 #fi
