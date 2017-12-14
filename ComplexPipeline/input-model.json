@@ -41,6 +41,7 @@
       "email" : "sbutz@electric-cloud.com"
     }
   ],
+
   "project" : {
     "name" : "@@PROJECTNAMETOKEN@@",
     "description" : "Example of a pipeline with entry points of each type",

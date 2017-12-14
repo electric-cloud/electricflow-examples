@@ -129,6 +129,7 @@ if [ $CONFIG = "1" ]; then
     ectool modifyUser "marco" --password "marco"  --sessionPassword < passwords/password-user-admin.txt
     ectool modifyUser "seymour" --password "seymour"  --sessionPassword < passwords/password-user-admin.txt
 
+    set +e
     echo "Create artifacts for this example."
 
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
@@ -145,6 +146,7 @@ if [ $CONFIG = "1" ]; then
                 --includePatterns artifacts/$artifactId.txt
             done
     done
+    set -e
 fi
 
 # Run some essential tests to show the system works.  Good hygiene.
