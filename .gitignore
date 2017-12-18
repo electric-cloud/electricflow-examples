@@ -3,3 +3,10 @@ MultiEnvironmentInventory/db.txt
 MultiEnvironmentInventory/service.txt
 MultiEnvironmentInventory/web1.txt
 MultiEnvironmentInventory/web2.txt
+ComplexPipeline/artifacts/db.txt
+ComplexPipeline/artifacts/mainframe.txt
+ComplexPipeline/artifacts/mobile.txt
+ComplexPipeline/artifacts/web1.txt
+ComplexPipeline/artifacts/web2.txt
+ComplexPipeline/model.json
+
