@@ -17,9 +17,9 @@ This project exists because I found people wanted to see a Pipeline with multipl
         * Groups
         * Application Processes
         * Skipped Steps
+        * Manual Steps
+        * Rollback Steps
         * _Retry logic_
-        * _Manual Steps_
-        * _Rollback Steps_
 * Users
 * Examples of Email Configurations
 * Examples of Credentials
