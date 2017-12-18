@@ -434,6 +434,20 @@
             "name" : "Deploy Application",
             "description" : "An application-level process that deploys multiple components",
             "processType" : "DEPLOY",
+            "formalParameters": [
+              {
+                "name" : "doManualCheck",
+                "type" : "checkbox",
+                "description" : "Enable if we should manually check the deployment",
+                "defaultValue" : "true",
+                "orderIndex" : "1",
+                "label" : "Do Manual Check?",
+                "expansionDeferred" : "0",
+                "checkedValue" : "true",
+                "initiallyChecked" : "true",
+                "uncheckedValue" : "false"
+              }
+            ],
             "processSteps" : [
               {
                 "name" : "deploy web1",
@@ -458,17 +472,64 @@
                 "processStepType" : "process",
                 "subcomponent" : "db",
                 "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "Manual Inspection",
+                "instruction" : "Inspect the system",
+                "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
+                "processStepType" : "manual",
+                "assignee" : [ "marco", "seymour" ]
+              },
+              {
+                "name" : "Rollback if failure",
+                "processStepType" : "rollback",
+                "rollbackType" : "environment",
+                "smartRollback" : "1"
+              },
+              {
+                "name": "Manual Inspection Succeeded",
+                "applicationTierName": "User Interface",
+                "processStepType": "command",
+                "subprocedure": "RunCommand",
+                "subproject": "/plugins/EC-Core/project",
+                "commandToRun": "echo \"success!\""
               }
             ],
             "processDependencies" : [
               { "source" : "deploy web1",
                 "target" : "deploy db",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Don't do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy web1",
+                "target" : "Manual Inspection",
+                "branchCondition" : "$[doManualCheck]",
+                "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
                 "branchType" : "ALWAYS"
               },
               { "source" : "deploy web2",
                 "target" : "deploy db",
                 "branchType" : "ALWAYS"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Rollback if failure",
+                "branchType" : "ERROR"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Manual Inspection Succeeded",
+                "branchType" : "SUCCESS"
+              },
+              { "source" : "deploy web2",
+                "target" : "deploy db",
+                "branchType" : "ALWAYS"
               }
+
+
+
+
             ]
           }
         ],

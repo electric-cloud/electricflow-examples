@@ -154,6 +154,40 @@ project myProject.name, {
                     println "   my(application)Process is $myProcess.name"
                     applicationName = myApplication.name
                     processType = 'DEPLOY'
+                    myProcess.formalParameters?.each { myParameter ->
+
+                        formalParameter myParameter.name, {
+                            type = myParameter.type
+                            defaultValue = myParameter.defaultValue
+                            description = myParameter.description
+                            expansionDeferred = myParameter.expansionDeferred
+                            label = myParameter.label
+                            orderIndex = myParameter.orderIndex
+                            required = myParameter.required
+
+                            switch (myParameter.type) {
+                                case ~/checkbox/:
+                                    break
+                                default:
+                                    break
+                            }
+                        }
+                        property 'ec_customEditorData', {
+                            property 'parameters', {
+                                property myParameter.name, {
+                                    switch (myParameter.type) {
+                                        case ~/checkbox/:
+                                            checkedValue = myParameter.checkedValue
+                                            initiallyChecked = myParameter.initiallyChecked
+                                            uncheckedValue = myParameter.uncheckedValue
+                                            break
+                                        default:
+                                            break
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     formalParameter 'ec_enforceDependencies', defaultValue: '0', {
                         expansionDeferred = '1'
@@ -201,12 +235,57 @@ project myProject.name, {
                             processStepType = myProcessStep.processStepType
                             subcomponent = myProcessStep.subcomponent
                             subcomponentApplicationName = myApplication.name
-                            subcomponentProcess = myProcessStep.subcomponentProcess
+
+                            // This next list seems largely optional, or at least not primary fields
+                            afterLastRetry = null
+                            componentRollback = null
+                            retryCount = null
+                            retryInterval = null
+                            retryType = null
+                            skipRollbackIfUndeployFails = null
+                            smartRollback = null
+                            subcomponent = null
+                            subservice = null
+                            subserviceProcess = null
+                            timeLimitUnits = null
+                            workspaceName = null
+
+                            switch (myProcessStep.processStepType) {
+                                case ~/process/:
+                                    subcomponent = myProcessStep.subcomponent
+                                    subcomponentProcess = myProcessStep.subcomponentProcess
+                                    break
+                                case ~/procedure/:
+                                    subprocedure = myProcessStep.subprocedure
+                                    subproject = myProcessStep.subproject
+                                    break
+                                case ~/manual/:
+                                    instruction = myProcessStep.instruction
+                                    notificationTemplate = myProcessStep.notificationTemplate
+//                                    assignee = "marco"
+                                    assignee = myProcessStep.assignee
+                                    break
+                                case ~/rollback/:
+                                    rollbackType = myProcessStep.rollbackType
+                                    rollbackType = "environment"
+                                    smartRollback = myProcessStep.smartRollback
+                                    rollbackSnapshot = null
+                                    rollbackUndeployProcess = null
+                                    break
+                                case ~/command/:
+                                    subprocedure = myProcessStep.subprocedure
+                                    subproject = myProcessStep.subproject
+                                    actualParameter = [
+                                            'commandToRun': myProcessStep.commandToRun,
+                                    ]
+                                    break
+                                default:
+                                    break
+                            }
 
                             property 'ec_deploy', {
                                 ec_notifierStatus = '0'
                             }
-
                         }
                     }
 

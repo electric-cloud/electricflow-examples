@@ -1,6 +1,8 @@
 def myProject = args.project
+def outfile = new File('output.txt')
 
 println "myProject is $myProject.name"
+outfile << "myProject is $myProject.name"
 
 args.resources.each { myResource ->
     println "myResource is $myResource"
