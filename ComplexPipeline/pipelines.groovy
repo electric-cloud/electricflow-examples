@@ -119,7 +119,13 @@ project myProject.name, {
                                     }
                                     environmentName = myTask.environmentName
                                     environmentProjectName = myTask.environmentProjectName
-                                    subapplication = myTask.subapplication
+                                    if (myTask.taskProcessType == "SERVICE") {
+                                        subservice = myTask.subservice
+                                    }
+                                    else if (myTask.taskProcessType == "APPLICATION")
+                                    {
+                                        subapplication = myTask.subapplication
+                                    }
                                     subprocess = myTask.subprocess
                                     subproject = myTask.subproject
                                     // TODO : Need to be smart here when we do microservices.

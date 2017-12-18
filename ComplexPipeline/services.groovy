@@ -176,6 +176,7 @@ project myProject.name, {
                         switch (myProcessStep.processStepType) {
                             case ~/service/:
                                 subservice = myProcessStep.subservice
+                                subprocess = myProcessStep.subprocess
                                 break
                             case ~/procedure/:
                                 subprocedure = myProcessStep.subprocedure

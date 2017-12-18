@@ -21,7 +21,7 @@ JSONONLY=0
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":ActrepwaspjRG:N:P:" opt; do
+while getopts ":ActrepwasljRG:N:P:" opt; do
   case $opt in
     A)
         TEST=1
@@ -59,7 +59,7 @@ while getopts ":ActrepwaspjRG:N:P:" opt; do
     s)
         SERVICES=1
         ;;
-    p)
+    l)
         PIPELINES=1
         ;;
     j)
