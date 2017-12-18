@@ -160,7 +160,7 @@ project myProject.name, {
 
                 myProcess.processSteps?.each {myProcessStep->
                     processStep myProcessStep.name, {
-                        println " ADDING processSteps $myProcess.name : $myProcessStep.name"
+                        println "   ADDING processSteps $myProcess.name : $myProcessStep.name"
                         actualParameter = myProcessStep.actualParameters?.collectEntries { aParam ->
                             [
                                     (aParam.name): aParam.value,
