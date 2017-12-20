@@ -1,0 +1,230 @@
+{
+  "project" : {
+    "services": [
+      {
+        "name": "Front End Service",
+        "description": "Front End",
+        "containers": [
+          {
+            "name": "frontend",
+            "description": "The Front End container",
+            "command": "null",
+            "cpuCount": "0.1",
+            "cpuLimit": "0.3",
+            "credentialName": "null",
+            "entryPoint": "null",
+            "imageName": "weaveworksdemos/front-end",
+            "imageVersion": "0.3.12",
+            "memoryLimit": "1024",
+            "memorySize": "100",
+            "registryUri": "null",
+            "serviceName": "frontend",
+            "environmentVariables": [
+              {
+                "name": "SESSION_REDIS",
+                "type": "string",
+                "value": "true"
+              }
+            ],
+            "ports": [
+              {
+                "name": "uiport",
+                "containerPort": "8079"
+              }
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy Front End service",
+            "description": "An application-level process that deploys the front end microservice",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the frontend container",
+                "subservice": "Front End Service",
+                "container": "frontend"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      },
+      {
+        "name": "Payment Service",
+        "description": "The payment service",
+        "containers": [
+          {
+            "name": "payment",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "payment",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy payment service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the payment services",
+                "subservice": "payment Service",
+                "container": "payment"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      },
+      {
+        "name": "RabbitMQ Service",
+        "description": "The rabbitmq service",
+        "containers": [
+          {
+            "name": "rabbitmq",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "rabbitmq",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy rabbitmq service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the rabbitmq services",
+                "subservice": "rabbitmq Service",
+                "container": "rabbitmq"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      },
+      {
+        "name": "Shipping Service",
+        "description": "The shipping service",
+        "containers": [
+          {
+            "name": "shipping",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "shipping",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy shipping service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the shipping services",
+                "subservice": "shipping Service",
+                "container": "shipping"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      },
+      {
+        "name": "QueueMaster Service",
+        "description": "The queuemaster service",
+        "containers": [
+          {
+            "name": "queuemaster",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "queuemaster",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy queuemaster service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the queuemaster services",
+                "subservice": "queuemaster Service",
+                "container": "queuemaster"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      }
+    ]
+  }
+}

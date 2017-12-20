@@ -1,0 +1,82 @@
+{
+  "project": {
+    "services": [
+      {
+        "name": "Carts Service",
+        "description": "The carts service",
+        "containers": [
+          {
+            "name": "carts",
+            "description": "Zipkin Cron Service",
+            "command": "null",
+            "cpuCount": "0.1",
+            "cpuLimit": "0.3",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "weaveworksdemos/user",
+            "imageVersion": "0.4.4",
+            "memoryLimit": "100",
+            "memorySize": "100",
+            "registryUri": "null",
+            "serviceName": "carts",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          },
+          {
+            "name": "cartsdb",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "cartsdb",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy carts service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the carts services",
+                "subservice": "carts Service",
+                "container": "carts"
+              }
+            ]
+          },
+          {
+            "name": "Deploy cartsdb service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the cartsdb services",
+                "subservice": "cartsdb Service",
+                "container": "cartsdb"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      }
+    ]
+  }
+}

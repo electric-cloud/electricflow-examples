@@ -1,0 +1,82 @@
+{
+  "project": {
+    "services": [
+      {
+        "name": "Catalogue Service",
+        "description": "The catalogue service",
+        "containers": [
+          {
+            "name": "catalogue",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "catalogue",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          },
+          {
+            "name": "catalogue-db",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "catalogue-db",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy catalogue service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the catalogue services",
+                "subservice": "catalogue Service",
+                "container": "catalogue"
+              }
+            ]
+          },
+          {
+            "name": "Deploy catalogue-db service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the catalogue-db services",
+                "subservice": "catalogue-db Service",
+                "container": "catalogue-db"
+              }
+            ]
+          }
+        ],
+        "environmentMaps": [
+        ]
+      }
+    ]
+  }
+}

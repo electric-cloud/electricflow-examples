@@ -1,0 +1,116 @@
+{
+  "project": {
+    "services": [
+      {
+        "name": "User Service",
+        "description": "The User service",
+        "containers": [
+          {
+            "name": "user",
+            "description": "User Service",
+            "command": "null",
+            "cpuCount": "0.1",
+            "cpuLimit": "0.3",
+            "credentialName": "null",
+            "entryPoint": "null",
+            "imageName": "weaveworksdemos/user",
+            "imageVersion": "0.4.4",
+            "memoryLimit": "100",
+            "memorySize": "100",
+            "registryUri": "null",
+            "serviceName": "user",
+            "environmentVariables": [
+              {
+                "name": "MONGO_HOST",
+                "type": "string",
+                "value": "userdb:27017"
+              },
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "http://zipkin.zipkin.svc.cluster.local:9411/api/v1/spans"
+              }
+            ],
+            "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
+            ]
+          },
+          {
+            "name": "userdb",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "userdb",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy user service",
+            "description": "An service-level process that deploys the user microservice",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the user services",
+                "subservice": "User Service",
+                "container": "user"
+              }
+            ]
+          },
+          {
+            "name": "Deploy userdb service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the userdb services",
+                "subservice": "userdb Service",
+                "container": "userdb"
+              }
+            ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "http",
+            "listenerPort": "80",
+            "serviceName": "User Service",
+            "subcontainer": "user",
+            "subport": "http"
+          }
+        ],
+        "environmentMaps": [
+          {
+            "serviceName": "User Service",
+            "environmentName": "ww-cluster-dev",
+            "clusterName": "openshiftcluster",
+            "serviceClusterMapping": {
+              "actualParameters": [
+              ],
+              "serviceMapDetail": [
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "project": {
+    "services": [
+      {
+        "name": "Zipkincron Service",
+        "description": "The zipkincron service",
+        "containers": [
+          {
+            "name": "zipkincron",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "zipkincron",
+            "environmentVariables": [
+              {
+                "name": "MYSQL_HOST",
+                "type": "string",
+                "value": "zipkindb"
+              },
+              {
+                "name": "MYSQL_PASS",
+                "type": "string",
+                "value": "zipkin"
+              },
+              {
+                "name": "MYSQL_USER",
+                "type": "string",
+                "value": "zipkin"
+              },
+              {
+                "name": "STORAGE_TYPE",
+                "type": "string",
+                "value": "mysql"
+              }
+            ],
+            "ports": [
+              {
+                "name": "zipkinport",
+                "containerPort": "80"
+              }
+            ]
+          },
+          {
+            "name": "zipkindb",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "zipkindb",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          },
+          {
+            "name": "zipkin",
+            "description": "Zipkin Cron Service",
+            "command": "-f",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "openzipkin/zipkin-dependencies",
+            "imageVersion": "1.4.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "zipkin",
+            "environmentVariables": [
+            ],
+            "ports": [
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy zipkincron service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the user services",
+                "subservice": "zipkincron Service",
+                "container": "zipkincron"
+              }
+            ]
+          },
+          {
+            "name": "Deploy zipkindb service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the zipkindb services",
+                "subservice": "zipkindb Service",
+                "container": "zipkindb"
+              }
+            ]
+          },
+          {
+            "name": "Deploy zipkin service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy container",
+                "processStepType": "service",
+                "description": "Deploy the zipkin services",
+                "subservice": "zipkin Service",
+                "container": "zipkin"
+              }
+            ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "zipkinport",
+            "listenerPort": "8080",
+            "serviceName": "Zipkincron Service",
+            "subcontainer": "zipkincron",
+            "subport": "zipkinport"
+          }
+        ],
+        "environmentMaps": [
+        ]
+      }
+    ]
+  }
+}
