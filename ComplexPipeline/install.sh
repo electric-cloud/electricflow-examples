@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# Find the root Git workspace directory.
+ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+
 PARAMETERSFILE=input-model.json
 MYJSONFILE=model.json
 PROJECTNAME=ComplexPipeline
 GROUPID=com.ec.samples
+BASEDIR=.
 
 ALL=1
 APPLICATIONS=0
@@ -21,7 +25,7 @@ JSONONLY=0
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":ActrepwasljRG:N:P:" opt; do
+while getopts ":ActrepwasljRG:N:P:B:" opt; do
   case $opt in
     A)
         TEST=1
@@ -81,10 +85,14 @@ while getopts ":ActrepwasljRG:N:P:" opt; do
         GROUPID=$OPTARG
         echo "new groupId is $GROUPID"
         ;;
+    B)
+        BASEDIR=$OPTARG
+        echo "new baseDir is $BASEDIR"
+        ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       echo "Usage:" >&2
-      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-N <PROJECT NAME>] [-G <GROUPID>] [-P <PARAMETERSFILE>]" >&2
+      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-N <PROJECT NAME>] [-G <GROUPID>] [-P <PARAMETERSFILE>] [-B <BASE DIR>]" >&2
       echo "  -A Do everything"
       echo "  -t run unit tests on the model.  No objects are modified"
       echo "  -c run the configuration"
@@ -99,6 +107,7 @@ while getopts ":ActrepwasljRG:N:P:" opt; do
       echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
       echo "  -N <PROJECTNAME> specify the name of the project"
       echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input"
+      echo "  -B <BASE DIRECTORY> use the specified directory as our base"
       exit 1
       ;;
   esac
@@ -117,17 +126,17 @@ fi
 
 if [ $CONFIG = "1" ]; then
     echo "Add configurations via DSL"
-    ectool evalDsl --dslFile configuration.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $BASEDIR/configuration.groovy --parametersFile $MYJSONFILE
 
     echo "Add passwords to configurations"
     ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
     ectool modifyEmailConfig "test" --mailUserPassword < passwords/password-email-test.txt
 
-    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Artifactory" --password < passwords/password-credential-artifactory.txt
-    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Jenkins" --password < passwords/password-credential-jenkins.txt
+    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Artifactory" --password < $BASEDIR/passwords/password-credential-artifactory.txt
+    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Jenkins" --password < $BASEDIR/passwords/password-credential-jenkins.txt
 
-    ectool modifyUser "marco" --password "marco"  --sessionPassword < passwords/password-user-admin.txt
-    ectool modifyUser "seymour" --password "seymour"  --sessionPassword < passwords/password-user-admin.txt
+    ectool modifyUser "marco" --password "marco"  --sessionPassword < $BASEDIR/passwords/password-user-admin.txt
+    ectool modifyUser "seymour" --password "seymour"  --sessionPassword < $BASEDIR/passwords/password-user-admin.txt
 
     set +e
     echo "Create artifacts for this example."
@@ -135,7 +144,7 @@ if [ $CONFIG = "1" ]; then
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
     for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
         echo "Creating $GROUPID:$artifactId "
-        echo "Creating $GROUPID:$artifactId " > artifacts/$artifactId.txt
+        echo "Creating $GROUPID:$artifactId " > $BASEDIR/artifacts/$artifactId.txt
         ectool createArtifact "$GROUPID" "$artifactId" --description "simple text file."
 
         for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
@@ -143,7 +152,7 @@ if [ $CONFIG = "1" ]; then
             ectool --silent publishArtifactVersion \
                 --version $version --artifactName $GROUPID:$artifactId \
                 --fromDirectory . \
-                --includePatterns artifacts/$artifactId.txt
+                --includePatterns $BASEDIR/artifacts/$artifactId.txt
             done
     done
     set -e

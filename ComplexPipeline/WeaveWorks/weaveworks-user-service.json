@@ -1,5 +1,6 @@
 {
   "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
         "name": "User Service",
@@ -65,24 +66,17 @@
             "processType": "DEPLOY",
             "processSteps": [
               {
-                "name": "deploy container",
+                "name": "deploy user",
                 "processStepType": "service",
                 "description": "Deploy the user services",
                 "subservice": "User Service",
                 "container": "user"
-              }
-            ]
-          },
-          {
-            "name": "Deploy userdb service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
+              },
               {
-                "name": "deploy container",
+                "name": "deploy userdb",
                 "processStepType": "service",
                 "description": "Deploy the userdb services",
-                "subservice": "userdb Service",
+                "subservice": "User Service",
                 "container": "userdb"
               }
             ]
@@ -98,17 +92,6 @@
           }
         ],
         "environmentMaps": [
-          {
-            "serviceName": "User Service",
-            "environmentName": "ww-cluster-dev",
-            "clusterName": "openshiftcluster",
-            "serviceClusterMapping": {
-              "actualParameters": [
-              ],
-              "serviceMapDetail": [
-              ]
-            }
-          }
         ]
       }
     ]

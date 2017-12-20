@@ -1,5 +1,6 @@
 {
   "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
         "name": "Carts Service",
@@ -51,24 +52,17 @@
             "processType": "DEPLOY",
             "processSteps": [
               {
-                "name": "deploy container",
+                "name": "deploy carts",
                 "processStepType": "service",
                 "description": "Deploy the carts services",
-                "subservice": "carts Service",
+                "subservice": "Carts Service",
                 "container": "carts"
-              }
-            ]
-          },
-          {
-            "name": "Deploy cartsdb service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
+              },
               {
-                "name": "deploy container",
+                "name": "deploy cartsdb",
                 "processStepType": "service",
                 "description": "Deploy the cartsdb services",
-                "subservice": "cartsdb Service",
+                "subservice": "Carts Service",
                 "container": "cartsdb"
               }
             ]

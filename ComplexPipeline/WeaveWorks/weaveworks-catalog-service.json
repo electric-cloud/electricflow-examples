@@ -1,5 +1,6 @@
 {
   "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
         "name": "Catalogue Service",
@@ -51,24 +52,17 @@
             "processType": "DEPLOY",
             "processSteps": [
               {
-                "name": "deploy container",
+                "name": "deploy catalog",
                 "processStepType": "service",
                 "description": "Deploy the catalogue services",
-                "subservice": "catalogue Service",
+                "subservice": "Catalogue Service",
                 "container": "catalogue"
-              }
-            ]
-          },
-          {
-            "name": "Deploy catalogue-db service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
+              },
               {
-                "name": "deploy container",
+                "name": "deploy catalog-db",
                 "processStepType": "service",
                 "description": "Deploy the catalogue-db services",
-                "subservice": "catalogue-db Service",
+                "subservice": "Catalogue Service",
                 "container": "catalogue-db"
               }
             ]

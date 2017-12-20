@@ -1,5 +1,6 @@
 {
   "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
         "name": "Orders Service",
@@ -51,24 +52,17 @@
             "processType": "DEPLOY",
             "processSteps": [
               {
-                "name": "deploy container",
+                "name": "deploy orders",
                 "processStepType": "service",
                 "description": "Deploy the orders services",
-                "subservice": "orders Service",
+                "subservice": "Orders Service",
                 "container": "orders"
-              }
-            ]
-          },
-          {
-            "name": "Deploy ordersdb service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
+              },
               {
-                "name": "deploy container",
+                "name": "deploy ordersdb",
                 "processStepType": "service",
                 "description": "Deploy the ordersdb services",
-                "subservice": "ordersdb Service",
+                "subservice": "Orders Service",
                 "container": "ordersdb"
               }
             ]

@@ -1,8 +1,9 @@
 {
   "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
-        "name": "Zipkincron Service",
+        "name": "Zipkin Service",
         "description": "The zipkincron service",
         "containers": [
           {
@@ -94,39 +95,25 @@
             "processType": "DEPLOY",
             "processSteps": [
               {
-                "name": "deploy container",
+                "name": "deploy zipkincron",
                 "processStepType": "service",
                 "description": "Deploy the user services",
-                "subservice": "zipkincron Service",
+                "subservice": "Zipkin Service",
                 "container": "zipkincron"
-              }
-            ]
-          },
-          {
-            "name": "Deploy zipkindb service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
+              },
               {
-                "name": "deploy container",
-                "processStepType": "service",
-                "description": "Deploy the zipkindb services",
-                "subservice": "zipkindb Service",
-                "container": "zipkindb"
-              }
-            ]
-          },
-          {
-            "name": "Deploy zipkin service",
-            "description": "An service-level process that deploys microservices",
-            "processType": "DEPLOY",
-            "processSteps": [
-              {
-                "name": "deploy container",
+                "name": "deploy zipkin",
                 "processStepType": "service",
                 "description": "Deploy the zipkin services",
-                "subservice": "zipkin Service",
+                "subservice": "Zipkin Service",
                 "container": "zipkin"
+              },
+              {
+                "name": "deploy zipkindb",
+                "processStepType": "service",
+                "description": "Deploy the zipkindb services",
+                "subservice": "Zipkin Service",
+                "container": "zipkindb"
               }
             ]
           }

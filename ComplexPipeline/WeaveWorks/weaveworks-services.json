@@ -1,5 +1,6 @@
 {
   "project" : {
+    "name" : "@@PROJECTNAMETOKEN@@",
     "services": [
       {
         "name": "Front End Service",
