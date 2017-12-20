@@ -9,4 +9,7 @@ ComplexPipeline/artifacts/mobile.txt
 ComplexPipeline/artifacts/web1.txt
 ComplexPipeline/artifacts/web2.txt
 ComplexPipeline/model.json
-
+ComplexPipeline/WeaveWorks/export-*.dsl
+ComplexPipeline/WeaveWorks/export-*.groovy
+ComplexPipeline/WeaveWorks/greplist
+MultiEnvironmentInventory/Unplug/
