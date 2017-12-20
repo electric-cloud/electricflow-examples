@@ -128,6 +128,51 @@
           }
         ],
         "environmentMaps": [
+          {
+            "serviceName" : "Zipkin Service",
+            "environmentName" : "ww-cluster-dev",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Zipkin Service",
+            "environmentName" : "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Zipkin Service",
+            "environmentName" : "ww-cluster-prod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          }
         ]
       }
     ]

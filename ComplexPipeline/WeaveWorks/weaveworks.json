@@ -183,9 +183,6 @@
   },
 
   "resources" : [
-    "@@PROJECTNAMETOKEN@@-dev",
-    "@@PROJECTNAMETOKEN@@-qa",
-    "@@PROJECTNAMETOKEN@@-prod"
   ]
 
 }
