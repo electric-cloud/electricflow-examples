@@ -1,6 +1,8 @@
 # ComplexPipeline
 
-This project exists because I found people wanted to see a Pipeline with multiple features enabled.  In short, this Pipeline contains a little bit of a lot (not a little bit of everything, because there is too much).  You will see the following items complete or _incomplete_:
+This project contains handlers to instantiate many of the common features available in ElectricFlow for Applications, Services, Pipelines, and (soon) Releases.  The goal is to create a set of groovy scripts that will process each objet type and add them to ElectricFlow for your own use.  Feel free to fork or contribute to this effort.
+
+This Pipeline contains a little bit of a lot (not a little bit of everything, because there is too much).  You will see the following items complete or _incomplete_:
 
 * Pipeline
   * Parameters
@@ -30,6 +32,9 @@ This project exists because I found people wanted to see a Pipeline with multipl
 * _Notifications_ - configured to use your preferred email system
 * _Hybrid application_ - A blend of both application + microservice deployed to a static and cloud resources
 * _Job Template Names_ - Show examples of how to name the jobs more cleverly
+* _Release Command Center_
+* _Dashboard_ examples
+* _Self-Service Catalog_
 
 # Setup
 
@@ -37,29 +42,8 @@ To setup, start with these commands:
 
 ```
 ectool login admin <your password>
-./install.sh -a
+./install.sh -A -P <Your JSON File>
 ```
-
-To see the list of arguments, run `install.sh -?` to see something like this:
-
-```
-Usage:
-./install.sh [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-N <PROJECT NAME>] [-G <GROUPID>] [-P <PARAMETERSFILE>]
-  -A Do everything
-  -t run unit tests on the model.  No objects are modified
-  -c run the configuration
-  -r create resources
-  -e create environments
-  -p create procedures
-  -w create workflows
-  -a create applications
-  -s create services
-  -p create pipelines
-  -R create releases
-  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id
-  -N <PROJECTNAME> specify the name of the project
-  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input
-  ```
 
 There are some essential files to setup and configuration this system described next.
 
@@ -104,3 +88,10 @@ The models in this example attempt to map over to this object model.  The JSON i
 ![ElectricFlow Object Model](https://github.com/electric-cloud/electricflow-examples/blob/master/ComplexPipeline/EF-ObjectModel.PNG "ElectricFlow Object Model")
 
 
+## TODO
+
+* The infrastructure setup of passwords and credentials do not yet fit well within this model. I've noticed the need for custom handling of passwords - which we should not include in JSON.  I believe the dependency on ectool subcommands beyond evalDsl are what make the custom handling necessary, and this type of infrastructure may need to rely on custom logic.
+
+* Add new features as they come in.
+
+* Figure out how to best create the idea of this common folder for scripts, with something like `$MODEL_HOME` that lets me run the setup scripts from directories directly.  I have been running this in Cygwin, and I think the path translation is goofy and causing interference (i.e. `/cygdrive/c/Users/Marco/code/flow-standalone/electricflow-examples/CommonPipeline` doesn't work well.)
