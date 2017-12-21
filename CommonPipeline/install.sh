@@ -108,10 +108,12 @@ while getopts ":ActrepwasljRG:N:P:B:" opt; do
       echo "  -N <PROJECTNAME> specify the name of the project"
       echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input"
       echo "  -B <BASE DIRECTORY> use the specified directory as our base"
+      echo "Root is $ROOT"
       exit 1
       ;;
   esac
 done
+
 
 
 # Replace tokens with real names
