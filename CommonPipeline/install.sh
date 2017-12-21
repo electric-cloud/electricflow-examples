@@ -5,7 +5,7 @@ ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 PARAMETERSFILE=input-model.json
 MYJSONFILE=model.json
-PROJECTNAME=ComplexPipeline
+PROJECTNAME=CommonPipeline
 GROUPID=com.ec.samples
 BASEDIR=.
 

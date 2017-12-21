@@ -902,6 +902,7 @@
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" },
                   { "name": "ec_smartDeployOption", "value" : "0" },
@@ -1015,7 +1016,8 @@
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION"
               },
               {
                 "name": "Deploy-Service",
@@ -1074,7 +1076,8 @@
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION"
               },
               {
                 "name": "Deploy-Service",
