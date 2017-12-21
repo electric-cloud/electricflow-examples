@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
+
+GROUPID=com.ec.complex.pipeline
+PROJECTNAME=ComplexPipeline
+
+./install-config.sh -P input-model.json -N $PROJECTNAME -G $GROUPID
 cd ..
-./install.sh -l -P ComplexPipeline/input-model.json -N ComplexPipeline -G com.ec.complex.pipeline
+./install.sh -A -P ComplexPipeline/input-model.json -N $PROJECTNAME -G $GROUPID
