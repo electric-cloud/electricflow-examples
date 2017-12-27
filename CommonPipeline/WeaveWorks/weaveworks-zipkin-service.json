@@ -4,7 +4,7 @@
     "services": [
       {
         "name": "Zipkin Service",
-        "description": "The zipkincron service",
+        "description": "The Zipkin service",
         "containers": [
           {
             "name": "zipkincron",
@@ -57,8 +57,8 @@
             "cpuLimit": "null",
             "credentialName": "null",
             "entryPoint": "crond",
-            "imageName": "openzipkin/zipkin-dependencies",
-            "imageVersion": "1.4.0",
+            "imageName": "openzipkin/zipkin-mysql",
+            "imageVersion": "1.20.0",
             "memoryLimit": "null",
             "memorySize": "null",
             "registryUri": "null",
@@ -70,14 +70,14 @@
           },
           {
             "name": "zipkin",
-            "description": "Zipkin Cron Service",
+            "description": "Zipkin Service",
             "command": "-f",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
-            "entryPoint": "crond",
-            "imageName": "openzipkin/zipkin-dependencies",
-            "imageVersion": "1.4.0",
+            "entryPoint": "null",
+            "imageName": "openzipkin/zipkin",
+            "imageVersion": "null",
             "memoryLimit": "null",
             "memorySize": "null",
             "registryUri": "null",
