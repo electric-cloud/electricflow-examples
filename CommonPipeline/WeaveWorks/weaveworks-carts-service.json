@@ -21,8 +21,22 @@
             "registryUri": "null",
             "serviceName": "carts",
             "environmentVariables": [
+              {
+                "name": "JAVA_OPTS",
+                "type": "string",
+                "value": "-Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom"
+              },
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "zipkin.zipkin.svc.cluster.local"
+              }
             ],
             "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
             ]
           },
           {
@@ -78,6 +92,12 @@
             "listenerPort": "27017",
             "subcontainer": "cartsdb",
             "subport": "dbport"
+          },
+          {
+            "name": "servicecartshttp",
+            "listenerPort": "80",
+            "subcontainer": "carts",
+            "subport": "http"
           }
         ],
         "environmentMaps": [

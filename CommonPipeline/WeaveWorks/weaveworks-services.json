@@ -327,11 +327,11 @@
           {
             "name": "shipping",
             "description": "Zipkin Cron Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "0.3",
             "cpuLimit": "0.3",
             "credentialName": "null",
-            "entryPoint": "crond",
+            "entryPoint": "null",
             "imageName": "weaveworksdemos/shipping",
             "imageVersion": "0.4.8",
             "memoryLimit": "2000",
@@ -339,8 +339,22 @@
             "registryUri": "null",
             "serviceName": "shipping",
             "environmentVariables": [
+              {
+                "name": "JAVA_OPTS",
+                "type": "string",
+                "value": "-Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom"
+              },
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "zipkin.zipkin.svc.cluster.local"
+              }
             ],
             "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
             ]
           }
         ],
@@ -358,6 +372,14 @@
                 "container": "shipping"
               }
             ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "serviceshippingport",
+            "listenerPort": "80",
+            "subcontainer": "shipping",
+            "subport": "http"
           }
         ],
         "environmentMaps": [
@@ -415,7 +437,7 @@
           {
             "name": "queuemaster",
             "description": "QueueMaster Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "0.3",
             "cpuLimit": "0.3",
             "credentialName": "null",
@@ -427,8 +449,22 @@
             "registryUri": "null",
             "serviceName": "queuemaster",
             "environmentVariables": [
+              {
+                "name": "JAVA_OPTS",
+                "type": "string",
+                "value": "-Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom"
+              },
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "zipkin.zipkin.svc.cluster.local"
+              }
             ],
             "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
             ]
           }
         ],
@@ -446,6 +482,14 @@
                 "container": "queuemaster"
               }
             ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "servicequeumasterhttp",
+            "listenerPort": "80",
+            "subcontainer": "queuemaster",
+            "subport": "http"
           }
         ],
         "environmentMaps": [

@@ -44,7 +44,7 @@
             ],
             "ports": [
               {
-                "name": "zipkinport",
+                "name": "zipkincronport",
                 "containerPort": "80"
               }
             ]
@@ -52,11 +52,11 @@
           {
             "name": "zipkindb",
             "description": "Zipkin Cron Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
-            "entryPoint": "crond",
+            "entryPoint": "null",
             "imageName": "openzipkin/zipkin-mysql",
             "imageVersion": "1.20.0",
             "memoryLimit": "null",
@@ -66,12 +66,16 @@
             "environmentVariables": [
             ],
             "ports": [
+              {
+                "name": "zipkinmysql",
+                "containerPort": "3306"
+              }
             ]
           },
           {
             "name": "zipkin",
             "description": "Zipkin Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
@@ -83,8 +87,22 @@
             "registryUri": "null",
             "serviceName": "zipkin",
             "environmentVariables": [
+              {
+                "name": "MYSQL_HOST",
+                "type": "string",
+                "value": "zipkindb"
+              },
+              {
+                "name": "STORAGE_TYPE",
+                "type": "string",
+                "value": "mysql"
+              }
             ],
             "ports": [
+              {
+                "name": "zipkinport",
+                "containerPort": "9411"
+              }
             ]
           }
         ],
@@ -120,11 +138,23 @@
         ],
         "ports": [
           {
-            "name": "zipkinport",
+            "name": "servicezipkincoronport",
             "listenerPort": "8080",
             "serviceName": "Zipkincron Service",
             "subcontainer": "zipkincron",
-            "subport": "zipkinport"
+            "subport": "zipkincronport"
+          },
+          {
+            "name": "servicezipkindbport",
+            "listenerPort": "3306",
+            "subcontainer": "zipkindb",
+            "subport": "zipkinmysql"
+          },
+          {
+            "name": "servicezipkinport",
+            "listenerPort": "9411",
+            "subcontainer": "zipkin",
+            "subport": "zipkininport"
           }
         ],
         "environmentMaps": [

@@ -9,20 +9,29 @@
           {
             "name": "catalogue",
             "description": "Catalogue Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "1",
             "cpuLimit": "1",
             "credentialName": "null",
-            "entryPoint": "crond",
+            "entryPoint": "null",
             "imageName": "weaveworksdemos/catalogue",
             "imageVersion": "0.3.5",
-            "memoryLimit": "null",
-            "memorySize": "null",
+            "memoryLimit": "100",
+            "memorySize": "100",
             "registryUri": "null",
             "serviceName": "catalogue",
             "environmentVariables": [
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "http://zipkin.zipkin.svc.cluster.local:9411/api/v1/spans"
+              }
             ],
             "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
             ]
           },
           {
@@ -89,10 +98,16 @@
         ],
         "ports": [
           {
-            "name": "servicemysql",
+            "name": "servicecataloguemysql",
             "listenerPort": "3306",
             "subcontainer": "catalogue-db",
             "subport": "mysql"
+          },
+          {
+            "name": "servicecataloguehttp",
+            "listenerPort": "1025",
+            "subcontainer": "catalogue",
+            "subport": "http"
           }
         ],
         "environmentMaps": [
