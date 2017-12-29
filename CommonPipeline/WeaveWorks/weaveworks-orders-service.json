@@ -42,7 +42,7 @@
           {
             "name": "ordersdb",
             "description": "Orders DB Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
@@ -56,6 +56,10 @@
             "environmentVariables": [
             ],
             "ports": [
+              {
+                "name": "mongo",
+                "containerPort": "27017"
+              }
             ]
           }
         ],
@@ -89,6 +93,13 @@
             "serviceName": "Orders Service",
             "subcontainer": "orders",
             "subport": "orderport"
+          },
+          {
+            "name": "Orders DB Port",
+            "listenerPort": "27017",
+            "serviceName": "Orders Service",
+            "subcontainer": "ordersd",
+            "subport": "mongo"
           }
         ],
         "environmentMaps": [

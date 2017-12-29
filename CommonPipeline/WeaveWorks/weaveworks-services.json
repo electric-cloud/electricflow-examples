@@ -51,6 +51,14 @@
             ]
           }
         ],
+        "ports": [
+          {
+            "name": "serviceuiport",
+            "listenerPort": "80",
+            "subcontainer": "frontend",
+            "subport": "uiport"
+          }
+        ],
         "environmentMaps": [
           {
             "serviceName" : "Front End Service",
