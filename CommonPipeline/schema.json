@@ -1,0 +1,103 @@
+{
+  "schema explanation" : "Each object in the model is explained with this field.  You may want to copy this file to your implementation and modify fields as needed to match your use case.  (Examples in parentheses)",
+  "schema explanation2" : "NOTE: You are expected to abide by JSON standards for things like maps and arrays",
+  "schema explanation3" : "NOTE: See the corresponding services.groovy file for how we use certain defaults.  For example, we assume we're defined within the same project or reference our Parents.",
+  "project" : {
+    "name" : "EF Project Name",
+    "services": [
+      {
+        "schema explanation" : "list of EF Services",
+        "name": "EF Name as it appears in the Services list and is used by our processes, maps, and other objects (myservice)",
+        "description": "Required description of this service",
+        "containers": [
+          {
+            "schema explanation" : "List of containers within the service.  Each of the fields below define the container",
+            "name": "EF object name - we refer to this container name in ports, mappings, environments, etc. (mycontainer)",
+            "description": "Required description of the container",
+            "command": "what command do we run for this container? (-f)",
+            "cpuCount": "CPU count request (0.2)",
+            "cpuLimit": "The maximum CPU count permitted by this container (2.5)",
+            "credentialName": "specify the name of the EF credential you use for this container (mycredname)",
+            "entryPoint": "what is the entry point for this container? (crond)",
+            "imageName": "This is the name of your container artifact (weaveworksdemos/carts)",
+            "imageVersion": "The artifact version of your container (0.3.12)",
+            "memoryLimit": "Maximum memory allowed, in MB (1024)",
+            "memorySize": "Initial memory allication, in MB (512)",
+            "registryUri": "TBD: I haven't used this one yet.",
+            "serviceName": "The owning Service, in Services->Name.  TBD: In our script, this may be a redundant field no longer needed.",
+            "environmentVariables": [
+              {
+                "schema explanation" : "Enter each environment variable and its definition.",
+                "name": "The name of the ENVAR, typically in ALL CAPS (SESSION_REDIS)",
+                "type": "string (TBD: Figure out if there are other values)",
+                "value": "The value of the environment variable, typically text (true)"
+              }
+            ],
+            "ports": [
+              {
+                "schema explanation" : "Define each port in terms of its name and port.",
+                "name": "Name of the port for this specific container, which is used as a reference elsewhere. (uiport)",
+                "containerPort": "The numeric port number (8079)"
+              }
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "schema explanation" : "Define each process for the service.",
+            "name": "The name of process for this service (Deploy, Undeploy)",
+            "description": "Required description of the process.",
+            "processType": "The type of process (DEPLOY, UNDEPLOY, OTHER)",
+            "processSteps": [
+              {
+                "schema explanation" : "Each step has to be defined in terms of its type-specific details. For example, a container operation needs to specify a container name",
+                "name": "Name of the individual step in the process (Acquire artifact)",
+                "processStepType": "Type of process step (service, procedure, TBD Others)",
+                "description": "Required description of the step",
+                "subservice": "[Service] - name of the service we're using (our parent service name)",
+                "container": "[Service] - name of the container we're using (frontend)"
+              }
+            ]
+          }
+        ],
+        "ports": [
+          {
+            "schema explanation" : "Define the service-level port, which references a subcontainer.",
+            "name": "Name of this port, which may be referenced in our mapping (serviceuiport)",
+            "listenerPort": "The port to which we're listening - where communication comes from a container (80)",
+            "subcontainer": "Since our service may contain multiple containers, we need to specify the specific container (frontend)",
+            "subport": "The name of the subport (uiport)"
+          }
+        ],
+        "environmentMaps": [
+          {
+            "schema explanation" : "Each map from our service process to an environment needs to have a corresponding map.  These values are where we specify details that are specific for the environment.",
+            "serviceName" : "The name of the service (Front End Service)",
+            "environmentName" : "The name of the environment (ww-cluster-dev)",
+            "clusterName" : "The cluster within the environment for the named service (openshiftcluster)",
+            "serviceClusterMapping" : {
+              "schema explanation" : "The mapping defines values that are specific for this mapping.  Include as many as are needed, and are specific to the mapping itself",
+              "actualParameters" : [
+                { "schema explanation" : "The mapping defines values that are specific for this mapping.  Include as many as are needed, and are specific to the mapping itself",
+                  "name" : "The name of the mapping parameter (serviceType)", "text" : "The value for the mapping (NodePort)" }
+              ],
+              "serviceMapDetail" : [
+                {"schema explanation" : "The mapping defines values that are specific for this mapping.  Include as many as are needed, and are specific to the mapping itself",
+                  "name" : "The name of the detail for this particular mapping (cpuLimit)", "text" : "The value in this mapping (2)"}
+              ],
+              "ports": [
+                {
+                  "schema explanation" : "The mapping defines values that are specific for this mapping.  Include as many as are needed, and are specific to the mapping itself",
+                  "name": "Name of this environmentMap port mapping. I haven't yet found where this name needs to be referenced.",
+                  "listenerPort": "The port on which we listen to and we'll map over the port named below.",
+                  "subcontainer": "What container owns the port?",
+                  "subport": "What is the name of that port?"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
