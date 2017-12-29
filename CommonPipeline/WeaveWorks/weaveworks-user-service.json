@@ -94,7 +94,7 @@
             "subport": "http"
           },
           {
-            "name": "servicemongouser",
+            "name": "servicemongouserdb",
             "listenerPort": "27017",
             "subcontainer": "userdb",
             "subport": "mongo"
@@ -116,7 +116,7 @@
               ],
               "ports": [
                 {
-                  "name": "servicemongouser",
+                  "name": "servicemongouserdb",
                   "listenerPort": "27017",
                   "subcontainer": "userdb",
                   "subport": "mongo"

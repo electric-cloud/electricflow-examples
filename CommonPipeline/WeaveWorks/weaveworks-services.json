@@ -219,7 +219,7 @@
           {
             "name": "rabbitmq",
             "description": "RabbitMQ Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
@@ -233,6 +233,10 @@
             "environmentVariables": [
             ],
             "ports": [
+              {
+                "name": "rabbitmqport",
+                "containerPort": "5672"
+              }
             ]
           }
         ],
@@ -252,6 +256,14 @@
             ]
           }
         ],
+        "ports": [
+          {
+            "name": "servicerabbitmqport",
+            "listenerPort": "5672",
+            "subcontainer": "rabbitmq",
+            "subport": "rabbitmqport"
+          }
+        ]
         "environmentMaps": [
           {
             "serviceName" : "RabbitMQ Service",
