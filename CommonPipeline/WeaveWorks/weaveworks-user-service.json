@@ -41,8 +41,8 @@
           },
           {
             "name": "userdb",
-            "description": "Zipkin Cron Service",
-            "command": "-f",
+            "description": "User DB Service",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
@@ -56,6 +56,10 @@
             "environmentVariables": [
             ],
             "ports": [
+              {
+                "name": "mongo",
+                "containerPort": "27017"
+              }
             ]
           }
         ],
@@ -86,9 +90,14 @@
           {
             "name": "http",
             "listenerPort": "80",
-            "serviceName": "User Service",
             "subcontainer": "user",
             "subport": "http"
+          },
+          {
+            "name": "servicemongouser",
+            "listenerPort": "27017",
+            "subcontainer": "userdb",
+            "subport": "mongo"
           }
         ],
         "environmentMaps": [
@@ -104,6 +113,14 @@
               "serviceMapDetail" : [
                 {"name" : "cpuCount", "text" : "1"},
                 {"name" : "cpuLimit", "text" : "2"}
+              ],
+              "ports": [
+                {
+                  "name": "servicemongouser",
+                  "listenerPort": "27017",
+                  "subcontainer": "userdb",
+                  "subport": "mongo"
+                }
               ]
             }
           },

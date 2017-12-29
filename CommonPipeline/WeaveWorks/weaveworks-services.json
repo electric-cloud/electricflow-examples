@@ -105,21 +105,30 @@
         "containers": [
           {
             "name": "payment",
-            "description": "Zipkin Cron Service",
-            "command": "-f",
+            "description": "Payment Service",
+            "command": "null",
             "cpuCount": "0.1",
             "cpuLimit": "0.1",
             "credentialName": "null",
-            "entryPoint": "crond",
+            "entryPoint": "null",
             "imageName": "weaveworksdemos/payment",
             "imageVersion": "0.4.3",
-            "memoryLimit": "null",
-            "memorySize": "null",
+            "memoryLimit": "100",
+            "memorySize": "100",
             "registryUri": "null",
             "serviceName": "payment",
             "environmentVariables": [
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "http://zipkin.zipkin.svc.cluster.local:9411/api/v1/spans"
+              }
             ],
             "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
             ]
           }
         ],
@@ -139,6 +148,14 @@
             ]
           }
         ],
+        "ports": [
+          {
+            "name": "service-http",
+            "listenerPort": "80",
+            "subcontainer": "payment",
+            "subport": "http"
+          }
+        ],
         "environmentMaps": [
           {
             "serviceName" : "Payment Service",
@@ -153,7 +170,15 @@
                 {"name" : "cpuCount", "text" : "1"},
                 {"name" : "cpuLimit", "text" : "2"}
               ]
-            }
+            },
+            "ports": [
+              {
+                "name": "servicemapport",
+                "listenerPort": "1027",
+                "subcontainer": "payment",
+                "subport": "http"
+              }
+            ]
           },
           {
             "serviceName" : "Payment Service",

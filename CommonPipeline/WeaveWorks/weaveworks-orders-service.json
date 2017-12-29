@@ -9,7 +9,7 @@
           {
             "name": "orders",
             "description": "Orders Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "0.2",
             "cpuLimit": "0.5",
             "credentialName": "null",
@@ -21,8 +21,22 @@
             "registryUri": "null",
             "serviceName": "orders",
             "environmentVariables": [
+              {
+                "name": "JAVA_OPTS",
+                "type": "string",
+                "value": "-Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom"
+              },
+              {
+                "name": "zipkin",
+                "type": "string",
+                "value": "zipkin.zipkin.svc.cluster.local"
+              }
             ],
             "ports": [
+              {
+                "name": "orderport",
+                "containerPort": "80"
+              }
             ]
           },
           {
@@ -68,6 +82,15 @@
             ]
           }
         ],
+        "ports": [
+          {
+            "name": "Service Order Port",
+            "listenerPort": "80",
+            "serviceName": "Orders Service",
+            "subcontainer": "orders",
+            "subport": "orderport"
+          }
+        ],
         "environmentMaps": [
           {
             "serviceName" : "Orders Service",
@@ -77,6 +100,14 @@
               "actualParameters" : [
                 { "name" : "requestType", "text" : "create" },
                 { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "ports" : [
+                {
+                  "name" : "orders-orderport-map",
+                  "listenerPort": "1026",
+                  "subcontainer" : "orders",
+                  "subport" : "orderport"
+                }
               ],
               "serviceMapDetail" : [
                 {"name" : "cpuCount", "text" : "1"},
