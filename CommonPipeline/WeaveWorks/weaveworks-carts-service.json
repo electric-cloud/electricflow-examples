@@ -28,11 +28,11 @@
           {
             "name": "cartsdb",
             "description": "Carts DB Service",
-            "command": "-f",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
-            "entryPoint": "crond",
+            "entryPoint": "null",
             "imageName": "mongo",
             "imageVersion": "null",
             "memoryLimit": "null",
@@ -42,6 +42,10 @@
             "environmentVariables": [
             ],
             "ports": [
+              {
+                "name": "dbport",
+                "containerPort": "27017"
+              }
             ]
           }
         ],
@@ -68,6 +72,14 @@
             ]
           }
         ],
+        "ports": [
+          {
+            "name": "servicecartsdb",
+            "listenerPort": "27017",
+            "subcontainer": "cartsdb",
+            "subport": "dbport"
+          }
+        ],
         "environmentMaps": [
           {
             "serviceName" : "Carts Service",
@@ -81,6 +93,14 @@
               "serviceMapDetail" : [
                 {"name" : "cpuCount", "text" : "1"},
                 {"name" : "cpuLimit", "text" : "2"}
+              ],
+              "ports": [
+                {
+                  "name": "servicecartsdbmap",
+                  "listenerPort": "27020",
+                  "subcontainer": "cartsdb",
+                  "subport": "dbport"
+                }
               ]
             }
           },

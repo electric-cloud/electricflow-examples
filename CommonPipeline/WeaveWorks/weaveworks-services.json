@@ -263,7 +263,7 @@
             "subcontainer": "rabbitmq",
             "subport": "rabbitmqport"
           }
-        ]
+        ],
         "environmentMaps": [
           {
             "serviceName" : "RabbitMQ Service",

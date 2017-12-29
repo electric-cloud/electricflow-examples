@@ -27,21 +27,40 @@
           },
           {
             "name": "catalogue-db",
-            "description": "Zipkin Cron Service",
-            "command": "-f",
+            "description": "Catalog DB Service",
+            "command": "null",
             "cpuCount": "null",
             "cpuLimit": "null",
             "credentialName": "null",
             "entryPoint": "crond",
-            "imageName": "openzipkin/zipkin-dependencies",
-            "imageVersion": "1.4.0",
+            "imageName": "weaveworksdemos/catalogue-db",
+            "imageVersion": "0.3.0",
             "memoryLimit": "null",
             "memorySize": "null",
             "registryUri": "null",
             "serviceName": "catalogue-db",
             "environmentVariables": [
+              {
+                "name": "MYSQL_ALLOW_EMPTY_PASSWORD",
+                "type": "string",
+                "value": "true"
+              },
+              {
+                "name": "MYSQL_DATABASE",
+                "type": "string",
+                "value": "socksdb"
+              },
+              {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "type": "string",
+                "value": "fake_password"
+              }
             ],
             "ports": [
+              {
+                "name": "mysql",
+                "containerPort": "3306"
+              }
             ]
           }
         ],
@@ -66,6 +85,14 @@
                 "container": "catalogue-db"
               }
             ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "servicemysql",
+            "listenerPort": "3306",
+            "subcontainer": "catalogue-db",
+            "subport": "mysql"
           }
         ],
         "environmentMaps": [
