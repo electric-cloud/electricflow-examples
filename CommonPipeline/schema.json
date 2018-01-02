@@ -60,158 +60,42 @@
                     "processType" : "DEPLOY",
                     "processSteps" : [
                       {
-                        "schema explanation" : "Each step is defined for this component process.",
+                        "schema explanation" : "This is the built-in component process to pull an artifact from the EF repository server (not sure how this looks for a maven repo)",
                         "name" : "Name of the component process",
                         "description" : "Required description",
                         "processStepType" : "Component Process type [component]",
-                        "schema explanation2" : "The parameters to a deploy process ",
+                        "schema explanation2" : "NOTE: This next actualParameters section contains information specific to using the EF Artifact Repository.  See below ",
+                        "schema explanation3" : "See below the reference to YOURCOMPONENT for where the name of your component needs to be in the versionRange actualParameter",
                         "actualParameters": [
                           {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
                           {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
                           {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
                           {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
                           {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
-                          {"name" : "versionRange", "value" : "$[/myJob/ec_web1-version]"}
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_YOURCOMPONENT-version]"}
                         ],
                         "subprocedure" : "Retrieve",
                         "subproject" : "/plugins/EC-Artifact/project"
                       },
-                      { "name" : "deployit",
-                        "description" : "deploy the software",
+                      {
+                        "schema explanation" : "This is a component step definition for a procedure call",
+                        "name" : "deployit",
+                        "description" : "Required",
                         "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                        "subprocedure" : "name of your procedure",
+                        "subproject" : "the project where your procedure is defined"
                       }
                     ],
                     "processDependencies" : [
-                      { "source" : "acquire artifact",
-                        "target" : "deployit",
-                        "branchtype" : "ALWAYS"
-                      }
-                    ]
-                  },
-                  {
-                    "name" : "undeploy",
-                    "description" : "This component process specifies the web1 component undeploy operation.",
-                    "processType" : "UNDEPLOY",
-                    "processStepType" : "procedure",
-                    "processSteps" : [
-                      { "name" : "removeit",
-                        "description" : "deploy the software",
-                        "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "name" : "web2",
-                "groupId" : "com.ec.samples",
-                "artifactId" : "web2",
-                "processes" : [
-                  {
-                    "name" : "deploy",
-                    "description" : "This component process specifies the web2 component deploy operation.",
-                    "processType" : "DEPLOY",
-                    "processSteps" : [
-                      { "name" : "acquire artifact",
-                        "description" : "Pull the artifact from our repository",
-                        "processStepType" : "component",
-                        "actualParameters": [
-                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
-                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
-                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
-                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
-                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
-                          {"name" : "versionRange", "value" : "$[/myJob/ec_web2-version]"}
-                        ],
-                        "subprocedure" : "Retrieve",
-                        "subproject" : "/plugins/EC-Artifact/project"
-                      },
-                      { "name" : "deployit",
-                        "description" : "deploy the software",
-                        "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
-                      }
-                    ],
-                    "processDependencies" : [
-                      { "source" : "acquire artifact",
-                        "target" : "deployit",
-                        "branchtype" : "always"
-                      }
-                    ]
-                  },
-                  {
-                    "name" : "undeploy",
-                    "description" : "This component process specifies the web2 component undeploy operation.",
-                    "processType" : "UNDEPLOY",
-                    "processSteps" : [
-                      { "name" : "removeit",
-                        "description" : "deploy the software",
-                        "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "name" : "Database",
-            "components" : [
-              {
-                "name" : "db",
-                "groupId" : "com.ec.samples",
-                "artifactId" : "db",
-                "processes" : [
-                  {
-                    "name" : "deploy",
-                    "description" : "This component process specifies the web2 component deploy operation.",
-                    "processType" : "DEPLOY",
-                    "processSteps" : [
-                      { "name" : "acquire artifact",
-                        "description" : "Pull the artifact from our repository",
-                        "processStepType" : "component",
-                        "actualParameters": [
-                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
-                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
-                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
-                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
-                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
-                          {"name" : "versionRange", "value" : "$[/myJob/ec_db-version]"}
-                        ],
-                        "subprocedure" : "Retrieve",
-                        "subproject" : "/plugins/EC-Artifact/project"
-                      },
-                      { "name" : "deployit",
-                        "description" : "deploy the software",
-                        "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
-                      }
-                    ],
-                    "processDependencies" : [
-                      { "source" : "acquire artifact",
-                        "target" : "deployit",
-                        "branchtype" : "always"
-                      }
-                    ]
-                  },
-                  {
-                    "name" : "undeploy",
-                    "description" : "This component process specifies the web2 component undeploy operation.",
-                    "processType" : "UNDEPLOY",
-                    "processSteps" : [
-                      { "name" : "removeit",
-                        "description" : "deploy the software",
-                        "processStepType" : "procedure",
-                        "subprocedure" : "Stub",
-                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      {
+                        "schema explanation" : "Dependencies specify the order in which we organize our Component Process Steps.",
+                        "source" : "The name of the first Component Process Step",
+                        "target" : "The name of the destination Component Process Step",
+                        "branchtype" : "ALWAYS | ERROR | SUCCESS | (maybe something else)",
+                        "schema explanation-branch condition" : "If you specify a custom branch type CUSTOM, then you probably define a branchCondition",
+                        "branchCondition" : "$[parameter reference] or $[/javascript JAVASCRIPT CODE]",
+                        "branchConditionName" : "The name of the branch condition",
+                        "branchConditionType" : "CUSTOM - to specify you "
                       }
                     ]
                   }
@@ -222,18 +106,21 @@
         ],
         "processes" : [
           {
-            "name" : "Deploy Application",
-            "description" : "An application-level process that deploys multiple components",
-            "processType" : "DEPLOY",
+            "name" : "Name of the Application Process",
+            "description" : "Required description",
+            "processType" : "DEPLOY | OTHER",
             "formalParameters": [
               {
-                "name" : "doManualCheck",
-                "type" : "checkbox",
-                "description" : "Enable if we should manually check the deployment",
+                "schema explanation" : "Each parameter for your Application Process is defined here",
+                "name" : "name of parameter",
+                "type" : "checkbox | (TBD) others...",
+                "description" : "Required",
                 "defaultValue" : "true",
-                "orderIndex" : "1",
-                "label" : "Do Manual Check?",
+                "orderIndex" : "The order as presented to the user (1)",
+                "label" : "Friendly text to guide the user - (help text)",
                 "expansionDeferred" : "0",
+
+                "schema explanation-checkbox" : "These values are for checkboxes",
                 "checkedValue" : "true",
                 "initiallyChecked" : "true",
                 "uncheckedValue" : "false"
@@ -241,249 +128,48 @@
             ],
             "processSteps" : [
               {
-                "name" : "deploy web1",
-                "description" : "Execute the web1 Component process",
-                "applicationTierName" : "User Interface",
-                "processStepType" : "process",
-                "subcomponent" : "web1",
-                "subcomponentProcess" : "deploy"
-              },
-              {
-                "name" : "deploy web2",
-                "description" : "Execute the web1 Component process",
-                "applicationTierName" : "User Interface",
-                "processStepType" : "process",
-                "subcomponent" : "web2",
-                "subcomponentProcess" : "deploy"
-              },
-              {
-                "name" : "deploy db",
-                "description" : "Execute the web1 Component process",
-                "applicationTierName" : "Database",
-                "processStepType" : "process",
-                "subcomponent" : "db",
-                "subcomponentProcess" : "deploy"
-              },
-              {
-                "name" : "Manual Inspection",
-                "instruction" : "Inspect the system",
-                "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
-                "processStepType" : "manual",
-                "assignee" : [ "marco", "seymour" ]
-              },
-              {
-                "name" : "Rollback if failure",
-                "processStepType" : "rollback",
-                "rollbackType" : "environment",
-                "smartRollback" : "1"
-              },
-              {
-                "name": "Manual Inspection Succeeded",
-                "applicationTierName": "User Interface",
-                "processStepType": "command",
-                "subprocedure": "RunCommand",
-                "subproject": "/plugins/EC-Core/project",
-                "commandToRun": "echo \"success!\""
+                "schema explanation" : "Each Application Process Step is defined in terms shown below",
+                "name" : "Name of the Application Process Step",
+                "description" : "Required",
+                "applicationTierName" : "Name of the application tier where we run this step",
+                "processStepType" : "process | manual | command | rollback",
+                "subcomponent" : "The name of the component we're using",
+                "subcomponentProcess" : "the name of the component process",
+
+                "schema explanation-process step type details" : "see applications.groovy for type-specific details, including:",
+                "assignee" : "list of assignees (comma-separated array)",
+                "instruction" : "Instructions for a manual step",
+                "notificationTemplate" : "Thame of our notification template (ec_default_manual_retry_process_step_notification_template)",
+                "rollbackType" : "environment | TBD",
+                "smartRollback" : "0 | 1 | false | true",
+                "subprocedure" : "Name of the subprocedure (RunCommand)",
+                "subproject" : "Name of the subproject, possibly a different project than our parent (/plugins/EC-Core/project)",
+                "commandToRun" : "The shell command to run"
               }
             ],
             "processDependencies" : [
-              { "source" : "deploy web1",
-                "target" : "deploy db",
-                "branchCondition" : "!$[doManualCheck]",
-                "branchConditionName" : "Don't do manual check",
-                "branchConditionType" : "CUSTOM",
-                "branchType" : "ALWAYS"
-              },
-              { "source" : "deploy web1",
-                "target" : "Manual Inspection",
-                "branchCondition" : "$[doManualCheck]",
-                "branchConditionName" : "Do manual check",
-                "branchConditionType" : "CUSTOM",
-                "branchType" : "ALWAYS"
-              },
-              { "source" : "deploy web2",
-                "target" : "deploy db",
-                "branchType" : "ALWAYS"
-              },
-              { "source" : "Manual Inspection",
-                "target" : "Rollback if failure",
-                "branchType" : "ERROR"
-              },
-              { "source" : "Manual Inspection",
-                "target" : "Manual Inspection Succeeded",
-                "branchType" : "SUCCESS"
-              },
-              { "source" : "deploy web2",
-                "target" : "deploy db",
-                "branchType" : "ALWAYS"
+              {
+                "schema explanation" : "Dependencies specify the order in which we organize our Application Process Steps.",
+                "source" : "The name of the first Component Process Step",
+                "target" : "The name of the destination Component Process Step",
+                "branchtype" : "ALWAYS | ERROR | SUCCESS | (maybe something else)",
+                "schema explanation-branch condition" : "If you specify a custom branch type CUSTOM, then you probably define a branchCondition",
+                "branchCondition" : "$[parameter reference] or $[/javascript JAVASCRIPT CODE]",
+                "branchConditionName" : "The name of the branch condition",
+                "branchConditionType" : "CUSTOM - to specify you "
               }
-
-
-
-
             ]
           }
         ],
         "tierMaps" : [
-          { "applicationName" : "Two-Tier",
-            "environmentName" : "dev",
-            "tierMappings" : [
-              {
-                "applicationTierName" : "User Interface",
-                "environmentTierName" : "AppTier"
-              },
-              {
-                "applicationTierName" : "Database",
-                "environmentTierName" : "DBTier"
-              }
-            ]
-          },
-          { "applicationName" : "Two-Tier",
-            "environmentName" : "qa",
-            "tierMappings" : [
-              {
-                "applicationTierName" : "User Interface",
-                "environmentTierName" : "AppTier"
-              },
-              {
-                "applicationTierName" : "Database",
-                "environmentTierName" : "DBTier"
-              }
-            ]
-          },
-          { "applicationName" : "Two-Tier",
-            "environmentName" : "prod",
-            "tierMappings" : [
-              {
-                "applicationTierName" : "User Interface",
-                "environmentTierName" : "AppTier"
-              },
-              {
-                "applicationTierName" : "Database",
-                "environmentTierName" : "DBTier"
-              }
-            ]
-          }
-        ]
-      },
-      {	"name" : "WeaveWorks Front End",
-        "description" : "A Second Application",
-        "services" : [
           {
-            "name" : "WeaveWorks Front End",
-            "description" : "Another Front End",
-            "containers" : [
+            "schema explanation" : "TierMaps connect an Application(Tiers) to an Environment(Tiers)",
+            "applicationName" : "The name of the Application",
+            "environmentName" : "The name of the Enviroment",
+            "tierMappings" : [
               {
-                "name" : "WeaveWorks Front End Micro",
-                "description" : "A Front End component",
-                "command" : "null",
-                "cpuCount" : "0.1",
-                "cpuLimit" : "0.3",
-                "credentialName" : "null",
-                "entryPoint" : "null",
-                "imageName" : "weaveworksdemos/front-end",
-                "imageVersion" : "0.3.12",
-                "memoryLimit" : "1024",
-                "memorySize" : "100",
-                "registryUri" : "null",
-                "serviceName" : "File Transfer",
-                "environmentVariables" : [
-                  {
-                    "name" : "SESSION_REDIS",
-                    "type" : "string",
-                    "value" : "true"
-                  }
-                ],
-                "ports" : [
-                  {
-                    "name" : "uiport",
-                    "microserviceName" : "WeaveWorks Front End",
-                    "containerName" : "WeaveWorks Front End Micro",
-                    "containerPort" : "8079",
-                    "projectName" : "@@PROJECTNAMETOKEN@@",
-                    "serviceName" : "WeaveWorks Front End"
-                  }
-                ]
-              }
-            ],
-            "processes" : [
-              {
-                "name" : "Deploy Service",
-                "description" : "An application-level process that deploys microservices",
-                "processType" : "DEPLOY",
-                "processSteps" : [
-                  {
-                    "name" : "deploy service",
-                    "processStepType" : "service",
-                    "description" : "Deploy the weaveworks services",
-                    "applicationTierName" : "WeaveWorks Front End",
-                    "subservice" : "WeaveWorks Front End",
-                    "container" : "WeaveWorks Front End Micro"
-                  },
-                  {
-                    "name" : "configure load balancer",
-                    "processStepType" : "procedure",
-                    "description" : "run a script to configure the load balancer",
-                    "applicationTierName" : "WeaveWorks Front End",
-                    "subprocedure" : "Stub",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
-                  }
-                ],
-                "processDependencies" : [
-                  { "source" : "deploy service",
-                    "target" : "configure load balancer",
-                    "branchType" : "ALWAYS"
-                  }
-                ]
-              }
-            ],
-            "tierMaps" : [
-              {
-                "serviceName" : "WeaveWorks Front End",
-                "environmentName" : "cluster-dev",
-                "clusterName" : "openshiftcluster",
-                "serviceClusterMapping" : {
-                  "actualParameters" : [
-                    { "name" : "requestType", "text" : "create" },
-                    { "name" : "serviceType", "text" : "NodePort" }
-                  ],
-                  "serviceMapDetail" : [
-                    {"name" : "cpuCount", "text" : "1"},
-                    {"name" : "cpuLimit", "text" : "2"}
-                  ]
-                }
-              },
-              {
-                "serviceName" : "WeaveWorks Front End",
-                "environmentName": "cluster-qa",
-                "clusterName" : "openshiftcluster",
-                "serviceClusterMapping" : {
-                  "actualParameters" : [
-                    { "name" : "requestType", "text" : "update" },
-                    { "name" : "serviceType", "text" : "NodePort" }
-                  ],
-                  "serviceMapDetail" : [
-                    {"name" : "cpuCount", "text" : "1"},
-                    {"name" : "cpuLimit", "text" : "2"}
-                  ]
-                }
-              },
-              {
-                "serviceName" : "WeaveWorks Front End",
-                "environmentName": "cluster-prod",
-                "clusterName" : "openshiftcluster",
-                "serviceClusterMapping" : {
-                  "actualParameters" : [
-                    { "name" : "requestType", "text" : "update" },
-                    { "name" : "serviceType", "text" : "NodePort" }
-                  ],
-                  "serviceMapDetail" : [
-                    {"name" : "cpuCount", "text" : "2"},
-                    {"name" : "cpuLimit", "text" : "3"},
-                    {"name" : "memoryLimit", "text" : "3072"},
-                    {"name" : "memorySize", "text" : "2048"}
-                  ]
-                }
+                "applicationTierName" : "Application Tier mapped to the...",
+                "environmentTierName" : "...Environment Tier"
               }
             ]
           }
@@ -612,6 +298,90 @@
           }
         ]
       }
+    ],
+    "pipelines" : [
+      {
+        "schema explanation" : "EF Pipelines tie many automations all together",
+        "name": "The name of your pipeline",
+        "description" : "Required description",
+
+        "formalParameters": [
+          {
+            "schema explanation" : "Each formal parameter for the pipeline is defined in this array and referenced in the pipeline as $[name of parameter]",
+            "name" : "name of formal parameter",
+            "type" : "checkbox | TBD others",
+            "description" : "Required description of the parameter",
+            "defaultValue" : "true",
+            "orderIndex" : "1",
+            "label" : "The help text",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "true",
+            "uncheckedValue" : "false"
+          }
+        ],
+
+        "stages": [
+          {
+            "schema explanation" : "Each stage is defined in terms of its tasks and gates",
+            "name": "Name of the stage (Dev/QA/UAT/Stage/PreProd/Prod/etc.)",
+            "description" : "Required description of the stage",
+            "gates" : [
+              {
+                "schema explanation" : "Entry- or exit-gates for the stage",
+                "gateType" : "PRE | POST",
+                "task" :
+                {
+                  "name" : "The onscreen name of the gate",
+                  "description" : "Required instructions for the gate",
+                  "taskType" : "APPROVAL | TBD Others?",
+                  "approver" : "Array of names",
+                  "condition" : "Specify the condition when the gate 'runs' or is enabled ($[enableGates])"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "schema explanation" : "Each task is an entry point to an existing automation, a group, or a command-line invocation.  See pipelines.groovy for details on the required fields",
+                "name": "Onscreen name of the Task",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP | PROCESS | PROCEDURE | COMMAND | WORKFLOW | PLUGIN | MANUAL | UTILITY",
+                "projectName" : "Name of our project",
+
+                "condition" : "Specify the run condition ($[enableStep])",
+                "groupName" : "If this task belongs to group, specify the group name here",
+                "environmentName" : "Specify the environment if applicable to the task type PROCESS",
+                "environmentProjectName": "Specify the project for the environment for type PRODCESS",
+                "subapplication" : "Specify the application name for type PROCESS",
+                "subprocess" : "Specify the application process for type PROCESS",
+                "subproject" : "Specify the application process project for type PROCESS",
+                "taskProcessType" : "Specify the applicaiton process type PROCESS",
+
+                "commandToRun" : "Command-line invocation for type COMMAND",
+
+                "subworkflowDefinition" : "Name of the workflow definition for type WORKFLOW",
+                "subworkflowStartingState" : "Starting State of your workflow",
+
+                "subpluginKey": "The pluginkey for type PLUGIN/UTILITY (EC-FileOps)",
+                "subprocedure": "The entry point of your PROCEDURE/PLLUGIN/UTILITY (CreateEmptyFile)",
+
+                "instruction" : "Instructions for type MANUAL",
+                "notificationTemplate" : "The name of the notification template (ec_default_pipeline_manual_task_notification_template)",
+                "approver" : [ "admin", "marco" ],
+
+                "schema explanation-actualParameters" : "Specify the actual parameters for your process.  PROCESS-APPLICATION require these specific examples",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+
+              }
+            ]
+          }
+        ]
+      }
     ]
+
   }
 }
