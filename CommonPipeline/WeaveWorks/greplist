@@ -1,0 +1,25 @@
+service '
+cpuCount =
+cpuLimit =
+command =
+container '
+maxCapacity =
+minCapacity =
+volume =
+entryPoint =
+imageName =
+imageVersion =
+memoryLimit =
+memorySize =
+registryUri =
+serviceName =
+volumeMount =
+environmentVariable '
+type =
+value =
+port '
+containerPort =
+listenerPort = '
+subport = '
+serviceClusterMapping '
+subcontainer = '

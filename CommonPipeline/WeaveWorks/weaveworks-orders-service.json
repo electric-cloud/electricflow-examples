@@ -37,6 +37,16 @@
                 "name": "orderport",
                 "containerPort": "80"
               }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]",
+              "[{\"name\" : \"tmp-volume2\", \"mountPath\" : \"/tmp2\"}]",
+              "[{\"name\" : \"tmp-volume3\", \"mountPath\" : \"/tmp3\"}]"
+            ],
+            "volumeMountsDesired" : [
+              {"name" : "tmp-volume", "mountPath" : "/tmp"},
+              {"name" : "tmp-volume2", "mountPath" : "/tmp2"},
+              {"name" : "tmp-volume3", "mountPath" : "/tmp3"}
             ]
           },
           {
@@ -98,7 +108,7 @@
             "name": "Orders DB Port",
             "listenerPort": "27017",
             "serviceName": "Orders Service",
-            "subcontainer": "ordersd",
+            "subcontainer": "ordersdb",
             "subport": "mongo"
           }
         ],

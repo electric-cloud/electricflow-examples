@@ -154,7 +154,7 @@
             "name": "servicezipkinport",
             "listenerPort": "9411",
             "subcontainer": "zipkin",
-            "subport": "zipkininport"
+            "subport": "zipkinport"
           }
         ],
         "environmentMaps": [

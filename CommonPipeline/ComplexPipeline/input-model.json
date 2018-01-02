@@ -459,7 +459,7 @@
               },
               {
                 "name" : "deploy web2",
-                "description" : "Execute the web1 Component process",
+                "description" : "Execute the web2 Component process",
                 "applicationTierName" : "User Interface",
                 "processStepType" : "process",
                 "subcomponent" : "web2",
@@ -467,7 +467,7 @@
               },
               {
                 "name" : "deploy db",
-                "description" : "Execute the web1 Component process",
+                "description" : "Execute the db Component process",
                 "applicationTierName" : "Database",
                 "processStepType" : "process",
                 "subcomponent" : "db",
@@ -475,6 +475,7 @@
               },
               {
                 "name" : "Manual Inspection",
+                "description" : "Here we ask the user to evaluate the next steps",
                 "instruction" : "Inspect the system",
                 "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
                 "processStepType" : "manual",
@@ -482,12 +483,14 @@
               },
               {
                 "name" : "Rollback if failure",
+                "description" : "If the manual inspection fails, roll back to a previous version",
                 "processStepType" : "rollback",
                 "rollbackType" : "environment",
                 "smartRollback" : "1"
               },
               {
                 "name": "Manual Inspection Succeeded",
+                "description" : "If the manual inspection succeeds, report the status and continue",
                 "applicationTierName": "User Interface",
                 "processStepType": "command",
                 "subprocedure": "RunCommand",

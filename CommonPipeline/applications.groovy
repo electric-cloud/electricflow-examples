@@ -228,6 +228,7 @@ project myProject.name, {
 
                     myProcess.processSteps?.each { myProcessStep ->
                         processStep myProcessStep.name, {
+                            description = myProcessStep.description
                             println "       myProcessStep is $myProcessStep.name"
                             applicationTierName = myProcessStep.applicationTierName
                             dependencyJoinType = 'and'

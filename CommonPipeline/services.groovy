@@ -52,7 +52,14 @@ project myProject.name, {
                     memorySize = myContainer.memorySize
                     registryUri = myContainer.registryUri
                     serviceName = myService.name
-                    volumeMount = myContainer.volumeMount
+
+                    myContainer.volumeMounts?.each { myVolumeMount ->
+                        println "   ADDING volumeMount: $myVolumeMount"
+                        //TODO: Need to figure out how to best get an entire JSON structure and assign it to the value here.
+//                        volumeMount = myContainer.volumeMounts
+                    }
+
+                    volumeMount = myContainer.volumeMountsDesired
 
                     // Add environment variables only if they are present.
                     myContainer.environmentVariables?.each {envVar ->

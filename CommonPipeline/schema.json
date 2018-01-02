@@ -211,6 +211,12 @@
                 "name": "Name of the port for this specific container, which is used as a reference elsewhere. (uiport)",
                 "containerPort": "The numeric port number (8079)"
               }
+            ],
+            "volumeMounts" : [
+              {
+                "name" : "Name of the volume mount (scratch-space)",
+                "mountPath" : "Mount location for the volume in the container (/tmp/cache)"
+              }
             ]
           }
         ],
