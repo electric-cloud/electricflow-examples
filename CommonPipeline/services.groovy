@@ -56,10 +56,12 @@ project myProject.name, {
                     myContainer.volumeMounts?.each { myVolumeMount ->
                         println "   ADDING volumeMount: $myVolumeMount"
                         //TODO: Need to figure out how to best get an entire JSON structure and assign it to the value here.
-//                        volumeMount = myContainer.volumeMounts
+                        // For now, I'm doing a hack that doesn't work - I'm iterating over my list of JSON values, but only using the last one
+                        // in the data structure named volumeMounts.
+                        // Ideally, I would use the entire structure based on volumeMountsDesired and the entire "myVolumeMount"
+                        // structure and not iterating over it.  (see the JSON structure for weaveworks-orders-service.json as an example)
+                        volumeMount = myVolumeMount
                     }
-
-                    volumeMount = myContainer.volumeMountsDesired
 
                     // Add environment variables only if they are present.
                     myContainer.environmentVariables?.each {envVar ->

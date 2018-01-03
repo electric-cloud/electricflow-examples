@@ -37,6 +37,9 @@
                 "name": "http",
                 "containerPort": "80"
               }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
             ]
           },
           {
@@ -60,6 +63,9 @@
                 "name": "dbport",
                 "containerPort": "27017"
               }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
             ]
           }
         ],

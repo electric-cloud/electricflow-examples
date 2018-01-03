@@ -37,6 +37,9 @@
                 "name": "http",
                 "containerPort": "80"
               }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
             ]
           },
           {

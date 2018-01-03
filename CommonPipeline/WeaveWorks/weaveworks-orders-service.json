@@ -39,14 +39,12 @@
               }
             ],
             "volumeMounts" : [
-              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]",
               "[{\"name\" : \"tmp-volume2\", \"mountPath\" : \"/tmp2\"}]",
-              "[{\"name\" : \"tmp-volume3\", \"mountPath\" : \"/tmp3\"}]"
+              "[{\"name\" : \"tmp-volume3\", \"mountPath\" : \"/tmp3\"}]",
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
             ],
             "volumeMountsDesired" : [
-              {"name" : "tmp-volume", "mountPath" : "/tmp"},
-              {"name" : "tmp-volume2", "mountPath" : "/tmp2"},
-              {"name" : "tmp-volume3", "mountPath" : "/tmp3"}
+              {"name" : "tmp-volume", "mountPath" : "/tmp"}
             ]
           },
           {
@@ -111,6 +109,9 @@
             "subcontainer": "ordersdb",
             "subport": "mongo"
           }
+        ],
+        "volumeMounts" : [
+          "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
         ],
         "environmentMaps": [
           {
