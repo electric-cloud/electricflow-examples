@@ -263,7 +263,6 @@ project myProject.name, {
                                 case ~/manual/:
                                     instruction = myProcessStep.instruction
                                     notificationTemplate = myProcessStep.notificationTemplate
-//                                    assignee = "marco"
                                     assignee = myProcessStep.assignee
                                     break
                                 case ~/rollback/:

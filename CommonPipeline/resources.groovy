@@ -2,7 +2,7 @@ def myProject = args.project
 
 // Iterate over all the stores in our list and create resources, resourcePools, and the Environments
 args.resources.each { myResource ->
-    resource "$myProject.name-$myResource", {
+    resource "$myResource", {
         description = "Resource for $myProject.name"
         artifactCacheDirectory = null
         hostName = 'localhost'
