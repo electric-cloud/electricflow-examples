@@ -63,6 +63,8 @@ if [ $CONFIG = "1" ] ; then
     set +e
     echo "Create artifacts for this example."
 
+    mkdir $BASEDIR/artifacts
+
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
     for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
         echo "Creating $GROUPID:$artifactId "

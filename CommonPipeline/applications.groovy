@@ -122,9 +122,9 @@ project myProject.name, {
                                     }
                                     myProcess.processDependencies?.each { myProcessDependency ->
                                         processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
-                                            branchCondition = null
-                                            branchConditionName = null
-                                            branchConditionType = null
+                                            branchCondition = myProcessDependency.branchCondition
+                                            branchConditionName = myProcessDependency.branchConditionName
+                                            branchConditionType = myProcessDependency.branchConditionType
                                             branchType = myProcessDependency.branchType
                                         }
                                         println "           myProcessDependency: $myProcessDependency.source -> $myProcessDependency.target"
@@ -181,6 +181,7 @@ project myProject.name, {
                                             initiallyChecked = myParameter.initiallyChecked
                                             uncheckedValue = myParameter.uncheckedValue
                                             break
+                                        // TODO: Need to handle other use cases for text, radio buttons, etc.
                                         default:
                                             break
                                     }
@@ -292,6 +293,9 @@ project myProject.name, {
                     // Each processStep has a dependency, defined at the Process Level
                     myProcess.processDependencies?.each { myProcessDependency ->
                         processDependency myProcessDependency.source, targetProcessStepName: myProcessDependency.target, {
+                            branchCondition = myProcessDependency.branchCondition
+                            branchConditionName = myProcessDependency.branchConditionName
+                            branchConditionType = myProcessDependency.branchConditionType
                             branchType = myProcessDependency.branchType
                         }
                     }

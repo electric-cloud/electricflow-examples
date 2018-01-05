@@ -91,7 +91,7 @@
         ]
       },
       {
-        "name" : "Stage",
+        "name" : "stage",
         "description" : "Stage Environment",
         "environmentTiers" : [
           {
@@ -369,12 +369,12 @@
                 "name" : "doManualCheck",
                 "type" : "checkbox",
                 "description" : "Enable if we should manually check the deployment",
-                "defaultValue" : "true",
+                "defaultValue" : "false",
                 "orderIndex" : "1",
                 "label" : "Do Manual Check?",
                 "expansionDeferred" : "0",
                 "checkedValue" : "true",
-                "initiallyChecked" : "true",
+                "initiallyChecked" : "false",
                 "uncheckedValue" : "false"
               }
             ],
@@ -432,7 +432,7 @@
               { "source" : "deploy web1",
                 "target" : "deploy db",
                 "branchCondition" : "!$[doManualCheck]",
-                "branchConditionName" : "Don't do manual check",
+                "branchConditionName" : "Do not do manual check",
                 "branchConditionType" : "CUSTOM",
                 "branchType" : "ALWAYS"
               },
@@ -605,12 +605,12 @@
                 "name" : "doManualCheck",
                 "type" : "checkbox",
                 "description" : "Enable if we should manually check the deployment",
-                "defaultValue" : "true",
+                "defaultValue" : "false",
                 "orderIndex" : "1",
                 "label" : "Do Manual Check?",
                 "expansionDeferred" : "0",
                 "checkedValue" : "true",
-                "initiallyChecked" : "true",
+                "initiallyChecked" : "false",
                 "uncheckedValue" : "false"
               }
             ],
@@ -639,6 +639,14 @@
                 "smartRollback" : "1"
               },
               {
+                "name": "Bypass Manual Inspection",
+                "description" : "Skip manual inspection",
+                "applicationTierName": "Mobile App",
+                "processStepType": "procedure",
+                "subprocedure": "Stub",
+                "subproject": "@@PROJECTNAMETOKEN@@"
+              },
+              {
                 "name": "Manual Inspection Succeeded",
                 "description" : "If the manual inspection succeeds, report the status and continue",
                 "applicationTierName": "Mobile App",
@@ -653,6 +661,13 @@
                 "target" : "Manual Inspection",
                 "branchCondition" : "$[doManualCheck]",
                 "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy mobile",
+                "target" : "Bypass Manual Inspection",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Do not manual check",
                 "branchConditionType" : "CUSTOM",
                 "branchType" : "ALWAYS"
               },
@@ -790,12 +805,12 @@
                 "name" : "doManualCheck",
                 "type" : "checkbox",
                 "description" : "Enable if we should manually check the deployment",
-                "defaultValue" : "true",
+                "defaultValue" : "false",
                 "orderIndex" : "1",
                 "label" : "Do Manual Check?",
                 "expansionDeferred" : "0",
                 "checkedValue" : "true",
-                "initiallyChecked" : "true",
+                "initiallyChecked" : "false",
                 "uncheckedValue" : "false"
               }
             ],
@@ -824,6 +839,14 @@
                 "smartRollback" : "1"
               },
               {
+                "name": "Bypass Manual Inspection",
+                "description" : "Skip manual inspection",
+                "applicationTierName": "MF App",
+                "processStepType": "procedure",
+                "subprocedure": "Stub",
+                "subproject": "@@PROJECTNAMETOKEN@@"
+              },
+              {
                 "name": "Manual Inspection Succeeded",
                 "description" : "If the manual inspection succeeds, report the status and continue",
                 "applicationTierName": "MF App",
@@ -838,6 +861,13 @@
                 "target" : "Manual Inspection",
                 "branchCondition" : "$[doManualCheck]",
                 "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy mainframe",
+                "target" : "Bypass Manual Inspection",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Do not do Manual Check",
                 "branchConditionType" : "CUSTOM",
                 "branchType" : "ALWAYS"
               },
@@ -917,7 +947,7 @@
             "label" : "Take snapshot?",
             "expansionDeferred" : "0",
             "checkedValue" : "true",
-            "initiallyChecked" : "true",
+            "initiallyChecked" : "false",
             "uncheckedValue" : "false"
           },
           {
@@ -929,7 +959,7 @@
             "label" : "Enable Gates?",
             "expansionDeferred" : "0",
             "checkedValue" : "true",
-            "initiallyChecked" : "true",
+            "initiallyChecked" : "false",
             "uncheckedValue" : "false"
           }
         ],
