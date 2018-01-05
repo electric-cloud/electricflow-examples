@@ -91,6 +91,66 @@
         ]
       },
       {
+        "name" : "Stage",
+        "description" : "Stage Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-stage"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-stage"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-stage"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-stage"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "preprod",
+        "description" : "PrePROD Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-preprod"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-preprod"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-preprod"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-preprod"
+            ]
+          }
+        ]
+      },
+      {
         "name" : "prod",
         "description" : "PROD Environment",
         "environmentTiers" : [
@@ -119,7 +179,8 @@
             ]
           }
         ]
-      }    ],
+      }
+    ],
 
     "applications" : [
       {
@@ -429,6 +490,32 @@
             ]
           },
           { "applicationName" : "Web Site",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
+            "environmentName" : "preprod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
             "environmentName" : "prod",
             "tierMappings" : [
               {
@@ -600,6 +687,24 @@
             ]
           },
           { "applicationName" : "Mobile",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
+            "environmentName" : "preprod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
             "environmentName" : "prod",
             "tierMappings" : [
               {
@@ -759,6 +864,24 @@
           },
           { "applicationName" : "Mainframe",
             "environmentName" : "qa",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "preprod",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -939,7 +1062,7 @@
             ]
           },
           {
-            "name": "STAGE",
+            "name": "QA",
             "description" : "This stage contains variations of task conditions, groups, and more",
             "gates" : [
               {
@@ -962,6 +1085,57 @@
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               },
               {
+                "name": "Deploy-Web",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Web Site",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mobile",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Mobile",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mainframe",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Mainframe",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
                 "name": "Test",
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
@@ -971,7 +1145,7 @@
             ]
           },
           {
-            "name": "PROD",
+            "name": "STAGE",
             "description" : "This stage contains variations of task conditions, groups, and more",
             "gates" : [
               {
@@ -994,6 +1168,57 @@
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               },
               {
+                "name": "Deploy-Web",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Web Site",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mobile",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Mobile",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mainframe",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "subapplication" : "Mainframe",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
                 "name": "Test",
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
@@ -1009,15 +1234,20 @@
   },
 
   "resources" : [
-    "@@PROJECTNAMETOKEN@@-dev",
-    "@@PROJECTNAMETOKEN@@-qa",
-    "@@PROJECTNAMETOKEN@@-prod",
-    "@@PROJECTNAMETOKEN@@-mobile-dev",
-    "@@PROJECTNAMETOKEN@@-mobile-qa",
-    "@@PROJECTNAMETOKEN@@-mobile-prod",
-    "@@PROJECTNAMETOKEN@@-mainframe-dev",
-    "@@PROJECTNAMETOKEN@@-mainframe-qa",
-    "@@PROJECTNAMETOKEN@@-mainframe-prod"
+    { "name" : "@@PROJECTNAMETOKEN@@-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-prod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-prod", "hostName" : "localhost" }
   ]
-
 }

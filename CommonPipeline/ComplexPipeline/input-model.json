@@ -1110,13 +1110,11 @@
         ]
       }
     ]
-
   },
 
   "resources" : [
-    "@@PROJECTNAMETOKEN@@-dev",
-    "@@PROJECTNAMETOKEN@@-qa",
-    "@@PROJECTNAMETOKEN@@-prod"
+    { "name" : "@@PROJECTNAMETOKEN@@-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod", "hostName" : "localhost" }
   ]
-
 }
