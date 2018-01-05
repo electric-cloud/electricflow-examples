@@ -1,11 +1,5 @@
-MultiEnvironmentInventory/backend.txt
-MultiEnvironmentInventory/db.txt
-MultiEnvironmentInventory/service.txt
-MultiEnvironmentInventory/web1.txt
-MultiEnvironmentInventory/web2.txt
-ComplexPipeline/artifacts*
-ComplexPipeline/model.json
-ComplexPipeline/WeaveWorks/export-*
-ComplexPipeline/WeaveWorks/greplist
-ComplexPipeline/WeaveWorks/model.json
+**/model.json
+**/model.json.project
+**/export-*.dsl
+CommonPipeline/artifacts
 MultiEnvironmentInventory/Unplug/
