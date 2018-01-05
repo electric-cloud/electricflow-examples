@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-PROJECTNAME=CommonPipeline
-GROUPID=com.ec.samples
+PROJECTNAME=MultiApplicationRelease
+GROUPID=com.ec.multiapp
 MYJSONFILE=model.json
 CONFIG=0
 BASEDIR=..
@@ -50,19 +50,15 @@ done
 # - Users
 # - Artifacts
 
+
 if [ $CONFIG = "1" ] ; then
     echo "Add configurations via DSL"
     ectool evalDsl --dslFile $BASEDIR/configuration.groovy --parametersFile $MYJSONFILE
 
     echo "Add passwords to configurations"
     ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
-    ectool modifyEmailConfig "test" --mailUserPassword < passwords/password-email-test.txt
-
-    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Artifactory" --password < passwords/password-credential-artifactory.txt
-    ectool modifyCredential --projectName "$PROJECTNAME" --credentialName "Jenkins" --password < passwords/password-credential-jenkins.txt
 
     ectool modifyUser "marco" --password "marco"  --sessionPassword < passwords/password-user-admin.txt
-    ectool modifyUser "seymour" --password "seymour"  --sessionPassword < passwords/password-user-admin.txt
 
     set +e
     echo "Create artifacts for this example."
@@ -77,8 +73,8 @@ if [ $CONFIG = "1" ] ; then
             echo "Publishing $GROUPID:$artifactId version $version..."
             ectool --silent publishArtifactVersion \
                 --version $version --artifactName $GROUPID:$artifactId \
-                --fromDirectory . \
-                --includePatterns $BASEDIR/artifacts/$artifactId.txt
+                --fromDirectory $BASEDIR/artifacts \
+                --includePatterns $artifactId.txt
             done
     done
     set -e

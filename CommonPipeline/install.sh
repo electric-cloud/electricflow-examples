@@ -100,8 +100,12 @@ done
 
 
 
-# Replace tokens with real names
-sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $PARAMETERSFILE > $MYJSONFILE
+if [ -f $PARAMETERSFILE ] ; then
+    # Replace tokens with real names
+    sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $PARAMETERSFILE > $MYJSONFILE.project
+    sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE
+fi
+
 
 if [ $JSONONLY = "1" ]; then
     echo "Tranformed JSON file only."
