@@ -1062,7 +1062,7 @@
                 "actualParameters": [
                   { "name": "Name", "value": "foo.txt" }
                 ],
-                "condition" : "$[doSnapshot]"
+                "condition" : "true"
               },
               {
                 "name": "Manual Task",
@@ -1073,20 +1073,54 @@
                 "approver" : [ "admin", "marco" ]
               },
               {
-                "name": "Utility - Create Snapshot",
+                "name": "Utility - Create Snapshot-web site",
                 "description" : "Run a utility function",
                 "condition" : "$[doSnapshot]",
                 "taskType" : "UTILITY",
                 "subpluginKey" : "EF-Utilities",
                 "subprocedure" : "Create Snapshot",
                 "actualParameters" : [
-                  {"name" : "ApplicationName", "value" : "$[/myApplication/applicationName]"},
-                  {"name" : "EnvironmentName", "value" : "$[/myEnvironment/environmentName]"},
-                  {"name" : "EnvironmentProjectName", "value" : "$[/myEnvironment/@@PROJECTNAMETOKEN@@]"},
-                  {"name" : "Overwrite", "value" : "false"},
-                  {"name" : "ProjectName", "value" : "$[/myApplication/@@PROJECTNAMETOKEN@@]"},
-                  {"name" : "ServiceName", "value" : "$[/myService/serviceName]"},
-                  {"name" : "SnapshotName", "value" : "mysnap-1.0"}
+                  {"name" : "ApplicationName", "value" : "Web Site"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "website-$[/increment /myProject/snapshots/website]"}
+                ]
+              },
+              {
+                "name": "Utility - Create Snapshot - mobile",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "Mobile"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "mobile-$[/increment /myProject/snapshots/mobile]"}
+                ]
+              },
+              {
+                "name": "Utility - Create Snapshot - mainframe",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "Mainfame"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "mainframe-$[/increment /myProject/snapshots/mainframe]"}
                 ]
               }
             ]

@@ -88,32 +88,35 @@ project myProject.name, {
                                             rollbackUndeployProcess = null
                                             skipRollbackIfUndeployFails = null
                                             smartRollback = null
-                                            subcomponent = null
                                             subcomponentApplicationName = null
-                                            subcomponentProcess = null
                                             subservice = null
                                             subserviceProcess = null
                                             timeLimitUnits = null
                                             workspaceName = null
 
-                                            switch (myProcessStep.name) {
-                                                case ~/acquire artifact/:
-                                                    println "               Handling acquire case"
-                                                    processStepType = myProcessStep.processStepType
+                                            processStepType = myProcessStep.processStepType
+                                            switch (myProcessStep.processStepType) {
+                                                case ~/component/:
+                                                    subcomponent = myProcessStep.subcomponent
+                                                    subcomponentProcess = myProcessStep.subcomponentProcess
                                                     subprocedure = myProcessStep.subprocedure
                                                     subproject = myProcessStep.subproject
                                                     break
-                                                case ~/deployit/:
-                                                    println "               Handling deploy"
-                                                    processStepType = myProcessStep.processStepType
+                                                case ~/procedure/:
                                                     subprocedure = myProcessStep.subprocedure
                                                     subproject = myProcessStep.subproject
                                                     break
-                                                case ~/removeit/:
-                                                    println "               Handling undeploy"
-                                                    processStepType = myProcessStep.processStepType
+                                                case ~/manual/:
+                                                    instruction = myProcessStep.instruction
+                                                    notificationTemplate = myProcessStep.notificationTemplate
+                                                    assignee = myProcessStep.assignee
+                                                    break
+                                                case ~/command/:
                                                     subprocedure = myProcessStep.subprocedure
                                                     subproject = myProcessStep.subproject
+                                                    actualParameter = [
+                                                            'commandToRun': myProcessStep.commandToRun,
+                                                    ]
                                                     break
                                                 default:
                                                     break
