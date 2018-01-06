@@ -1114,7 +1114,7 @@
                 "subpluginKey" : "EF-Utilities",
                 "subprocedure" : "Create Snapshot",
                 "actualParameters" : [
-                  {"name" : "ApplicationName", "value" : "Mainfame"},
+                  {"name" : "ApplicationName", "value" : "Mainframe"},
                   {"name" : "EnvironmentName", "value" : "dev"},
                   {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
                   {"name" : "Overwrite", "value" : "true"},
