@@ -53,6 +53,11 @@ project myProject.name, {
             myPipeline.stages.each { myStage ->
                 stage myStage.name, {
                     description = myStage.description
+                    colorCode = myStage.colorType
+                    colorType = myStage.colorType
+                    completionType = myStage.completionType
+                    waitForPlannedStartDate = '0'
+                    pipelineName = myPipeline.name
 
                     myStage.gates?.each { myGate->
                         gate myGate.gateType, {
@@ -98,7 +103,12 @@ project myProject.name, {
                             groupName = myTask.groupName
 
                             switch (myTask.taskType) {
+                                case ~/DEPLOYER/:
+                                    println "      Type DEPLOYER"
+                                    deployerRunType = myTask.deployerRunType
+                                    break
                                 case ~/PROCEDURE/:
+                                    println "      Type PROCEDURE"
                                     subprocedure = myTask.subprocedure
                                     subproject = myTask.subproject
                                     break

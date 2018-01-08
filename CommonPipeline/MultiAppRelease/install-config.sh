@@ -8,7 +8,7 @@ BASEDIR=..
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":crN:P:G:" opt; do
+while getopts ":crP:f:G:" opt; do
   case $opt in
     c)
         CONFIG=1
@@ -20,7 +20,7 @@ while getopts ":crN:P:G:" opt; do
         PROJECTNAME=$OPTARG
         echo "New project name is $PROJECTNAME"
         ;;
-    P)
+    f)
         PARAMETERSFILE=$OPTARG
         echo "new parameters file is $PARAMETERSFILE"
         ;;
@@ -37,8 +37,8 @@ while getopts ":crN:P:G:" opt; do
       echo "  -c run the configuration"
       echo "  -r create resources"
       echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
-      echo "  -N <PROJECTNAME> specify the name of the project"
-      echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input"
+      echo "  -P <PROJECTNAME> specify the name of the project"
+      echo "  -f <PARAMETERSFILE> use the named parameters file in JSON format as an input"
       exit 1
       ;;
   esac
@@ -68,11 +68,11 @@ if [ $CONFIG = "1" ] ; then
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
     for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
         echo "Creating $GROUPID:$artifactId "
-        echo "Creating $GROUPID:$artifactId " > $BASEDIR/artifacts/$artifactId.txt
         ectool createArtifact "$GROUPID" "$artifactId" --description "simple text file."
 
         for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
             echo "Publishing $GROUPID:$artifactId version $version..."
+            echo "Creating $GROUPID:$artifactId $version" > $BASEDIR/artifacts/$artifactId.txt
             ectool --silent publishArtifactVersion \
                 --version $version --artifactName $GROUPID:$artifactId \
                 --fromDirectory $BASEDIR/artifacts \

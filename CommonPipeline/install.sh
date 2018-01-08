@@ -4,6 +4,7 @@ PARAMETERSFILE=input-model.json
 MYJSONFILE=model.json
 PROJECTNAME=CommonPipeline
 GROUPID=com.ec.samples
+EFCOMMON=/vagrant/electricflow-examples/CommonPipeline
 
 ALL=1
 APPLICATIONS=0
@@ -20,7 +21,7 @@ JSONONLY=0
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":AtrepwasljRG:N:P:" opt; do
+while getopts ":AtrepwasljRG:f:P:" opt; do
   case $opt in
     A)
         TEST=1
@@ -64,11 +65,11 @@ while getopts ":AtrepwasljRG:N:P:" opt; do
     R)
         RELEASES=1
         ;;
-    N)
+    P)
         PROJECTNAME=$OPTARG
         echo "New project name is $PROJECTNAME"
         ;;
-    P)
+    f)
         PARAMETERSFILE=$OPTARG
         echo "new parameters file is $PARAMETERSFILE"
         ;;
@@ -91,8 +92,8 @@ while getopts ":AtrepwasljRG:N:P:" opt; do
       echo "  -p create pipelines"
       echo "  -R create releases"
       echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
-      echo "  -N <PROJECTNAME> specify the name of the project"
-      echo "  -P <PARAMETERSFILE> use the named parameters file in JSON format as an input"
+      echo "  -P <PROJECTNAME> specify the name of the project"
+      echo "  -f <PARAMETERSFILE> use the named parameters file in JSON format as an input"
       exit 1
       ;;
   esac
@@ -102,6 +103,7 @@ done
 
 if [ -f $PARAMETERSFILE ] ; then
     # Replace tokens with real names
+    echo "replacing tokens in $PARAMETERSFILE"
     sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $PARAMETERSFILE > $MYJSONFILE.project
     sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE
 fi
@@ -115,53 +117,55 @@ fi
 # Run some essential tests to show the system works.  Good hygiene.
 if [ $TEST = "1" ] ; then
     echo "######### TESTING #########"
-    ectool evalDsl --dslFile test.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/test.groovy --parametersFile $MYJSONFILE
 fi
 
 # Create the resources needed in this project.
 if [ $RESOURCES = "1" ] ; then
     echo "######### CREATING RESOURCES #########"
-    ectool evalDsl --dslFile resources.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/resources.groovy --parametersFile $MYJSONFILE
 fi
 
 # Create the environments needed in this project.
 if [ $ENVIRONMENTS = "1" ] ; then
     echo "######### CREATING ENVIRONMENTS #########"
-    ectool evalDsl --dslFile environments.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/environments.groovy --parametersFile $MYJSONFILE
 fi
 
 # all of the helper procedures are defined here.  This includes stubs.  We'll refer to procedures by name.
 if [ $PROCEDURES = "1" ] ; then
     echo "######### CREATING PROCEDURES #########"
-    ectool evalDsl --dslFile procedures.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/procedures.groovy --parametersFile $MYJSONFILE
 fi
 
 # If you have workflows, define them here.  NOTE: Helper procedures should be already defined.
 if [ $WORKFLOWS = "1" ] ; then
     echo "######### CREATING WORKFLOWS #########"
-    ectool evalDsl --dslFile workflows.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/workflows.groovy --parametersFile $MYJSONFILE
 fi
 
 # Your application model uses existing artifacts, procedures, and environments.
 if [ $APPLICATIONS = "1" ] ; then
     echo "######### CREATING APPLICATIONS #########"
-    ectool evalDsl --dslFile applications.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/applications.groovy --parametersFile $MYJSONFILE
 fi
 
 # Your services model uses existing procedures
 if [ $SERVICES = "1" ] ; then
     echo "######### CREATING SERVICES #########"
-    ectool evalDsl --dslFile services.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/services.groovy --parametersFile $MYJSONFILE
 fi
 
 # The pipelines tie most things together.  One of the last steps.
 if [ $PIPELINES = "1" ] ; then
     echo "######### CREATING PIPELINES #########"
-    ectool evalDsl --dslFile pipelines.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/pipelines.groovy --parametersFile $MYJSONFILE
 fi
 
 # When we're ready, do the same for releases.
-#if [ $RELEASES = "1" ] ; then
-#    echo "######### TESTING #########"
-#   ectool evalDsl --dslFile releases.groovy --parametersFile $MYJSONFILE
-#fi
+if [ $RELEASES = "1" ] ; then
+   echo "######### RELEASE PIPELINES #########"
+   ectool evalDsl --dslFile $EFCOMMON/pipelines.groovy --parametersFile $MYJSONFILE
+   echo "######### RELEASES #########"
+   ectool evalDsl --dslFile $EFCOMMON/releases.groovy --parametersFile $MYJSONFILE
+fi
