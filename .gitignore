@@ -1,5 +1,8 @@
 **/model.json
-**/model.json.project
+**/release-model.json
+**/*.json.groupid
+**/*.json.project
 **/export-*.dsl
+**.export-*.gdsl
 CommonPipeline/artifacts
 MultiEnvironmentInventory/Unplug/
