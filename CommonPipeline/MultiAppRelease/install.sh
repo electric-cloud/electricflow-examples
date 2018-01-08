@@ -14,7 +14,6 @@ sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" input-release.json > $MYRELJSONFIL
 sed -e "s/@@GROUPID@@/$GROUPID/" $MYRELJSONFILE.project > $MYRELJSONFILE.groupid
 cp $MYRELJSONFILE.groupid $MYRELJSONFILE
 
-#./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
-#cd ..
-#./install.sh -A -f MultiAppRelease/$MYJSONFILE -P $PROJECTNAME -G $GROUPID
+./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
+../install.sh -A -f MultiAppRelease/$MYJSONFILE -P $PROJECTNAME -G $GROUPID
 ../install.sh -R -f $MYRELJSONFILE -P $PROJECTNAME -G $GROUPID
