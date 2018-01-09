@@ -7,7 +7,8 @@ MYRELJSONFILE=release-model.json
 
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" input-model.json > $MYJSONFILE.project
-sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE
+sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE.groupid
+cp $MYJSONFILE.groupid $MYJSONFILE
 
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" input-release.json > $MYRELJSONFILE.project

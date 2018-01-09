@@ -6,8 +6,8 @@ MYJSONFILE=model.json
 
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" input-model.json > $MYJSONFILE.project
-sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE
+sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE.groupid
+cp $MYJSONFILE.groupid $MYJSONFILE
 
-./install-config.sh -c -P $MYJSONFILE -N $PROJECTNAME -G $GROUPID
-cd ..
-./install.sh -A -P ComplexPipeline/$MYJSONFILE -N $PROJECTNAME -G $GROUPID
+./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
+../install.sh -A -f ComplexPipeline/$MYJSONFILE -P $PROJECTNAME -G $GROUPID

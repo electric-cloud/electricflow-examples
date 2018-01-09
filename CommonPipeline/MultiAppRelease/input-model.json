@@ -26,7 +26,10 @@
 
     "procedures" : [
       {"name" : "Stub",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Configure File",
         "description" : "Placeholder that shows a really fast SUCCESS"}
+
     ],
 
     "environments" : [
@@ -1041,20 +1044,7 @@
                 ]
               },
               {
-                "name": "Procedure",
-                "description" : "Run a procedure",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
-              },
-              {
-                "name": "Command line",
-                "description" : "Run a command-line expression",
-                "taskType" : "COMMAND",
-                "commandToRun" : "echo \"Hello world\""
-              },
-              {
-                "name": "Plugin",
+                "name": "Create an Empty File",
                 "description": "Run a plugin",
                 "taskType": "PLUGIN",
                 "subpluginKey": "EC-FileOps",
@@ -1065,7 +1055,20 @@
                 "condition" : "true"
               },
               {
-                "name": "Manual Task",
+                "name": "Transform File",
+                "description" : "Run a command-line expression",
+                "taskType" : "COMMAND",
+                "commandToRun" : "echo \"Hello world\""
+              },
+              {
+                "name": "Run Configuration Script",
+                "description" : "Run a procedure",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Configure File",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Manual Inspection",
                 "description" : "Manual intervention",
                 "taskType" : "MANUAL",
                 "instruction" : "Approve to continue the pipeline",

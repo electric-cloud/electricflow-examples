@@ -20,7 +20,7 @@ while getopts ":crP:f:G:" opt; do
     r)
         RESOURCES=1
         ;;
-    N)
+    P)
         PROJECTNAME=$OPTARG
         echo "New project name is $PROJECTNAME"
         ;;
@@ -81,7 +81,7 @@ if [ $CONFIG = "1" ] ; then
                 --version $version --artifactName $GROUPID:$artifactId \
                 --fromDirectory $EFCOMMON/artifacts \
                 --includePatterns $artifactId.txt
-            done
+        done
     done
     set -e
 fi
