@@ -238,8 +238,6 @@ project myProject.name, {
                             dependencyJoinType = 'and'
                             errorHandling = 'failProcedure'
                             processStepType = myProcessStep.processStepType
-                            subcomponent = myProcessStep.subcomponent
-                            subcomponentApplicationName = myApplication.name
 
                             // This next list seems largely optional, or at least not primary fields
                             afterLastRetry = null
@@ -258,6 +256,7 @@ project myProject.name, {
                             switch (myProcessStep.processStepType) {
                                 case ~/process/:
                                     subcomponent = myProcessStep.subcomponent
+                                    subcomponentApplicationName = myApplication.name
                                     subcomponentProcess = myProcessStep.subcomponentProcess
                                     break
                                 case ~/procedure/:

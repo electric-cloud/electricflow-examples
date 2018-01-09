@@ -27,19 +27,21 @@ for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
     --actualParameter "ec_web1-run=1" --actualParameter "ec_web1-version=$version" \
     --actualParameter "ec_web2-run=1" --actualParameter "ec_web2-version=$version" \
     --actualParameter "ec_db-run=1" --actualParameter "ec_db-version=$version"
-    sleep 10
+    sleep 20
 
     echo "Deploy version $version to Mobile"
     ectool runProcess $PROJECTNAME "Mobile" "Deploy Application" --environmentName "dev" \
     --actualParameter "ec_smartDeployOption=0" \
     --actualParameter "ec_mobile-run=1" --actualParameter "ec_mobile-version=$version"
-    sleep 10
+    sleep 20
 
     echo "Deploy version $version to Mainframe"
     ectool runProcess $PROJECTNAME "Mainframe" "Deploy Application" --environmentName "dev" \
     --actualParameter "ec_smartDeployOption=0" \
     --actualParameter "ec_mainframe-run=1" --actualParameter "ec_mainframe-version=$version"
-    sleep 10
+    sleep 20
+
+    #instead use waitforjob?
 
     echo "Create snapshots for Web Site version $version"
     ectool deleteSnapshot $PROJECTNAME "ws-$version" --applicationName "Web Site"
