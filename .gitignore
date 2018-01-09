@@ -3,6 +3,7 @@
 **/*.json.groupid
 **/*.json.project
 **/export-*.dsl
-**.export-*.gdsl
+**/export-*.gdsl
 CommonPipeline/artifacts
 MultiEnvironmentInventory/Unplug/
+**/*.log
