@@ -4,7 +4,11 @@ PROJECTNAME=MultiApplicationRelease
 GROUPID=com.ec.multiapp
 MYJSONFILE=model.json
 CONFIG=0
-BASEDIR=..
+
+if [ -z "$EFCOMMON" ]; then
+    EFCOMMON=/vagrant/electricflow-examples/CommonPipeline
+fi
+
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
@@ -53,7 +57,7 @@ done
 
 if [ $CONFIG = "1" ] ; then
     echo "Add configurations via DSL"
-    ectool evalDsl --dslFile $BASEDIR/configuration.groovy --parametersFile $MYJSONFILE
+    ectool evalDsl --dslFile $EFCOMMON/configuration.groovy --parametersFile $MYJSONFILE
 
     echo "Add passwords to configurations"
     ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
@@ -63,7 +67,7 @@ if [ $CONFIG = "1" ] ; then
     set +e
     echo "Create artifacts for this example."
 
-    mkdir $BASEDIR/artifacts
+    mkdir $EFCOMMON/artifacts
 
     #NOTE: Each artifact is published separately because we need to pay attention to the name of the file.
     for artifactId in "web1" "web2" "db" "mobile" "mainframe" ; do
@@ -72,13 +76,12 @@ if [ $CONFIG = "1" ] ; then
 
         for version in "1.0" "1.1" "2.0" "2.1" "2.2" ; do
             echo "Publishing $GROUPID:$artifactId version $version..."
-            echo "Creating $GROUPID:$artifactId $version" > $BASEDIR/artifacts/$artifactId.txt
+            echo "Creating $GROUPID:$artifactId $version" > $EFCOMMON/artifacts/$artifactId.txt
             ectool --silent publishArtifactVersion \
                 --version $version --artifactName $GROUPID:$artifactId \
-                --fromDirectory $BASEDIR/artifacts \
+                --fromDirectory $EFCOMMON/artifacts \
                 --includePatterns $artifactId.txt
             done
     done
     set -e
 fi
-

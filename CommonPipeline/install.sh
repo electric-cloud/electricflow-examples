@@ -4,7 +4,10 @@ PARAMETERSFILE=input-model.json
 MYJSONFILE=model.json
 PROJECTNAME=CommonPipeline
 GROUPID=com.ec.samples
-EFCOMMON=/vagrant/electricflow-examples/CommonPipeline
+
+if [ -z "$EFCOMMON" ]; then
+    EFCOMMON=/vagrant/electricflow-examples/CommonPipeline
+fi
 
 ALL=1
 APPLICATIONS=0
