@@ -29,6 +29,8 @@ project myProject.name, {
                     switch (myParameter.type) {
                         case ~/checkbox/:
                             break
+                        case ~/entry/:
+                            break
                         default:
                             break
                     }
@@ -41,6 +43,8 @@ project myProject.name, {
                                     checkedValue = myParameter.checkedValue
                                     initiallyChecked = myParameter.initiallyChecked
                                     uncheckedValue = myParameter.uncheckedValue
+                                    break
+                                case ~/entry/:
                                     break
                                 default:
                                     break
@@ -122,6 +126,7 @@ project myProject.name, {
                                     break
                                 case ~/PROCESS/:
                                     println "      Type Process"
+                                    advancedMode = myTask.advancedMode
                                     actualParameter = myTask.actualParameters?.collectEntries {aParam->
                                         [
                                                 (aParam.name) : aParam.value,
@@ -136,6 +141,7 @@ project myProject.name, {
                                     {
                                         subapplication = myTask.subapplication
                                     }
+                                    snapshotName = myTask.snapshotName
                                     subprocess = myTask.subprocess
                                     subproject = myTask.subproject
                                     // TODO : Need to be smart here when we do microservices.

@@ -8,7 +8,7 @@ BASEDIR=..
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":crN:P:G:" opt; do
+while getopts ":crP:f:G:" opt; do
   case $opt in
     c)
         CONFIG=1
@@ -16,11 +16,11 @@ while getopts ":crN:P:G:" opt; do
     r)
         RESOURCES=1
         ;;
-    N)
+    P)
         PROJECTNAME=$OPTARG
         echo "New project name is $PROJECTNAME"
         ;;
-    P)
+    f)
         PARAMETERSFILE=$OPTARG
         echo "new parameters file is $PARAMETERSFILE"
         ;;

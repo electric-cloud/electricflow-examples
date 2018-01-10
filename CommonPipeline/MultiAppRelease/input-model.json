@@ -195,7 +195,7 @@
             "components" : [
               {
                 "name" : "web1",
-                "description" : "One of the web components",
+                "description" : "Primary web component - the UI",
 				"groupId" : "@@GROUPID@@",
 				"artifactId" : "web1",
 				"processes" : [
@@ -250,6 +250,7 @@
               },
               {
                 "name" : "web2",
+                "description" : "A subpage in the UI",
 				"groupId" : "@@GROUPID@@",
 				"artifactId" : "web2",
 				"processes" : [
@@ -308,6 +309,7 @@
             "components" : [
               {
                 "name" : "db",
+                "description" : "Database scripts to configure the latest delivery",
 				"groupId" : "@@GROUPID@@",
 				"artifactId" : "db",
                 "processes" : [
@@ -958,12 +960,22 @@
             "type" : "checkbox",
             "description" : "Enable if we should enable gates in this run",
             "defaultValue" : "true",
-            "orderIndex" : "1",
+            "orderIndex" : "2",
             "label" : "Enable Gates?",
             "expansionDeferred" : "0",
             "checkedValue" : "true",
             "initiallyChecked" : "false",
             "uncheckedValue" : "false"
+          },
+          {
+            "name" : "snapshotVersion",
+            "type" : "entry",
+            "defaultValue" : "1.0",
+            "description" : "The version of the snapshot to deploy in the pipeline",
+            "expansionDeferred" : "0",
+            "label" : "Snapshot Version?",
+            "orderIndex" : "3",
+            "required" : "true"
           }
         ],
 
@@ -999,6 +1011,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "dev",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "ws-$[snapshotVersion]",
                 "subapplication" : "Web Site",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1016,6 +1030,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "dev",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mo-$[snapshotVersion]",
                 "subapplication" : "Mobile",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1033,6 +1049,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "dev",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mf-$[snapshotVersion]",
                 "subapplication" : "Mainframe",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1076,7 +1094,7 @@
                 "approver" : [ "admin", "marco" ]
               },
               {
-                "name": "Utility - Create Snapshot-web site",
+                "name": "Utility - Create Snapshot - web site",
                 "description" : "Run a utility function",
                 "condition" : "$[doSnapshot]",
                 "taskType" : "UTILITY",
@@ -1158,6 +1176,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "qa",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "website-$[/myProject/snapshots/website]",
                 "subapplication" : "Web Site",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1175,6 +1195,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "qa",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
                 "subapplication" : "Mobile",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1192,6 +1214,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "qa",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
                 "subapplication" : "Mainframe",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1241,6 +1265,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "stage",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "website-$[/myProject/snapshots/website]",
                 "subapplication" : "Web Site",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1258,6 +1284,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "stage",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
                 "subapplication" : "Mobile",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
@@ -1275,6 +1303,8 @@
                 "groupName" : "Deploy Group",
                 "environmentName" : "stage",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
                 "subapplication" : "Mainframe",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
