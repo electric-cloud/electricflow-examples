@@ -33,7 +33,7 @@
             ],
             "tasks": [
               {
-                "name": "Deployer",
+                "name": "Deploy Applications",
                 "description" : "Deployer step for multiple applications",
                 "taskType" : "DEPLOYER",
                 "projectName" : "@@PROJECTNAMETOKEN@@",
@@ -41,7 +41,7 @@
                 "deployerRunType" : "serial"
               },
               {
-                "name": "Test",
+                "name": "System Test",
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",
@@ -68,14 +68,14 @@
             ],
             "tasks": [
               {
-                "name": "Deployer",
+                "name": "Deploy Applications",
                 "description" : "Deployer step for multiple applications",
                 "taskType" : "DEPLOYER",
                 "projectName" : "@@PROJECTNAMETOKEN@@",
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               },
               {
-                "name": "Test",
+                "name": "System Test",
                 "description" : "Test the deployed software",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Stub",

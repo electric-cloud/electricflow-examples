@@ -27,6 +27,14 @@
     "procedures" : [
       {"name" : "Stub",
         "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Functional Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Regression Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Integration Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "System Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
       {"name" : "Configure File",
         "description" : "Placeholder that shows a really fast SUCCESS"}
 
@@ -130,7 +138,9 @@
           {
             "name":  "AppTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-preprod"
+              "@@PROJECTNAMETOKEN@@-preprod",
+              "@@PROJECTNAMETOKEN@@-preprod1",
+              "@@PROJECTNAMETOKEN@@-preprod2"
             ]
           },
           {
@@ -160,7 +170,10 @@
           {
             "name":  "AppTier",
             "resources" : [
-              "@@PROJECTNAMETOKEN@@-prod"
+              "@@PROJECTNAMETOKEN@@-prod",
+              "@@PROJECTNAMETOKEN@@-prod1",
+              "@@PROJECTNAMETOKEN@@-prod2",
+              "@@PROJECTNAMETOKEN@@-prod3"
             ]
           },
           {
@@ -939,8 +952,8 @@
 
     "pipelines" : [
       {
-        "name": "Multi-purpose Pipeline",
-        "description" : "Example of a pipeline with multiple types of task types and other features",
+        "name": "Multi application pipeline",
+        "description" : "Example of a pipeline that happens to work through multiple applications at once using multiple features",
 
         "formalParameters": [
           {
@@ -1062,7 +1075,7 @@
                 ]
               },
               {
-                "name": "Create an Empty File",
+                "name": "Create Configuration File",
                 "description": "Run a plugin",
                 "taskType": "PLUGIN",
                 "subpluginKey": "EC-FileOps",
@@ -1073,17 +1086,17 @@
                 "condition" : "true"
               },
               {
-                "name": "Transform File",
-                "description" : "Run a command-line expression",
-                "taskType" : "COMMAND",
-                "commandToRun" : "echo \"Hello world\""
-              },
-              {
                 "name": "Run Configuration Script",
                 "description" : "Run a procedure",
                 "taskType" : "PROCEDURE",
                 "subprocedure" : "Configure File",
                 "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Functional Tests",
+                "description" : "Test the functionality of the latest software changes",
+                "taskType" : "COMMAND",
+                "commandToRun" : "echo \"Hello world\""
               },
               {
                 "name": "Manual Inspection",
@@ -1227,10 +1240,10 @@
                 ]
               },
               {
-                "name": "Test",
-                "description" : "Test the deployed software",
+                "name": "Integration Test",
+                "description" : "Test the deployed software for integrations",
                 "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
+                "subprocedure" : "Integration Test",
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               }
             ]
@@ -1316,10 +1329,10 @@
                 ]
               },
               {
-                "name": "Test",
-                "description" : "Test the deployed software",
+                "name": "Regression Tests",
+                "description" : "Test the deployed software to detect regressions",
                 "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
+                "subprocedure" : "Regression Test",
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               }
             ]
@@ -1335,7 +1348,12 @@
     { "name" : "@@PROJECTNAMETOKEN@@-qa", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-stage", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod1", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod2", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-prod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod1", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod2", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod3", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-mobile-dev", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-mobile-qa", "hostName" : "localhost" },
     { "name" : "@@PROJECTNAMETOKEN@@-mobile-stage", "hostName" : "localhost" },
