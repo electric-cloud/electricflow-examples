@@ -62,19 +62,17 @@ def loadBuildData() {
 
     def duration = args.build.durationInMillis?:60000
     def trendUp = args.build.trendUp?:false
-    def successCount = args.build.successCount?:10
+    def successCount = args.build.successCount?:0
+    int failureCount = args.build.failureCount?:0
 
     //toggle trendUp since we go backwards in dates list
     trendUp = !trendUp
-    int failureCount = args.build.failureCount?:(successCount/2)
-    dates.eachWithIndex { date, index ->
 
+    dates.eachWithIndex { date, index ->
         if (trendUp) {
-            if (failureCount > 0) failureCount--
-            successCount++
-        } else {
-            failureCount++
             if (successCount > 0) successCount--
+        } else {
+            if (failureCount > 0) failureCount--
         }
         def statuses = []
         successCount.times {
@@ -83,9 +81,14 @@ def loadBuildData() {
         failureCount.times {
             statuses << 'FAILURE'
         }
-        println "Success count: $successCount, Failure count: $failureCount"
+        println "successCount is $successCount from $args.build.successCount "
+        println "failureCount is $failureCount from $args.build.failureCount"
 
-
+        println "duration is: $duration"
+        println "startTime is $date"
+        println "endTime is ${endDates[index]}"
+        println "buildStatus is $status"
+        println "timestamp is ${endDates[index]}"
         statuses.each { status ->
             sendReportingData reportObjectTypeName: 'build', payload: """{
                         "source": "Jenkins",

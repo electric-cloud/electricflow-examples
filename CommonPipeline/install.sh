@@ -83,9 +83,10 @@ while getopts ":AtrepwasljRG:f:P:" opt; do
     \?)
       echo "Invalid option: -$OPTARG" >&2
       echo "Usage:" >&2
-      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-N <PROJECT NAME>] [-G <GROUPID>] [-P <PARAMETERSFILE>]" >&2
+      echo "$0 [-A] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-P <PROJECT NAME>] [-G <GROUPID>] [-f <PARAMETERSFILE>]" >&2
       echo "  -A Do everything"
       echo "  -t run unit tests on the model.  No objects are modified"
+      echo "  -j create JSON files and exit"
       echo "  -r create resources"
       echo "  -e create environments"
       echo "  -p create procedures"
@@ -94,8 +95,8 @@ while getopts ":AtrepwasljRG:f:P:" opt; do
       echo "  -s create services"
       echo "  -p create pipelines"
       echo "  -R create releases"
-      echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
       echo "  -P <PROJECTNAME> specify the name of the project"
+      echo "  -G <GROUPID> specify the groupId in the format of 'com.ec.group.id"
       echo "  -f <PARAMETERSFILE> use the named parameters file in JSON format as an input"
       exit 1
       ;;
