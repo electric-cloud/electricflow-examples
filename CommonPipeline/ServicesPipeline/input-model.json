@@ -1,0 +1,1360 @@
+{
+  "emailConfigs" : [
+  ],
+
+  "credentials" : [
+  ],
+
+  "users" : [
+    { "name" : "marco",
+      "fullUserName" : "Marco Morales",
+      "email" : "mmorales@electric-cloud.com"
+    }
+  ],
+
+  "project" : {
+    "name" : "@@PROJECTNAMETOKEN@@",
+    "description" : "Example of a pipeline with entry points of each type",
+
+    "procedures" : [
+      {"name" : "Stub",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Functional Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Regression Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Integration Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "System Test",
+        "description" : "Placeholder that shows a really fast SUCCESS"},
+      {"name" : "Configure File",
+        "description" : "Placeholder that shows a really fast SUCCESS"}
+
+    ],
+
+    "environments" : [
+      {
+        "name" : "dev",
+        "description" : "DEV Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-dev"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-dev"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-dev"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-dev"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "qa",
+        "description" : "QA Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-qa"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-qa"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-qa"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-qa"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "stage",
+        "description" : "Stage Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-stage"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-stage"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-stage"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-stage"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "preprod",
+        "description" : "PrePROD Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-preprod",
+              "@@PROJECTNAMETOKEN@@-preprod1",
+              "@@PROJECTNAMETOKEN@@-preprod2"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-preprod"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-preprod"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-preprod"
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "prod",
+        "description" : "PROD Environment",
+        "environmentTiers" : [
+          {
+            "name":  "AppTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-prod",
+              "@@PROJECTNAMETOKEN@@-prod1",
+              "@@PROJECTNAMETOKEN@@-prod2",
+              "@@PROJECTNAMETOKEN@@-prod3"
+            ]
+          },
+          {
+            "name" : "DBTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-prod"
+            ]
+          },
+          {
+            "name" : "MobileTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mobile-prod"
+            ]
+          },
+          {
+            "name" : "MainframeTier",
+            "resources" : [
+              "@@PROJECTNAMETOKEN@@-mainframe-prod"
+            ]
+          }
+        ]
+      }
+    ],
+
+    "applications" : [
+      {
+        "name" : "Web Site",
+        "description" : "Web site application with two tiers",
+        "applicationTiers" : [
+          {
+            "name" : "User Interface",
+            "components" : [
+              {
+                "name" : "web1",
+                "description" : "Primary web component - the UI",
+				"groupId" : "@@GROUPID@@",
+				"artifactId" : "web1",
+				"processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web1 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_web1-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "ALWAYS"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web1 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processStepType" : "procedure",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ]
+                  }
+				]
+              },
+              {
+                "name" : "web2",
+                "description" : "A subpage in the UI",
+				"groupId" : "@@GROUPID@@",
+				"artifactId" : "web2",
+				"processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web2 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_web2-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "always"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web2 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ]
+                  }
+				]
+              }
+            ]
+          },
+          {
+            "name" : "Database",
+            "components" : [
+              {
+                "name" : "db",
+                "description" : "Database scripts to configure the latest delivery",
+				"groupId" : "@@GROUPID@@",
+				"artifactId" : "db",
+                "processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web2 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_db-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "always"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web2 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "processes" : [
+          {
+            "name" : "Deploy Application",
+            "description" : "An application-level process that deploys multiple components",
+            "processType" : "DEPLOY",
+            "formalParameters": [
+              {
+                "name" : "doManualCheck",
+                "type" : "checkbox",
+                "description" : "Enable if we should manually check the deployment",
+                "defaultValue" : "false",
+                "orderIndex" : "1",
+                "label" : "Do Manual Check?",
+                "expansionDeferred" : "0",
+                "checkedValue" : "true",
+                "initiallyChecked" : "false",
+                "uncheckedValue" : "false"
+              }
+            ],
+            "processSteps" : [
+              {
+                "name" : "deploy web1",
+                "description" : "Execute the web1 Component process",
+                "applicationTierName" : "User Interface",
+                "processStepType" : "process",
+                "subcomponent" : "web1",
+                "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "deploy web2",
+                "description" : "Execute the web2 Component process",
+                "applicationTierName" : "User Interface",
+                "processStepType" : "process",
+                "subcomponent" : "web2",
+                "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "deploy db",
+                "description" : "Execute the db Component process",
+                "applicationTierName" : "Database",
+                "processStepType" : "process",
+                "subcomponent" : "db",
+                "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "Manual Inspection",
+                "description" : "Here we ask the user to evaluate the next steps",
+                "instruction" : "Inspect the system",
+                "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
+                "processStepType" : "manual",
+                "assignee" : [ "marco" ]
+              },
+              {
+                "name" : "Rollback if failure",
+                "description" : "If the manual inspection fails, roll back to a previous version",
+                "processStepType" : "rollback",
+                "rollbackType" : "environment",
+                "smartRollback" : "1"
+              },
+              {
+                "name": "Manual Inspection Succeeded",
+                "description" : "If the manual inspection succeeds, report the status and continue",
+                "applicationTierName": "User Interface",
+                "processStepType": "command",
+                "subprocedure": "RunCommand",
+                "subproject": "/plugins/EC-Core/project",
+                "commandToRun": "echo \"success!\""
+              }
+            ],
+            "processDependencies" : [
+              { "source" : "deploy web1",
+                "target" : "deploy db",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Do not do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy web1",
+                "target" : "Manual Inspection",
+                "branchCondition" : "$[doManualCheck]",
+                "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy web2",
+                "target" : "deploy db",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Rollback if failure",
+                "branchType" : "ERROR"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Manual Inspection Succeeded",
+                "branchType" : "SUCCESS"
+              },
+              { "source" : "deploy web2",
+                "target" : "deploy db",
+                "branchType" : "ALWAYS"
+              }
+            ]
+          }
+        ],
+        "tierMaps" : [
+          { "applicationName" : "Web Site",
+            "environmentName" : "dev",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
+            "environmentName" : "qa",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
+            "environmentName" : "preprod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          },
+          { "applicationName" : "Web Site",
+            "environmentName" : "prod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "User Interface",
+                "environmentTierName" : "AppTier"
+              },
+              {
+                "applicationTierName" : "Database",
+                "environmentTierName" : "DBTier"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "Mobile",
+        "description" : "Single-tier mobile application",
+        "applicationTiers" : [
+          {
+            "name" : "Mobile App",
+            "components" : [
+              {
+                "name" : "mobile",
+                "description" : "One of the web components",
+                "groupId" : "@@GROUPID@@",
+                "artifactId" : "mobile",
+                "processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web1 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_mobile-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "ALWAYS"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web1 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processStepType" : "procedure",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "processes" : [
+          {
+            "name" : "Deploy Application",
+            "description" : "An application-level process that deploys multiple components",
+            "processType" : "DEPLOY",
+            "formalParameters": [
+              {
+                "name" : "doManualCheck",
+                "type" : "checkbox",
+                "description" : "Enable if we should manually check the deployment",
+                "defaultValue" : "false",
+                "orderIndex" : "1",
+                "label" : "Do Manual Check?",
+                "expansionDeferred" : "0",
+                "checkedValue" : "true",
+                "initiallyChecked" : "false",
+                "uncheckedValue" : "false"
+              }
+            ],
+            "processSteps" : [
+              {
+                "name" : "deploy mobile",
+                "description" : "Execute the mobile Component process",
+                "applicationTierName" : "Mobile App",
+                "processStepType" : "process",
+                "subcomponent" : "mobile",
+                "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "Manual Inspection",
+                "description" : "Here we ask the user to evaluate the next steps",
+                "instruction" : "Inspect the system",
+                "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
+                "processStepType" : "manual",
+                "assignee" : [ "marco" ]
+              },
+              {
+                "name" : "Rollback if failure",
+                "description" : "If the manual inspection fails, roll back to a previous version",
+                "processStepType" : "rollback",
+                "rollbackType" : "environment",
+                "smartRollback" : "1"
+              },
+              {
+                "name": "Bypass Manual Inspection",
+                "description" : "Skip manual inspection",
+                "applicationTierName": "Mobile App",
+                "processStepType": "procedure",
+                "subprocedure": "Stub",
+                "subproject": "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Manual Inspection Succeeded",
+                "description" : "If the manual inspection succeeds, report the status and continue",
+                "applicationTierName": "Mobile App",
+                "processStepType": "command",
+                "subprocedure": "RunCommand",
+                "subproject": "/plugins/EC-Core/project",
+                "commandToRun": "echo \"success!\""
+              }
+            ],
+            "processDependencies" : [
+              { "source" : "deploy mobile",
+                "target" : "Manual Inspection",
+                "branchCondition" : "$[doManualCheck]",
+                "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy mobile",
+                "target" : "Bypass Manual Inspection",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Do not manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Rollback if failure",
+                "branchType" : "ERROR"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Manual Inspection Succeeded",
+                "branchType" : "SUCCESS"
+              }
+            ]
+          }
+        ],
+        "tierMaps" : [
+          { "applicationName" : "Mobile",
+            "environmentName" : "dev",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
+            "environmentName" : "qa",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
+            "environmentName" : "preprod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mobile",
+            "environmentName" : "prod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "Mobile App",
+                "environmentTierName" : "MobileTier"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "Mainframe",
+        "description" : "Single-tier mainframe application",
+        "applicationTiers" : [
+          {
+            "name" : "MF App",
+            "components" : [
+              {
+                "name" : "mainframe",
+                "description" : "One of the web components",
+                "groupId" : "@@GROUPID@@",
+                "artifactId" : "mainframe",
+                "processes" : [
+                  {
+                    "name" : "deploy",
+                    "description" : "This component process specifies the web1 component deploy operation.",
+                    "processType" : "DEPLOY",
+                    "processSteps" : [
+                      { "name" : "acquire artifact",
+                        "description" : "Pull the artifact from our repository",
+                        "processStepType" : "component",
+                        "actualParameters": [
+                          {"name" : "artifactName", "value" : "$[/myComponent/ec_content_details/artifactName]"},
+                          {"name" : "artifactVersionLocationProperty", "value" : "$[/myComponent/ec_content_details/artifactVersionLocationProperty]"},
+                          {"name" : "filterList", "value" : "$[/myComponent/ec_content_details/filterList]"},
+                          {"name" : "overwrite", "value" : "$[/myComponent/ec_content_details/overwrite]"},
+                          {"name" : "retrieveToDirectory", "value" : "$[/myComponent/ec_content_details/retrieveToDirectory]"},
+                          {"name" : "versionRange", "value" : "$[/myJob/ec_mainframe-version]"}
+                        ],
+                        "subprocedure" : "Retrieve",
+                        "subproject" : "/plugins/EC-Artifact/project"
+                      },
+                      { "name" : "deployit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ],
+                    "processDependencies" : [
+                      { "source" : "acquire artifact",
+                        "target" : "deployit",
+                        "branchtype" : "ALWAYS"
+                      }
+                    ]
+                  },
+                  {
+                    "name" : "undeploy",
+                    "description" : "This component process specifies the web1 component undeploy operation.",
+                    "processType" : "UNDEPLOY",
+                    "processStepType" : "procedure",
+                    "processSteps" : [
+                      { "name" : "removeit",
+                        "description" : "deploy the software",
+                        "processStepType" : "procedure",
+                        "subprocedure" : "Stub",
+                        "subproject" : "@@PROJECTNAMETOKEN@@"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "processes" : [
+          {
+            "name" : "Deploy Application",
+            "description" : "An application-level process that deploys multiple components",
+            "processType" : "DEPLOY",
+            "formalParameters": [
+              {
+                "name" : "doManualCheck",
+                "type" : "checkbox",
+                "description" : "Enable if we should manually check the deployment",
+                "defaultValue" : "false",
+                "orderIndex" : "1",
+                "label" : "Do Manual Check?",
+                "expansionDeferred" : "0",
+                "checkedValue" : "true",
+                "initiallyChecked" : "false",
+                "uncheckedValue" : "false"
+              }
+            ],
+            "processSteps" : [
+              {
+                "name" : "deploy mainframe",
+                "description" : "Execute the mainframe Component process",
+                "applicationTierName" : "MF App",
+                "processStepType" : "process",
+                "subcomponent" : "mainframe",
+                "subcomponentProcess" : "deploy"
+              },
+              {
+                "name" : "Manual Inspection",
+                "description" : "Here we ask the user to evaluate the next steps",
+                "instruction" : "Inspect the system",
+                "notificationTemplate" : "ec_default_manual_retry_process_step_notification_template",
+                "processStepType" : "manual",
+                "assignee" : [ "marco" ]
+              },
+              {
+                "name" : "Rollback if failure",
+                "description" : "If the manual inspection fails, roll back to a previous version",
+                "processStepType" : "rollback",
+                "rollbackType" : "environment",
+                "smartRollback" : "1"
+              },
+              {
+                "name": "Bypass Manual Inspection",
+                "description" : "Skip manual inspection",
+                "applicationTierName": "MF App",
+                "processStepType": "procedure",
+                "subprocedure": "Stub",
+                "subproject": "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Manual Inspection Succeeded",
+                "description" : "If the manual inspection succeeds, report the status and continue",
+                "applicationTierName": "MF App",
+                "processStepType": "command",
+                "subprocedure": "RunCommand",
+                "subproject": "/plugins/EC-Core/project",
+                "commandToRun": "echo \"success!\""
+              }
+            ],
+            "processDependencies" : [
+              { "source" : "deploy mainframe",
+                "target" : "Manual Inspection",
+                "branchCondition" : "$[doManualCheck]",
+                "branchConditionName" : "Do manual check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "deploy mainframe",
+                "target" : "Bypass Manual Inspection",
+                "branchCondition" : "!$[doManualCheck]",
+                "branchConditionName" : "Do not do Manual Check",
+                "branchConditionType" : "CUSTOM",
+                "branchType" : "ALWAYS"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Rollback if failure",
+                "branchType" : "ERROR"
+              },
+              { "source" : "Manual Inspection",
+                "target" : "Manual Inspection Succeeded",
+                "branchType" : "SUCCESS"
+              }
+            ]
+          }
+        ],
+        "tierMaps" : [
+          { "applicationName" : "Mainframe",
+            "environmentName" : "dev",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "qa",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "stage",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "preprod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          },
+          { "applicationName" : "Mainframe",
+            "environmentName" : "prod",
+            "tierMappings" : [
+              {
+                "applicationTierName" : "MF App",
+                "environmentTierName" : "MainframeTier"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+
+    "pipelines" : [
+      {
+        "name": "Multi application pipeline",
+        "description" : "Example of a pipeline that happens to work through multiple applications at once using multiple features",
+
+        "formalParameters": [
+          {
+            "name" : "doSnapshot",
+            "type" : "checkbox",
+            "description" : "Enable if we should take a snapshot on each deployment",
+            "defaultValue" : "true",
+            "orderIndex" : "1",
+            "label" : "Take snapshot?",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "false",
+            "uncheckedValue" : "false"
+          },
+          {
+            "name" : "enableGates",
+            "type" : "checkbox",
+            "description" : "Enable if we should enable gates in this run",
+            "defaultValue" : "true",
+            "orderIndex" : "2",
+            "label" : "Enable Gates?",
+            "expansionDeferred" : "0",
+            "checkedValue" : "true",
+            "initiallyChecked" : "false",
+            "uncheckedValue" : "false"
+          },
+          {
+            "name" : "snapshotVersion",
+            "type" : "entry",
+            "defaultValue" : "1.0",
+            "description" : "The version of the snapshot to deploy in the pipeline",
+            "expansionDeferred" : "0",
+            "label" : "Snapshot Version?",
+            "orderIndex" : "3",
+            "required" : "true"
+          }
+        ],
+
+        "stages": [
+          {
+            "name": "DEV",
+            "description" : "This stage contains entry points to illustrate different types of tasks",
+            "gates" : [
+              {
+                "gateType" : "POST",
+                "task" :
+                {
+                  "name" : "Gate out of First Stage",
+                  "description" : "Show an approval gate out of a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco",
+                  "condition" : "$[enableGates]"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Group",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Deploy-Web",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "dev",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "ws-$[snapshotVersion]",
+                "subapplication" : "Web Site",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mobile",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "dev",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mo-$[snapshotVersion]",
+                "subapplication" : "Mobile",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mainframe",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "dev",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mf-$[snapshotVersion]",
+                "subapplication" : "Mainframe",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Create Configuration File",
+                "description": "Run a plugin",
+                "taskType": "PLUGIN",
+                "subpluginKey": "EC-FileOps",
+                "subprocedure": "CreateEmptyFile",
+                "actualParameters": [
+                  { "name": "Name", "value": "foo.txt" }
+                ],
+                "condition" : "true"
+              },
+              {
+                "name": "Run Configuration Script",
+                "description" : "Run a procedure",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Configure File",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Functional Tests",
+                "description" : "Test the functionality of the latest software changes",
+                "taskType" : "COMMAND",
+                "commandToRun" : "echo \"Hello world\""
+              },
+              {
+                "name": "Manual Inspection",
+                "description" : "Manual intervention",
+                "taskType" : "MANUAL",
+                "instruction" : "Approve to continue the pipeline",
+                "notificationTemplate" : "ec_default_pipeline_manual_task_notification_template",
+                "approver" : [ "admin", "marco" ]
+              },
+              {
+                "name": "Utility - Create Snapshot - web site",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "Web Site"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "website-$[/increment /myProject/snapshots/website]"}
+                ]
+              },
+              {
+                "name": "Utility - Create Snapshot - mobile",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "Mobile"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "mobile-$[/increment /myProject/snapshots/mobile]"}
+                ]
+              },
+              {
+                "name": "Utility - Create Snapshot - mainframe",
+                "description" : "Run a utility function",
+                "condition" : "$[doSnapshot]",
+                "taskType" : "UTILITY",
+                "subpluginKey" : "EF-Utilities",
+                "subprocedure" : "Create Snapshot",
+                "actualParameters" : [
+                  {"name" : "ApplicationName", "value" : "Mainframe"},
+                  {"name" : "EnvironmentName", "value" : "dev"},
+                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
+                  {"name" : "Overwrite", "value" : "true"},
+                  {"name" : "ProjectName", "value" : "$[/myProject]"},
+                  {"name" : "ServiceName", "value" : ""},
+                  {"name" : "SnapshotName", "value" : "mainframe-$[/increment /myProject/snapshots/mainframe]"}
+                ]
+              }
+            ]
+          },
+          {
+            "name": "QA",
+            "description" : "This stage contains variations of task conditions, groups, and more",
+            "gates" : [
+              {
+                "gateType" : "PRE",
+                "task" :
+                {
+                  "name" : "Gate into the Second Stage",
+                  "description" : "Show an approval gate into a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Group",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Deploy-Web",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "website-$[/myProject/snapshots/website]",
+                "subapplication" : "Web Site",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mobile",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
+                "subapplication" : "Mobile",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mainframe",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "qa",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
+                "subapplication" : "Mainframe",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Integration Test",
+                "description" : "Test the deployed software for integrations",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Integration Test",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              }
+            ]
+          },
+          {
+            "name": "STAGE",
+            "description" : "This stage contains variations of task conditions, groups, and more",
+            "gates" : [
+              {
+                "gateType" : "PRE",
+                "task" :
+                {
+                  "name" : "Gate into the PROD Stage",
+                  "description" : "Show an approval gate into a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Group",
+                "description" : "Group the software into one",
+                "taskType" : "GROUP",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "Deploy-Web",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "website-$[/myProject/snapshots/website]",
+                "subapplication" : "Web Site",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mobile",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
+                "subapplication" : "Mobile",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Deploy-Mainframe",
+                "description" : "Deploy an Application",
+                "taskType" : "PROCESS",
+                "groupName" : "Deploy Group",
+                "environmentName" : "stage",
+                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "advancedMode" : "1",
+                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
+                "subapplication" : "Mainframe",
+                "subprocess" : "Deploy Application",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "taskProcessType" : "APPLICATION",
+                "actualParameters" : [
+                  { "name": "ec_enforceDependencies", "value" : "0" },
+                  { "name": "ec_smartDeployOption", "value" : "0" },
+                  { "name": "ec_stageArtifacts", "value" : "0" }
+                ]
+              },
+              {
+                "name": "Regression Tests",
+                "description" : "Test the deployed software to detect regressions",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Regression Test",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+
+  },
+
+  "resources" : [
+    { "name" : "@@PROJECTNAMETOKEN@@-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod1", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-preprod2", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod1", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod2", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-prod3", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mobile-prod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-dev", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-qa", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-stage", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-preprod", "hostName" : "localhost" },
+    { "name" : "@@PROJECTNAMETOKEN@@-mainframe-prod", "hostName" : "localhost" }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "projectName" : "Default",
+  "releaseName" : "Online Banking 6.9",
+  "applicationName": "OB - Account Statements",
+  "environmentName": "Banking-STG",
+  "recreateRelease": true,
+  "plannedStartDate": "2017-09-01",
+  "plannedEndDate": "2017-12-31",
+  "createDeployments" : true,
+  "build": {
+    "lastNumberOfDays": 2,
+    "durationInMillis": 63000000,
+    "trendUp": true,
+    "successCount": 10,
+    "failureCount": 0
+  },
+  "systemTest": {
+    "lastNumberOfDays": 1,
+    "durationInMillis": 15000000000,
+    "trendUp": true,
+    "successCount": 10,
+    "failureCount": 2
+  },
+  "unitTest": {
+    "lastNumberOfDays": 2,
+    "durationInMillis": 90000000,
+    "trendUp": true,
+    "successCount": 300,
+    "failureCount": 25
+  },
+  "environments": [
+    {
+      "environmentName": "Banking-STG",
+      "successCount": 120,
+      "errorCount": 22,
+      "abortCount": 5,
+      "rollbackCount": 2,
+      "lastNumberOfDays": 60,
+      "dayOffSet": 0,
+      "durationInSeconds": 180
+    },
+    {"environmentName": "Banking-INT",
+      "successCount": 14,
+      "errorCount": 5,
+      "abortCount": 2,
+      "rollbackCount": 1,
+      "lastNumberOfDays": 60,
+      "dayOffSet": 0,
+      "durationInSeconds": 360
+    },
+    {
+      "environmentName": "Banking-PROD",
+      "successCount": 2,
+      "errorCount": 1,
+      "abortCount": 0,
+      "rollbackCount": 2,
+      "lastNumberOfDays": 60,
+      "dayOffSet": 0,
+      "durationInSeconds": 240
+    }
+  ]
+}

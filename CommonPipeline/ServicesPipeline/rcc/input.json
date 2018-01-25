@@ -1,0 +1,48 @@
+{
+  "builds" : [
+    {
+      "projectName" : "MultiApplicationRelease",
+      "releaseName" : "January Release",
+      "applicationName": "Web Site",
+      "environmentName": "prod",
+      "buildStatus": "SUCCESS",
+      "duration" : "75000000",
+      "endTime": "2018-01-12T17:26:44.126",
+      "pluginConfiguration": "config",
+      "pluginName": "EC-Jenkins",
+      "sourceUrl": "http://10.200.1.210:8080/job/HelloWorld",
+      "startTime": "2018-01-11T20:36:44.126",
+      "timestamp": "2018-01-11T20:36:44.126"
+    }
+  ],
+  "tests" : [
+    {
+      "projectName" : "MultiApplicationRelease",
+      "releaseName": "January Release",
+      "releaseProjectName": "MultiApplicationRelease",
+      "category": "system-test",
+      "failedTests": "1",
+      "duration" : "125000000",
+      "pluginName": "EC-ALM",
+      "pluginConfiguration": "config",
+      "source": "HPALM",
+      "sourceUrl": "http://10.200.1.210:8080/qcbin/domain",
+      "successfulTests": "17",
+      "timestamp": "2018-01-11T20:36:44.126"
+    },
+    {
+      "projectName" : "MultiApplicationRelease",
+      "releaseName": "January Release",
+      "releaseProjectName": "MultiApplicationRelease",
+      "category": "unit-test",
+      "failedTests": "1",
+      "duration" : "25000000",
+      "pluginName": "EC-Jenkins",
+      "pluginConfiguration": "config",
+      "source": "Jenkins",
+      "sourceUrl": "http://10.200.1.210:8080/job/HelloWorld/1",
+      "successfulTests": "13",
+      "timestamp": "2018-01-11T20:36:44.126"
+    }
+  ]
+}

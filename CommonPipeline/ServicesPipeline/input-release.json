@@ -1,0 +1,281 @@
+{
+  "project" : {
+    "name" : "@@PROJECTNAMETOKEN@@",
+    "description" : "Example of a Release Pipeline",
+
+    "pipelines" : [
+      {
+        "name": "Release Pipeline",
+        "description" : "Release Pipeline for a multi-application example",
+        "releaseName" : "January Release",
+
+        "formalParameters": [
+        ],
+
+        "stages": [
+          {
+            "name": "Pre-Prod",
+            "description" : "This stage contains entry points to illustrate different types of tasks",
+            "colorCode" : "#ff8040",
+            "completionType" : "auto",
+            "gates" : [
+              {
+                "gateType" : "POST",
+                "task" :
+                {
+                  "name" : "Gate out of First Stage",
+                  "description" : "Show an approval gate out of a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco",
+                  "condition" : "true"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Applications",
+                "description" : "Deployer step for multiple applications",
+                "taskType" : "DEPLOYER",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "deployerRunType" : "serial"
+              },
+              {
+                "name": "System Test",
+                "description" : "Test the deployed software",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              }
+            ]
+          },
+          {
+            "name": "PROD",
+            "description" : "This stage contains variations of task conditions, groups, and more",
+            "colorCode" : "#00ff00",
+            "completionType" : "auto",
+            "gates" : [
+              {
+                "gateType" : "PRE",
+                "task" :
+                {
+                  "name" : "Gate into the Second Stage",
+                  "description" : "Show an approval gate into a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Applications",
+                "description" : "Deployer step for multiple applications",
+                "taskType" : "DEPLOYER",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              },
+              {
+                "name": "System Test",
+                "description" : "Test the deployed software",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "releases" : [
+      {
+        "name" : "January Release",
+        "description" : "January release showing multiple applications",
+        "plannedEndDate" : "2018-01-31",
+        "plannedStartDate" : "2018-01-08",
+        "templatePipelineName" : "Release Pipeline",
+        "templatePipelineProjectName" : "MultiApplicationRelease",
+        "pipelineName" : "Release Pipeline",
+
+        "deployerApplications" : [
+          {
+            "name" : "Web Site",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Website-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Website-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mobile",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Mobile-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Mobile-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mainframe",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Mainframe-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Mainframe-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod",
+                "actualParameters" : [
+                  { "name": "doManualCheck", "value" : "true" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "February Release",
+        "description" : "January release showing multiple applications",
+        "plannedEndDate" : "2018-02-28",
+        "plannedStartDate" : "2018-02-01",
+        "templatePipelineName" : "Release Pipeline",
+        "templatePipelineProjectName" : "MultiApplicationRelease",
+        "pipelineName" : "Release Pipeline",
+
+        "deployerApplications" : [
+          {
+            "name" : "Web Site",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Feb-Website-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Feb-Website-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mobile",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Feb-Mobile-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Feb-Mobile-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mainframe",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Feb-Mainframe-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Feb-Mainframe-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod",
+                "actualParameters" : [
+                  { "name": "doManualCheck", "value" : "true" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "March Release",
+        "description" : "March release showing multiple applications",
+        "plannedEndDate" : "2018-03-31",
+        "plannedStartDate" : "2018-03-01",
+        "templatePipelineName" : "Release Pipeline",
+        "templatePipelineProjectName" : "MultiApplicationRelease",
+        "pipelineName" : "Release Pipeline",
+
+        "deployerApplications" : [
+          {
+            "name" : "Web Site",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Mar-Website-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Mar-Website-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mobile",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Mar-Mobile-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Mar-Mobile-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mainframe",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Mar-Mainframe-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Mar-Mainframe-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod",
+                "actualParameters" : [
+                  { "name": "doManualCheck", "value" : "true" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

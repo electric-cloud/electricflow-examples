@@ -1,0 +1,53 @@
+{
+  "projectName" : "@@PROJECTNAMETOKEN@@",
+  "releaseName" : "@@RELEASENAMETOKEN@@",
+  "applicationName": "@@APPLICATIONNAMETOKEN@@",
+  "environmentName": "prod",
+  "recreateRelease": true,
+  "plannedStartDate": "2018-01-10",
+  "plannedEndDate": "2018-01-31",
+  "createDeployments" : false,
+  "build": {
+    "lastNumberOfDays": 4,
+    "durationInMillis": 75000000,
+    "trendUp": true,
+    "successCount": 10,
+    "failureCount": 1
+  },
+  "systemTest": {
+    "lastNumberOfDays": 5,
+    "durationInMillis": 65000000000,
+    "trendUp": true,
+    "successCount": 7,
+    "failureCount": 3
+  },
+  "unitTest": {
+    "lastNumberOfDays": 2,
+    "durationInMillis": 55000000,
+    "trendUp": true,
+    "successCount": 300,
+    "failureCount": 25
+  },
+  "incident": {
+    "lastNumberOfDays": 10,
+    "durationInMillis": 864000000,
+    "trendUp": true,
+    "openCount": 3,
+    "closedCount": 2
+  },
+  "feature": {
+    "lastNumberOfDays": 2,
+    "durationInMillis": 1200000000,
+    "trendUp": true,
+    "openCount": 25,
+    "percentWithStoryPoints" : 87,
+    "closedCount": 0
+  },
+  "defect": {
+    "lastNumberOfDays": 2,
+    "durationInMillis": 44100000,
+    "trendUp": false,
+    "openCount": 15,
+    "closedCount": 0
+  }
+}
