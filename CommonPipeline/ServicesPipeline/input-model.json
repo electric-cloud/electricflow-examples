@@ -1010,56 +1010,18 @@
                 "subproject" : "@@PROJECTNAMETOKEN@@"
               },
               {
-                "name": "Deploy-Web",
-                "description" : "Deploy an Application",
+                "name": "Deploy-Front End",
+                "description" : "Deploy Front-End Service",
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
-                "environmentName" : "dev",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
+                "environmentName" : "ww-cluster-dev",
+                "environmentProjectName": "@@SERVICEPROJECTNAMETOKEN@@",
                 "advancedMode" : "1",
                 "snapshotName" : "ws-$[snapshotVersion]",
-                "subapplication" : "Web Site",
+                "subservice" : "Front End",
                 "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mobile",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "dev",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mo-$[snapshotVersion]",
-                "subapplication" : "Mobile",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mainframe",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "dev",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mf-$[snapshotVersion]",
-                "subapplication" : "Mainframe",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
+                "subproject" : "@@SERVICEPROJECTNAMETOKEN@@",
+                "taskProcessType" : "SERVICE",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" },
                   { "name": "ec_smartDeployOption", "value" : "0" },
@@ -1097,57 +1059,6 @@
                 "instruction" : "Approve to continue the pipeline",
                 "notificationTemplate" : "ec_default_pipeline_manual_task_notification_template",
                 "approver" : [ "admin", "marco" ]
-              },
-              {
-                "name": "Utility - Create Snapshot - web site",
-                "description" : "Run a utility function",
-                "condition" : "$[doSnapshot]",
-                "taskType" : "UTILITY",
-                "subpluginKey" : "EF-Utilities",
-                "subprocedure" : "Create Snapshot",
-                "actualParameters" : [
-                  {"name" : "ApplicationName", "value" : "Web Site"},
-                  {"name" : "EnvironmentName", "value" : "dev"},
-                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
-                  {"name" : "Overwrite", "value" : "true"},
-                  {"name" : "ProjectName", "value" : "$[/myProject]"},
-                  {"name" : "ServiceName", "value" : ""},
-                  {"name" : "SnapshotName", "value" : "website-$[/increment /myProject/snapshots/website]"}
-                ]
-              },
-              {
-                "name": "Utility - Create Snapshot - mobile",
-                "description" : "Run a utility function",
-                "condition" : "$[doSnapshot]",
-                "taskType" : "UTILITY",
-                "subpluginKey" : "EF-Utilities",
-                "subprocedure" : "Create Snapshot",
-                "actualParameters" : [
-                  {"name" : "ApplicationName", "value" : "Mobile"},
-                  {"name" : "EnvironmentName", "value" : "dev"},
-                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
-                  {"name" : "Overwrite", "value" : "true"},
-                  {"name" : "ProjectName", "value" : "$[/myProject]"},
-                  {"name" : "ServiceName", "value" : ""},
-                  {"name" : "SnapshotName", "value" : "mobile-$[/increment /myProject/snapshots/mobile]"}
-                ]
-              },
-              {
-                "name": "Utility - Create Snapshot - mainframe",
-                "description" : "Run a utility function",
-                "condition" : "$[doSnapshot]",
-                "taskType" : "UTILITY",
-                "subpluginKey" : "EF-Utilities",
-                "subprocedure" : "Create Snapshot",
-                "actualParameters" : [
-                  {"name" : "ApplicationName", "value" : "Mainframe"},
-                  {"name" : "EnvironmentName", "value" : "dev"},
-                  {"name" : "EnvironmentProjectName", "value" : "$[/myProject]"},
-                  {"name" : "Overwrite", "value" : "true"},
-                  {"name" : "ProjectName", "value" : "$[/myProject]"},
-                  {"name" : "ServiceName", "value" : ""},
-                  {"name" : "SnapshotName", "value" : "mainframe-$[/increment /myProject/snapshots/mainframe]"}
-                ]
               }
             ]
           },
@@ -1184,44 +1095,6 @@
                 "advancedMode" : "1",
                 "snapshotName" : "website-$[/myProject/snapshots/website]",
                 "subapplication" : "Web Site",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mobile",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "qa",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
-                "subapplication" : "Mobile",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mainframe",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "qa",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
-                "subapplication" : "Mainframe",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
                 "taskProcessType" : "APPLICATION",
@@ -1273,44 +1146,6 @@
                 "advancedMode" : "1",
                 "snapshotName" : "website-$[/myProject/snapshots/website]",
                 "subapplication" : "Web Site",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mobile",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "stage",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mobile-$[/myProject/snapshots/mobile]",
-                "subapplication" : "Mobile",
-                "subprocess" : "Deploy Application",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "taskProcessType" : "APPLICATION",
-                "actualParameters" : [
-                  { "name": "ec_enforceDependencies", "value" : "0" },
-                  { "name": "ec_smartDeployOption", "value" : "0" },
-                  { "name": "ec_stageArtifacts", "value" : "0" }
-                ]
-              },
-              {
-                "name": "Deploy-Mainframe",
-                "description" : "Deploy an Application",
-                "taskType" : "PROCESS",
-                "groupName" : "Deploy Group",
-                "environmentName" : "stage",
-                "environmentProjectName": "@@PROJECTNAMETOKEN@@",
-                "advancedMode" : "1",
-                "snapshotName" : "mainframe-$[/myProject/snapshots/mainframe]",
-                "subapplication" : "Mainframe",
                 "subprocess" : "Deploy Application",
                 "subproject" : "@@PROJECTNAMETOKEN@@",
                 "taskProcessType" : "APPLICATION",
