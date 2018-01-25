@@ -92,6 +92,36 @@
           },
           {
             "serviceName" : "Front End Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Front End Service",
+            "environmentName" : "ww-cluster-preprod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Front End Service",
             "environmentName" : "ww-cluster-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
@@ -205,6 +235,36 @@
           },
           {
             "serviceName" : "Payment Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Payment Service",
+            "environmentName" : "ww-cluster-preprod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Payment Service",
             "environmentName" : "ww-cluster-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
@@ -291,6 +351,36 @@
           {
             "serviceName" : "RabbitMQ Service",
             "environmentName" : "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "RabbitMQ Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "RabbitMQ Service",
+            "environmentName" : "ww-cluster-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -418,6 +508,36 @@
           },
           {
             "serviceName" : "Shipping Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Shipping Service",
+            "environmentName" : "ww-cluster-preprod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Shipping Service",
             "environmentName" : "ww-cluster-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
@@ -514,6 +634,36 @@
           {
             "serviceName" : "QueueMaster Service",
             "environmentName" : "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "QueueMaster Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "QueueMaster Service",
+            "environmentName" : "ww-cluster-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [

@@ -71,6 +71,32 @@
         ]
       },
       {
+        "name" : "ww-cluster-stage",
+        "clusters" : [
+          {
+            "name" : "openshiftcluster",
+            "pluginKey" : "EC-OpenShift",
+            "provisionParameter" : {
+              "config": "complex-demo",
+              "project": "ww-demo-stage"
+            }
+          }
+        ]
+      },
+      {
+        "name" : "ww-cluster-preprod",
+        "clusters" : [
+          {
+            "name" : "openshiftcluster",
+            "pluginKey" : "EC-OpenShift",
+            "provisionParameter" : {
+              "config": "complex-demo",
+              "project": "ww-demo-preprod"
+            }
+          }
+        ]
+      },
+      {
         "name" : "ww-cluster-prod",
         "clusters" : [
           {
