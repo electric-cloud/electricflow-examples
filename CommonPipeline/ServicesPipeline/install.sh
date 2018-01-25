@@ -8,12 +8,12 @@ MYRELJSONFILE=release-model.json
 
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" \
-    -e "s/@@SERVICESPROJECTNAMETOKEN@@/$SERVICESPROJECTNAME/" \
+    -e "s/@@SERVICEPROJECTNAMETOKEN@@/$SERVICESPROJECTNAME/" \
     -e "s/@@GROUPID@@/$GROUPID/" input-model.json > $MYJSONFILE
 
 # Replace tokens with real names
 sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" \
-    -e "s/@@SERVICESPROJECTNAMETOKEN@@/$SERVICESPROJECTNAME/" \
+    -e "s/@@SERVICEPROJECTNAMETOKEN@@/$SERVICESPROJECTNAME/" \
     -e "s/@@GROUPID@@/$GROUPID/" input-release.json > $MYRELJSONFILE
 
 ./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
