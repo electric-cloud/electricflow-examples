@@ -11,6 +11,8 @@ if [ ! -d Unplug ] ; then
 else
 	echo "Unplug present, performing an update."
 	cd Unplug
+	git fetch --all
+	git reset --hard origin/master
 	git pull
 fi
 

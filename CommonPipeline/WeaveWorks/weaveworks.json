@@ -175,10 +175,10 @@
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
                 "environmentName" : "ww-cluster-dev",
-                "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
+                "environmentProjectName" : "@@SERVICEPROJECTNAMETOKEN@@",
                 "subservice" : "Front End Service",
                 "subprocess" : "Deploy Front End Service",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@SERVICEPROJECTNAMETOKEN@@",
                 "actualParameters" : [
                   { "name": "ec_enforceDependencies", "value" : "0" }
                 ]
