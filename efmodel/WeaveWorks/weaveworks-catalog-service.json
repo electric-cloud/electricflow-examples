@@ -1,0 +1,193 @@
+{
+  "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
+    "services": [
+      {
+        "name": "Catalogue Service",
+        "description": "The catalogue service",
+        "containers": [
+          {
+            "name": "catalogue",
+            "description": "Catalogue Service",
+            "command": "null",
+            "cpuCount": "1",
+            "cpuLimit": "1",
+            "credentialName": "null",
+            "entryPoint": "null",
+            "imageName": "weaveworksdemos/catalogue",
+            "imageVersion": "0.3.5",
+            "memoryLimit": "100",
+            "memorySize": "100",
+            "registryUri": "null",
+            "serviceName": "catalogue",
+            "environmentVariables": [
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "http://zipkin.zipkin.svc.cluster.local:9411/api/v1/spans"
+              }
+            ],
+            "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
+            ]
+          },
+          {
+            "name": "catalogue-db",
+            "description": "Catalog DB Service",
+            "command": "null",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "weaveworksdemos/catalogue-db",
+            "imageVersion": "0.3.0",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "catalogue-db",
+            "environmentVariables": [
+              {
+                "name": "MYSQL_ALLOW_EMPTY_PASSWORD",
+                "type": "string",
+                "value": "true"
+              },
+              {
+                "name": "MYSQL_DATABASE",
+                "type": "string",
+                "value": "socksdb"
+              },
+              {
+                "name": "MYSQL_ROOT_PASSWORD",
+                "type": "string",
+                "value": "fake_password"
+              }
+            ],
+            "ports": [
+              {
+                "name": "mysql",
+                "containerPort": "3306"
+              }
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy catalogue service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy catalog",
+                "processStepType": "service",
+                "description": "Deploy the catalogue services",
+                "subservice": "Catalogue Service",
+                "container": "catalogue"
+              },
+              {
+                "name": "deploy catalog-db",
+                "processStepType": "service",
+                "description": "Deploy the catalogue-db services",
+                "subservice": "Catalogue Service",
+                "container": "catalogue-db"
+              }
+            ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "servicecataloguemysql",
+            "listenerPort": "3306",
+            "subcontainer": "catalogue-db",
+            "subport": "mysql"
+          },
+          {
+            "name": "servicecataloguehttp",
+            "listenerPort": "1025",
+            "subcontainer": "catalogue",
+            "subport": "http"
+          }
+        ],
+        "environmentMaps": [
+          {
+            "serviceName" : "Catalogue Service",
+            "environmentName" : "ww-cluster-dev",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Catalogue Service",
+            "environmentName" : "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Catalogue Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Catalogue Service",
+            "environmentName" : "ww-cluster-preprod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Catalogue Service",
+            "environmentName" : "ww-cluster-prod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

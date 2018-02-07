@@ -1,0 +1,197 @@
+{
+  "project": {
+    "name" : "@@PROJECTNAMETOKEN@@",
+    "services": [
+      {
+        "name": "Carts Service",
+        "description": "The carts service",
+        "containers": [
+          {
+            "name": "carts",
+            "description": "Carts Service",
+            "command": "null",
+            "cpuCount": "0.3",
+            "cpuLimit": "0.3",
+            "credentialName": "null",
+            "entryPoint": "crond",
+            "imageName": "weaveworksdemos/carts",
+            "imageVersion": "0.4.8",
+            "memoryLimit": "1000",
+            "memorySize": "100",
+            "registryUri": "null",
+            "serviceName": "carts",
+            "environmentVariables": [
+              {
+                "name": "JAVA_OPTS",
+                "type": "string",
+                "value": "-Xms64m -Xmx128m -XX:PermSize=32m -XX:MaxPermSize=64m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom"
+              },
+              {
+                "name": "ZIPKIN",
+                "type": "string",
+                "value": "zipkin.zipkin.svc.cluster.local"
+              }
+            ],
+            "ports": [
+              {
+                "name": "http",
+                "containerPort": "80"
+              }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
+            ]
+          },
+          {
+            "name": "cartsdb",
+            "description": "Carts DB Service",
+            "command": "null",
+            "cpuCount": "null",
+            "cpuLimit": "null",
+            "credentialName": "null",
+            "entryPoint": "null",
+            "imageName": "mongo",
+            "imageVersion": "null",
+            "memoryLimit": "null",
+            "memorySize": "null",
+            "registryUri": "null",
+            "serviceName": "cartsdb",
+            "environmentVariables": [
+            ],
+            "ports": [
+              {
+                "name": "dbport",
+                "containerPort": "27017"
+              }
+            ],
+            "volumeMounts" : [
+              "[{\"name\" : \"tmp-volume\", \"mountPath\" : \"/tmp\"}]"
+            ]
+          }
+        ],
+        "processes": [
+          {
+            "name": "Deploy carts service",
+            "description": "An service-level process that deploys microservices",
+            "processType": "DEPLOY",
+            "processSteps": [
+              {
+                "name": "deploy carts",
+                "processStepType": "service",
+                "description": "Deploy the carts services",
+                "subservice": "Carts Service",
+                "container": "carts"
+              },
+              {
+                "name": "deploy cartsdb",
+                "processStepType": "service",
+                "description": "Deploy the cartsdb services",
+                "subservice": "Carts Service",
+                "container": "cartsdb"
+              }
+            ]
+          }
+        ],
+        "ports": [
+          {
+            "name": "servicecartsdb",
+            "listenerPort": "27017",
+            "subcontainer": "cartsdb",
+            "subport": "dbport"
+          },
+          {
+            "name": "servicecartshttp",
+            "listenerPort": "80",
+            "subcontainer": "carts",
+            "subport": "http"
+          }
+        ],
+        "environmentMaps": [
+          {
+            "serviceName" : "Carts Service",
+            "environmentName" : "ww-cluster-dev",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ],
+              "ports": [
+                {
+                  "name": "servicecartsdbmap",
+                  "listenerPort": "27020",
+                  "subcontainer": "cartsdb",
+                  "subport": "dbport"
+                }
+              ]
+            }
+          },
+          {
+            "serviceName" : "Carts Service",
+            "environmentName" : "ww-cluster-qa",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Carts Service",
+            "environmentName" : "ww-cluster-stage",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Carts Service",
+            "environmentName" : "ww-cluster-preprod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          },
+          {
+            "serviceName" : "Carts Service",
+            "environmentName" : "ww-cluster-prod",
+            "clusterName" : "openshiftcluster",
+            "serviceClusterMapping" : {
+              "actualParameters" : [
+                { "name" : "requestType", "text" : "create" },
+                { "name" : "serviceType", "text" : "NodePort" }
+              ],
+              "serviceMapDetail" : [
+                {"name" : "cpuCount", "text" : "1"},
+                {"name" : "cpuLimit", "text" : "2"}
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

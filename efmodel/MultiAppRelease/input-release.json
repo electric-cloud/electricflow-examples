@@ -14,6 +14,42 @@
 
         "stages": [
           {
+            "name": "Sandbox",
+            "description" : "This stage contains entry points to illustrate different types of tasks",
+            "colorCode" : "#ff8040",
+            "completionType" : "auto",
+            "gates" : [
+              {
+                "gateType" : "POST",
+                "task" :
+                {
+                  "name" : "Gate out of First Stage",
+                  "description" : "Show an approval gate out of a stage",
+                  "taskType" : "APPROVAL",
+                  "approver" : "marco",
+                  "condition" : "true"
+                }
+              }
+            ],
+            "tasks": [
+              {
+                "name": "Deploy Applications",
+                "description" : "Deployer step for multiple applications",
+                "taskType" : "DEPLOYER",
+                "projectName" : "@@PROJECTNAMETOKEN@@",
+                "subproject" : "@@PROJECTNAMETOKEN@@",
+                "deployerRunType" : "serial"
+              },
+              {
+                "name": "Sandbox Test",
+                "description" : "Test the deployed software",
+                "taskType" : "PROCEDURE",
+                "subprocedure" : "Stub",
+                "subproject" : "@@PROJECTNAMETOKEN@@"
+              }
+            ]
+          },
+          {
             "name": "Pre-Prod",
             "description" : "This stage contains entry points to illustrate different types of tasks",
             "colorCode" : "#ff8040",
