@@ -52,7 +52,7 @@ done
 
 if [ $CONFIG = "1" ] ; then
     echo "Add configurations via DSL"
-    efmodel.sh -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
+    efmodel.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
 
     echo "Add passwords to configurations"
     ectool modifyEmailConfig "gmail" --mailUserPassword < passwords/password-email-gmail.txt
