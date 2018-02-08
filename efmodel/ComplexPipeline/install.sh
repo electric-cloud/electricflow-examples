@@ -10,4 +10,4 @@ sed -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE.project > $MYJSONFILE.groupid
 cp $MYJSONFILE.groupid $MYJSONFILE
 
 ./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
-../install.sh -A -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
+efmodel.sh -A -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID

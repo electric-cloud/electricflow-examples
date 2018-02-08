@@ -15,11 +15,11 @@ WORKFLOWS=0
 JSONONLY=0
 INSTALL=0
 SCHEMA=0
-
+CONFIGURATION=0
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
-while getopts ":AtrepwaslRSi:G:f:P:" opt; do
+while getopts ":AtrepwaslRSci:G:f:P:" opt; do
   case $opt in
     A)
         TEST=1
@@ -31,6 +31,9 @@ while getopts ":AtrepwaslRSi:G:f:P:" opt; do
         SERVICES=1
         PIPELINES=1
         RELEASES=1
+        ;;
+    c)
+        CONFIGURATION=1
         ;;
     i)
         INSTALL=1
@@ -83,6 +86,7 @@ while getopts ":AtrepwaslRSi:G:f:P:" opt; do
       echo "Usage:" >&2
       echo "$0 [-A] [-i] [-c] [-t] [-r] [-e] [-p] [-w] [-a] [-s] [-p] [-R] [-P <PROJECT NAME>] [-G <GROUPID>] [-f <PARAMETERSFILE>] [-S] " >&2
       echo "  -A Do everything (trepwaspR)"
+      echo "  -c Run configuration script"
       echo "  -i <PATH> install the software to named path.  Will always exit after this step."
       echo "  -t run unit tests on the model.  No objects are modified"
       echo "  -r create resources"
@@ -127,55 +131,61 @@ fi
 # Run some essential tests to show the system works.  Good hygiene.
 if [ $TEST = "1" ] ; then
     echo "######### TESTING #########"
-    ectool evalDsl --dslFile $ROOT/test.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/test.groovy --parametersFile $PARAMETERSFILE
+fi
+
+# Run some essential tests to show the system works.  Good hygiene.
+if [ $CONFIGURATION = "1" ] ; then
+    echo "######### CONFIGURATION #########"
+    ectool evalDsl --dslFile $ROOT/efmodels/configuration.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # Create the resources needed in this project.
 if [ $RESOURCES = "1" ] ; then
     echo "######### CREATING RESOURCES #########"
-    ectool evalDsl --dslFile $ROOT/resources.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/resources.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # Create the environments needed in this project.
 if [ $ENVIRONMENTS = "1" ] ; then
     echo "######### CREATING ENVIRONMENTS #########"
-    ectool evalDsl --dslFile $ROOT/environments.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/environments.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # all of the helper procedures are defined here.  This includes stubs.  We'll refer to procedures by name.
 if [ $PROCEDURES = "1" ] ; then
     echo "######### CREATING PROCEDURES #########"
-    ectool evalDsl --dslFile $ROOT/procedures.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/procedures.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # If you have workflows, define them here.  NOTE: Helper procedures should be already defined.
 if [ $WORKFLOWS = "1" ] ; then
     echo "######### CREATING WORKFLOWS #########"
-    ectool evalDsl --dslFile $ROOT/workflows.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/workflows.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # Your application model uses existing artifacts, procedures, and environments.
 if [ $APPLICATIONS = "1" ] ; then
     echo "######### CREATING APPLICATIONS #########"
-    ectool evalDsl --dslFile $ROOT/applications.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/applications.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # Your services model uses existing procedures
 if [ $SERVICES = "1" ] ; then
     echo "######### CREATING SERVICES #########"
-    ectool evalDsl --dslFile $ROOT/services.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/services.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # The pipelines tie most things together.  One of the last steps.
 if [ $PIPELINES = "1" ] ; then
     echo "######### CREATING PIPELINES #########"
-    ectool evalDsl --dslFile $ROOT/pipelines.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/pipelines.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # When we're ready, do the same for releases.
 if [ $RELEASES = "1" ] ; then
    echo "######### RELEASE PIPELINES #########"
-   ectool evalDsl --dslFile $ROOT/pipelines.groovy --parametersFile $PARAMETERSFILE
+   ectool evalDsl --dslFile $ROOT/efmodels/pipelines.groovy --parametersFile $PARAMETERSFILE
    echo "######### RELEASES #########"
-   ectool evalDsl --dslFile $ROOT/releases.groovy --parametersFile $PARAMETERSFILE
+   ectool evalDsl --dslFile $ROOT/efmodels/releases.groovy --parametersFile $PARAMETERSFILE
 fi

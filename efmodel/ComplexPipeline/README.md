@@ -1,6 +1,6 @@
 # ComplexPipeline
 
-This definition relies on the parent project to work.  If all works well, this definition in JSON format is enough to define a Complex Pipeline with the items identified below.
+This definition relies on the successful installation of the efmodel project to work.  If all works well, this definition in JSON format is enough to define a Complex Pipeline with the items identified below.
 
 I created this project to show a pipeline with examples of all of our entry points, as well as multiple features enabled.  In short, this Pipeline contains a little bit of a lot (not a little bit of everything, because there is too much).  You will see the following items complete or _incomplete_:
 
@@ -39,7 +39,6 @@ To setup, start with these commands:
 
 ```
 ectool login admin <your password>
-TO BE DETERMINED:
-../install.sh -A
+./install.sh -A
 ```
 
