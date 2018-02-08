@@ -184,8 +184,6 @@ fi
 
 # When we're ready, do the same for releases.
 if [ $RELEASES = "1" ] ; then
-   echo "######### RELEASE PIPELINES #########"
-   ectool evalDsl --dslFile $ROOT/efmodels/pipelines.groovy --parametersFile $PARAMETERSFILE
    echo "######### RELEASES #########"
    ectool evalDsl --dslFile $ROOT/efmodels/releases.groovy --parametersFile $PARAMETERSFILE
 fi
