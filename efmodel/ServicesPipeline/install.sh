@@ -17,5 +17,5 @@ sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" \
     -e "s/@@GROUPID@@/$GROUPID/" input-release.json > $MYRELJSONFILE
 
 ./install-config.sh -c -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
-../install.sh -A -f MultiAppRelease/$MYJSONFILE -P $PROJECTNAME -G $GROUPID
-../install.sh -R -f $MYRELJSONFILE -P $PROJECTNAME -G $GROUPID
+efmodel.sh -A -f $MYJSONFILE -P $PROJECTNAME -G $GROUPID
+efmodel.sh -R -f $MYRELJSONFILE -P $PROJECTNAME -G $GROUPID
