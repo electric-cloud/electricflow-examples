@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # This script runs deployments for a first-time initialiation of the environment.
 # We run through several deployments, create several snapshots, and then deploy a bunch of snapshots
 # Finally, we do partial deployments.
