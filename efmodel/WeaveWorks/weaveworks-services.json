@@ -62,21 +62,6 @@
         "environmentMaps": [
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-docerswarm-dev",
-            "clusterName" : "dockerswarm",
-            "serviceClusterMapping" : {
-              "actualParameters" : [
-                { "name" : "requestType", "text" : "create" },
-                { "name" : "serviceType", "text" : "NodePort" }
-              ],
-              "serviceMapDetail" : [
-                {"name" : "cpuCount", "text" : "1"},
-                {"name" : "cpuLimit", "text" : "2"}
-              ]
-            }
-          },
-          {
-            "serviceName" : "Front End Service",
             "environmentName" : "ww-cluster-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
