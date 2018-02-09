@@ -179,7 +179,7 @@ fi
 # The pipelines tie most things together.  One of the last steps.
 if [ $PIPELINES = "1" ] ; then
     echo "######### CREATING PIPELINES #########"
-    ectool evalDsl --dslFile $ROOT/efmodels/pipelines.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile $ROOT/efmodels/releases.groovy --parametersFile $PARAMETERSFILE
 fi
 
 # When we're ready, do the same for releases.

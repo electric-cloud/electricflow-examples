@@ -3,9 +3,14 @@ def myProject = args.project
 project myProject.name, {
     description = myProject.description
 
-    myProject.releases.each { myRelease ->
+    myProject.pipelines?.each { myPipeline ->
+        loadPipeline(myPipeline)
+    }
+
+    myProject.releases?.each { myRelease ->
         loadRelease(myRelease)
     }
+
 }
 
 def loadRelease (def myRelease) {
@@ -15,10 +20,9 @@ def loadRelease (def myRelease) {
         plannedStartDate = myRelease.plannedStartDate
 
         templatePipelineName = myRelease.templatePipelineName
-//        pipelineName = myRelease.pipelineName
 
         myRelease.pipelines?.each {myPipeline ->
-            loadPipeline(myPipeline, myProject)
+            loadPipeline(myPipeline)
         }
 
         myRelease.deployerApplications?.each { myDeployerApplication ->
@@ -67,7 +71,7 @@ def loadDeployApplication (def myDeployerApplication) {
     }
 }
 
-def loadPipeline (def myPipeline, def myProjectName) {
+def loadPipeline (def myPipeline) {
     pipeline myPipeline.name, {
         println "  Pipeline: $myPipeline.name"
         description = myPipeline.description

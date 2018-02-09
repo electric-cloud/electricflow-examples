@@ -3,89 +3,6 @@
     "name" : "@@PROJECTNAMETOKEN@@",
     "description" : "Example of a Release Pipeline",
 
-    "pipelines" : [
-      {
-        "name": "Release Pipeline",
-        "description" : "Release Pipeline for a multi-application example",
-        "releaseName" : "January Release",
-
-        "formalParameters": [
-        ],
-
-        "stages": [
-          {
-            "name": "Pre-Prod",
-            "description" : "This stage contains entry points to illustrate different types of tasks",
-            "colorCode" : "#ff8040",
-            "completionType" : "auto",
-            "gates" : [
-              {
-                "gateType" : "POST",
-                "task" :
-                {
-                  "name" : "Gate out of First Stage",
-                  "description" : "Show an approval gate out of a stage",
-                  "taskType" : "APPROVAL",
-                  "approver" : "marco",
-                  "condition" : "true"
-                }
-              }
-            ],
-            "tasks": [
-              {
-                "name": "Deploy Applications",
-                "description" : "Deployer step for multiple applications",
-                "taskType" : "DEPLOYER",
-                "projectName" : "@@PROJECTNAMETOKEN@@",
-                "subproject" : "@@PROJECTNAMETOKEN@@",
-                "deployerRunType" : "serial"
-              },
-              {
-                "name": "System Test",
-                "description" : "Test the deployed software",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
-              }
-            ]
-          },
-          {
-            "name": "PROD",
-            "description" : "This stage contains variations of task conditions, groups, and more",
-            "colorCode" : "#00ff00",
-            "completionType" : "auto",
-            "gates" : [
-              {
-                "gateType" : "PRE",
-                "task" :
-                {
-                  "name" : "Gate into the Second Stage",
-                  "description" : "Show an approval gate into a stage",
-                  "taskType" : "APPROVAL",
-                  "approver" : "marco"
-                }
-              }
-            ],
-            "tasks": [
-              {
-                "name": "Deploy Applications",
-                "description" : "Deployer step for multiple applications",
-                "taskType" : "DEPLOYER",
-                "projectName" : "@@PROJECTNAMETOKEN@@",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
-              },
-              {
-                "name": "System Test",
-                "description" : "Test the deployed software",
-                "taskType" : "PROCEDURE",
-                "subprocedure" : "Stub",
-                "subproject" : "@@PROJECTNAMETOKEN@@"
-              }
-            ]
-          }
-        ]
-      }
-    ],
     "releases" : [
       {
         "name" : "January Release",
@@ -96,6 +13,88 @@
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
 
+        "pipelines" : [
+          {
+            "name": "Release Pipeline",
+            "description" : "Release Pipeline for a multi-application example",
+
+            "formalParameters": [
+            ],
+
+            "stages": [
+              {
+                "name": "Pre-Prod",
+                "description" : "This stage contains entry points to illustrate different types of tasks",
+                "colorCode" : "#ff8040",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "POST",
+                    "task" :
+                    {
+                      "name" : "Gate out of First Stage",
+                      "description" : "Show an approval gate out of a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco",
+                      "condition" : "true"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@",
+                    "deployerRunType" : "serial"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              },
+              {
+                "name": "PROD",
+                "description" : "This stage contains variations of task conditions, groups, and more",
+                "colorCode" : "#00ff00",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "PRE",
+                    "task" :
+                    {
+                      "name" : "Gate into the Second Stage",
+                      "description" : "Show an approval gate into a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
         "deployerApplications" : [
           {
             "name" : "Web Site",
@@ -159,6 +158,88 @@
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
 
+        "pipelines" : [
+          {
+            "name": "Release Pipeline",
+            "description" : "Release Pipeline for a multi-application example",
+
+            "formalParameters": [
+            ],
+
+            "stages": [
+              {
+                "name": "Pre-Prod",
+                "description" : "This stage contains entry points to illustrate different types of tasks",
+                "colorCode" : "#ff8040",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "POST",
+                    "task" :
+                    {
+                      "name" : "Gate out of First Stage",
+                      "description" : "Show an approval gate out of a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco",
+                      "condition" : "true"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@",
+                    "deployerRunType" : "serial"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              },
+              {
+                "name": "PROD",
+                "description" : "This stage contains variations of task conditions, groups, and more",
+                "colorCode" : "#00ff00",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "PRE",
+                    "task" :
+                    {
+                      "name" : "Gate into the Second Stage",
+                      "description" : "Show an approval gate into a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
         "deployerApplications" : [
           {
             "name" : "Web Site",
@@ -222,6 +303,88 @@
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
 
+        "pipelines" : [
+          {
+            "name": "Release Pipeline",
+            "description" : "Release Pipeline for a multi-application example",
+
+            "formalParameters": [
+            ],
+
+            "stages": [
+              {
+                "name": "Pre-Prod",
+                "description" : "This stage contains entry points to illustrate different types of tasks",
+                "colorCode" : "#ff8040",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "POST",
+                    "task" :
+                    {
+                      "name" : "Gate out of First Stage",
+                      "description" : "Show an approval gate out of a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco",
+                      "condition" : "true"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@",
+                    "deployerRunType" : "serial"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              },
+              {
+                "name": "PROD",
+                "description" : "This stage contains variations of task conditions, groups, and more",
+                "colorCode" : "#00ff00",
+                "completionType" : "auto",
+                "gates" : [
+                  {
+                    "gateType" : "PRE",
+                    "task" :
+                    {
+                      "name" : "Gate into the Second Stage",
+                      "description" : "Show an approval gate into a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
         "deployerApplications" : [
           {
             "name" : "Web Site",
