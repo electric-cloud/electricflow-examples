@@ -29,6 +29,9 @@ project myProject.name, {
                     parallel = '0'
                     releaseMode = 'none'
                     timeLimitUnits = 'minutes'
+                    subprocedure = myStep.subprocedure
+                    subproject = myStep.subproject
+
                 }
             }
         }
