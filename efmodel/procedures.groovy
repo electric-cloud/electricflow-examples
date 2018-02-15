@@ -28,7 +28,7 @@ project myProject.name, {
                     exclusiveMode = 'none'
                     parallel = '0'
                     releaseMode = 'none'
-                    timeLimitUnits = 'minutes'
+                    timeLimitUnits = myStep.timeLimitUnits
                     subprocedure = myStep.subprocedure
                     subproject = myStep.subproject
 
