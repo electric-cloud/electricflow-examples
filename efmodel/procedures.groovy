@@ -17,6 +17,20 @@ project myProject.name, {
                 releaseMode = 'none'
                 timeLimitUnits = 'minutes'
             }
+
+            myProcedure.steps?.each { myStep ->
+                step myStep.name, {
+                    description = myStep.description
+                    alwaysRun = '0'
+                    broadcast = '0'
+                    command = myStep.command
+                    errorHandling = 'failProcedure'
+                    exclusiveMode = 'none'
+                    parallel = '0'
+                    releaseMode = 'none'
+                    timeLimitUnits = 'minutes'
+                }
+            }
         }
     }
 }
