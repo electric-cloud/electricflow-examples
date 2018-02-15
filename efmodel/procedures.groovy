@@ -17,7 +17,6 @@ project myProject.name, {
                 releaseMode = 'none'
                 timeLimitUnits = 'minutes'
             }
-
             myProcedure.steps?.each { myStep ->
                 step myStep.name, {
                     description = myStep.description
@@ -31,7 +30,6 @@ project myProject.name, {
                     timeLimitUnits = myStep.timeLimitUnits
                     subprocedure = myStep.subprocedure
                     subproject = myStep.subproject
-
                 }
             }
         }
