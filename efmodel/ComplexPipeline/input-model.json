@@ -828,7 +828,7 @@
 
     "pipelines" : [
       {
-        "name": "Multi-purpose Pipeline",
+        "name": "Complex Pipeline",
         "description" : "Example of a pipeline with multiple types of task types and other features",
 
         "formalParameters": [

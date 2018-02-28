@@ -944,7 +944,7 @@
 
     "pipelines" : [
       {
-        "name": "Multi application pipeline",
+        "name": "Services Pipeline",
         "description" : "Example of a pipeline that happens to work through multiple applications at once using multiple features",
 
         "formalParameters": [

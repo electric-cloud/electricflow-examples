@@ -5,10 +5,10 @@
 
     "releases" : [
       {
-        "name" : "January Release",
-        "description" : "January release showing multiple applications",
-        "plannedEndDate" : "2018-01-31",
-        "plannedStartDate" : "2018-01-08",
+        "name" : "April Release",
+        "description" : "April release showing multiple applications",
+        "plannedEndDate" : "2018-04-30",
+        "plannedStartDate" : "2018-04-01",
         "templatePipelineName" : "Release Pipeline",
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
@@ -151,7 +151,7 @@
       },
       {
         "name" : "February Release",
-        "description" : "January release showing multiple applications",
+        "description" : "February release showing multiple applications",
         "plannedEndDate" : "2018-02-28",
         "plannedStartDate" : "2018-02-01",
         "templatePipelineName" : "Release Pipeline",
