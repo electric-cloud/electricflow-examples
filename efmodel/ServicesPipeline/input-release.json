@@ -102,12 +102,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -118,12 +118,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -134,12 +134,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }
@@ -247,12 +247,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -263,12 +263,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -279,12 +279,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }
@@ -392,12 +392,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -408,12 +408,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -424,12 +424,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }
