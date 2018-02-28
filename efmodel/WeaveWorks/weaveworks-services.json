@@ -62,7 +62,7 @@
         "environmentMaps": [
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -77,7 +77,7 @@
           },
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -92,7 +92,7 @@
           },
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -107,7 +107,7 @@
           },
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -122,7 +122,7 @@
           },
           {
             "serviceName" : "Front End Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -197,7 +197,7 @@
         "environmentMaps": [
           {
             "serviceName" : "Payment Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -220,7 +220,7 @@
           },
           {
             "serviceName" : "Payment Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -235,7 +235,7 @@
           },
           {
             "serviceName" : "Payment Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -250,7 +250,7 @@
           },
           {
             "serviceName" : "Payment Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -265,7 +265,7 @@
           },
           {
             "serviceName" : "Payment Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -335,7 +335,7 @@
         "environmentMaps": [
           {
             "serviceName" : "RabbitMQ Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -350,7 +350,7 @@
           },
           {
             "serviceName" : "RabbitMQ Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -365,7 +365,7 @@
           },
           {
             "serviceName" : "RabbitMQ Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -380,7 +380,7 @@
           },
           {
             "serviceName" : "RabbitMQ Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -395,7 +395,7 @@
           },
           {
             "serviceName" : "RabbitMQ Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -478,7 +478,7 @@
         "environmentMaps": [
           {
             "serviceName" : "Shipping Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -493,7 +493,7 @@
           },
           {
             "serviceName" : "Shipping Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -508,7 +508,7 @@
           },
           {
             "serviceName" : "Shipping Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -523,7 +523,7 @@
           },
           {
             "serviceName" : "Shipping Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -538,7 +538,7 @@
           },
           {
             "serviceName" : "Shipping Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -618,7 +618,7 @@
         "environmentMaps": [
           {
             "serviceName" : "QueueMaster Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -633,7 +633,7 @@
           },
           {
             "serviceName" : "QueueMaster Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -648,7 +648,7 @@
           },
           {
             "serviceName" : "QueueMaster Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -663,7 +663,7 @@
           },
           {
             "serviceName" : "QueueMaster Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -678,7 +678,7 @@
           },
           {
             "serviceName" : "QueueMaster Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [

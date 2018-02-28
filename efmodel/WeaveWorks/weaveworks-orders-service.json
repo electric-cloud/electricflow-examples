@@ -116,7 +116,7 @@
         "environmentMaps": [
           {
             "serviceName" : "Orders Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "ww-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -139,7 +139,7 @@
           },
           {
             "serviceName" : "Orders Service",
-            "environmentName" : "ww-cluster-qa",
+            "environmentName" : "ww-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -154,7 +154,7 @@
           },
           {
             "serviceName" : "Orders Service",
-            "environmentName" : "ww-cluster-stage",
+            "environmentName" : "ww-stage",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -169,7 +169,7 @@
           },
           {
             "serviceName" : "Orders Service",
-            "environmentName" : "ww-cluster-preprod",
+            "environmentName" : "ww-preprod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -184,7 +184,7 @@
           },
           {
             "serviceName" : "Orders Service",
-            "environmentName" : "ww-cluster-prod",
+            "environmentName" : "ww-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
