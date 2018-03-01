@@ -154,10 +154,10 @@
         ]
       },
       {
-        "name" : "February Release",
-        "description" : "February release showing multiple applications",
-        "plannedEndDate" : "2018-02-28",
-        "plannedStartDate" : "2018-02-01",
+        "name" : "May Release",
+        "description" : "May release showing multiple applications",
+        "plannedEndDate" : "2018-05-28",
+        "plannedStartDate" : "2018-05-01",
         "templatePipelineName" : "Release Pipeline",
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
@@ -176,8 +176,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
-                "plannedStartDate" : "2018-02-01",
-                "plannedEndDate" : "2018-02-15",
+                "plannedStartDate" : "2018-05-01",
+                "plannedEndDate" : "2018-05-15",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -214,8 +214,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
-                "plannedStartDate" : "2018-02-17",
-                "plannedEndDate" : "2018-02-28",
+                "plannedStartDate" : "2018-05-17",
+                "plannedEndDate" : "2018-05-28",
                 "gates" : [
                   {
                     "gateType" : "PRE",
