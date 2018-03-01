@@ -5,209 +5,6 @@
 
     "releases" : [
       {
-        "name" : "January Release",
-        "description" : "January release showing multiple applications",
-        "plannedEndDate" : "2018-01-31",
-        "plannedStartDate" : "2018-01-08",
-        "templatePipelineName" : "Release Pipeline",
-        "templatePipelineProjectName" : "MultiApplicationRelease",
-        "pipelineName" : "Release Pipeline",
-
-        "pipelines" : [
-          {
-            "name": "Release Pipeline",
-            "description" : "Release Pipeline for a multi-application example",
-            "releaseName" : "January Release",
-
-            "formalParameters": [
-            ],
-
-            "stages": [
-              {
-                "name": "Stage",
-                "description" : "This stage contains entry points to illustrate different types of tasks",
-                "colorCode" : "#ff0000",
-                "completionType" : "auto",
-                "plannedStartDate" : "2018-01-01",
-                "plannedEndDate" : "2018-01-13",
-                "gates" : [
-                  {
-                    "gateType" : "POST",
-                    "task" :
-                    {
-                      "name" : "Gate out of First Stage",
-                      "description" : "Show an approval gate out of a stage",
-                      "taskType" : "APPROVAL",
-                      "approver" : "marco",
-                      "condition" : "true"
-                    }
-                  }
-                ],
-                "tasks": [
-                  {
-                    "name": "Deploy Applications",
-                    "description" : "Deployer step for multiple applications",
-                    "taskType" : "DEPLOYER",
-                    "projectName" : "@@PROJECTNAMETOKEN@@",
-                    "subproject" : "@@PROJECTNAMETOKEN@@",
-                    "deployerRunType" : "serial"
-                  },
-                  {
-                    "name": "Sandbox Test",
-                    "description" : "Test the deployed software",
-                    "taskType" : "PROCEDURE",
-                    "subprocedure" : "Stub",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
-                  }
-                ]
-              },
-              {
-                "name": "Pre-Prod",
-                "description" : "This stage contains entry points to illustrate different types of tasks",
-                "colorCode" : "#00ff00",
-                "completionType" : "auto",
-                "plannedStartDate" : "2018-01-10",
-                "plannedEndDate" : "2018-01-20",
-                "gates" : [
-                  {
-                    "gateType" : "POST",
-                    "task" :
-                    {
-                      "name" : "Gate out of First Stage",
-                      "description" : "Show an approval gate out of a stage",
-                      "taskType" : "APPROVAL",
-                      "approver" : "marco",
-                      "condition" : "true"
-                    }
-                  }
-                ],
-                "tasks": [
-                  {
-                    "name": "Deploy Applications",
-                    "description" : "Deployer step for multiple applications",
-                    "taskType" : "DEPLOYER",
-                    "projectName" : "@@PROJECTNAMETOKEN@@",
-                    "subproject" : "@@PROJECTNAMETOKEN@@",
-                    "deployerRunType" : "serial"
-                  },
-                  {
-                    "name": "System Test",
-                    "description" : "Test the deployed software",
-                    "taskType" : "PROCEDURE",
-                    "subprocedure" : "Stub",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
-                  }
-                ]
-              },
-              {
-                "name": "PROD",
-                "description" : "This stage contains variations of task conditions, groups, and more",
-                "colorCode" : "#0000ff",
-                "completionType" : "auto",
-                "plannedStartDate" : "2018-01-20",
-                "plannedEndDate" : "2018-01-31",
-                "gates" : [
-                  {
-                    "gateType" : "PRE",
-                    "task" :
-                    {
-                      "name" : "Gate into the Second Stage",
-                      "description" : "Show an approval gate into a stage",
-                      "taskType" : "APPROVAL",
-                      "approver" : "marco"
-                    }
-                  }
-                ],
-                "tasks": [
-                  {
-                    "name": "Deploy Applications",
-                    "description" : "Deployer step for multiple applications",
-                    "taskType" : "DEPLOYER",
-                    "projectName" : "@@PROJECTNAMETOKEN@@",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
-                  },
-                  {
-                    "name": "System Test",
-                    "description" : "Test the deployed software",
-                    "taskType" : "PROCEDURE",
-                    "subprocedure" : "Stub",
-                    "subproject" : "@@PROJECTNAMETOKEN@@"
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "deployerApplications" : [
-          {
-            "name" : "Web Site",
-            "processName" : "Deploy Application",
-            "deployerConfigurations" : [
-              {
-                "name" : "Multi-Jan-Website-stage",
-                "environmentName" : "stage",
-                "stageName" : "Stage"
-              },
-              {
-                "name" : "Multi-Jan-Website-preprod",
-                "environmentName" : "preprod",
-                "stageName" : "Pre-Prod"
-              },
-              {
-                "name" : "Multi-Jan-Website-prod",
-                "environmentName" : "prod",
-                "stageName" : "Prod"
-              }
-            ]
-          },
-          {
-            "name" : "Mobile",
-            "processName" : "Deploy Application",
-            "deployerConfigurations" : [
-              {
-                "name" : "Multi-Jan-Mobile-stage",
-                "environmentName" : "stage",
-                "stageName" : "Stage"
-              },
-              {
-                "name" : "Multi-Jan-Mobile-preprod",
-                "environmentName" : "preprod",
-                "stageName" : "Pre-Prod"
-              },
-              {
-                "name" : "Multi-Jan-Mobile-prod",
-                "environmentName" : "prod",
-                "stageName" : "Prod"
-              }
-            ]
-          },
-          {
-            "name" : "Mainframe",
-            "processName" : "Deploy Application",
-            "deployerConfigurations" : [
-              {
-                "name" : "Multi-Jan-Mainframe-stage",
-                "environmentName" : "stage",
-                "stageName" : "Stage"
-              },
-              {
-                "name" : "Multi-Jan-Mainframe-preprod",
-                "environmentName" : "preprod",
-                "stageName" : "Pre-Prod"
-              },
-              {
-                "name" : "Multi-Jan-Mainframe-prod",
-                "environmentName" : "prod",
-                "stageName" : "Prod",
-                "actualParameters" : [
-                  { "name": "doManualCheck", "value" : "true" }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
         "name" : "February Release",
         "description" : "January release showing multiple applications",
         "plannedEndDate" : "2018-02-28",
@@ -603,6 +400,209 @@
               },
               {
                 "name" : "Multi-Mar-Mainframe-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod",
+                "actualParameters" : [
+                  { "name": "doManualCheck", "value" : "true" }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name" : "April Release",
+        "description" : "January release showing multiple applications",
+        "plannedEndDate" : "2018-04-30",
+        "plannedStartDate" : "2018-04-01",
+        "templatePipelineName" : "Release Pipeline",
+        "templatePipelineProjectName" : "MultiApplicationRelease",
+        "pipelineName" : "Release Pipeline",
+
+        "pipelines" : [
+          {
+            "name": "Release Pipeline",
+            "description" : "Release Pipeline for a multi-application example",
+            "releaseName" : "January Release",
+
+            "formalParameters": [
+            ],
+
+            "stages": [
+              {
+                "name": "Stage",
+                "description" : "This stage contains entry points to illustrate different types of tasks",
+                "colorCode" : "#ff0000",
+                "completionType" : "auto",
+                "plannedStartDate" : "2018-04-01",
+                "plannedEndDate" : "2018-04-13",
+                "gates" : [
+                  {
+                    "gateType" : "POST",
+                    "task" :
+                    {
+                      "name" : "Gate out of First Stage",
+                      "description" : "Show an approval gate out of a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco",
+                      "condition" : "true"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@",
+                    "deployerRunType" : "serial"
+                  },
+                  {
+                    "name": "Sandbox Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              },
+              {
+                "name": "Pre-Prod",
+                "description" : "This stage contains entry points to illustrate different types of tasks",
+                "colorCode" : "#00ff00",
+                "completionType" : "auto",
+                "plannedStartDate" : "2018-04-10",
+                "plannedEndDate" : "2018-04-20",
+                "gates" : [
+                  {
+                    "gateType" : "POST",
+                    "task" :
+                    {
+                      "name" : "Gate out of First Stage",
+                      "description" : "Show an approval gate out of a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco",
+                      "condition" : "true"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@",
+                    "deployerRunType" : "serial"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              },
+              {
+                "name": "PROD",
+                "description" : "This stage contains variations of task conditions, groups, and more",
+                "colorCode" : "#0000ff",
+                "completionType" : "auto",
+                "plannedStartDate" : "2018-04-20",
+                "plannedEndDate" : "2018-04-30",
+                "gates" : [
+                  {
+                    "gateType" : "PRE",
+                    "task" :
+                    {
+                      "name" : "Gate into the Second Stage",
+                      "description" : "Show an approval gate into a stage",
+                      "taskType" : "APPROVAL",
+                      "approver" : "marco"
+                    }
+                  }
+                ],
+                "tasks": [
+                  {
+                    "name": "Deploy Applications",
+                    "description" : "Deployer step for multiple applications",
+                    "taskType" : "DEPLOYER",
+                    "projectName" : "@@PROJECTNAMETOKEN@@",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  },
+                  {
+                    "name": "System Test",
+                    "description" : "Test the deployed software",
+                    "taskType" : "PROCEDURE",
+                    "subprocedure" : "Stub",
+                    "subproject" : "@@PROJECTNAMETOKEN@@"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "deployerApplications" : [
+          {
+            "name" : "Web Site",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Website-stage",
+                "environmentName" : "stage",
+                "stageName" : "Stage"
+              },
+              {
+                "name" : "Multi-Jan-Website-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Website-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mobile",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Mobile-stage",
+                "environmentName" : "stage",
+                "stageName" : "Stage"
+              },
+              {
+                "name" : "Multi-Jan-Mobile-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Mobile-prod",
+                "environmentName" : "prod",
+                "stageName" : "Prod"
+              }
+            ]
+          },
+          {
+            "name" : "Mainframe",
+            "processName" : "Deploy Application",
+            "deployerConfigurations" : [
+              {
+                "name" : "Multi-Jan-Mainframe-stage",
+                "environmentName" : "stage",
+                "stageName" : "Stage"
+              },
+              {
+                "name" : "Multi-Jan-Mainframe-preprod",
+                "environmentName" : "preprod",
+                "stageName" : "Pre-Prod"
+              },
+              {
+                "name" : "Multi-Jan-Mainframe-prod",
                 "environmentName" : "prod",
                 "stageName" : "Prod",
                 "actualParameters" : [

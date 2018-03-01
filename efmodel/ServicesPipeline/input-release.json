@@ -27,6 +27,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-04-01",
+                "plannedEndDate" : "2018-04-13",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -63,6 +65,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-04-13",
+                "plannedEndDate" : "2018-04-30",
                 "gates" : [
                   {
                     "gateType" : "PRE",
@@ -172,6 +176,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-02-01",
+                "plannedEndDate" : "2018-02-15",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -208,6 +214,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-02-17",
+                "plannedEndDate" : "2018-02-28",
                 "gates" : [
                   {
                     "gateType" : "PRE",
@@ -317,6 +325,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-03-01",
+                "plannedEndDate" : "2018-03-19",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -353,6 +363,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-03-20",
+                "plannedEndDate" : "2018-03-31",
                 "gates" : [
                   {
                     "gateType" : "PRE",
