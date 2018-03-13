@@ -5,10 +5,10 @@
 
     "releases" : [
       {
-        "name" : "January Release",
-        "description" : "January release showing multiple applications",
-        "plannedEndDate" : "2018-01-31",
-        "plannedStartDate" : "2018-01-08",
+        "name" : "April Release",
+        "description" : "April release showing multiple applications",
+        "plannedEndDate" : "2018-04-30",
+        "plannedStartDate" : "2018-04-01",
         "templatePipelineName" : "Release Pipeline",
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
@@ -27,6 +27,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-04-01",
+                "plannedEndDate" : "2018-04-13",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -63,6 +65,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-04-13",
+                "plannedEndDate" : "2018-04-30",
                 "gates" : [
                   {
                     "gateType" : "PRE",
@@ -102,12 +106,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -118,12 +122,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -134,12 +138,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Jan-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Jan-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }
@@ -150,10 +154,10 @@
         ]
       },
       {
-        "name" : "February Release",
-        "description" : "January release showing multiple applications",
-        "plannedEndDate" : "2018-02-28",
-        "plannedStartDate" : "2018-02-01",
+        "name" : "May Release",
+        "description" : "May release showing multiple applications",
+        "plannedEndDate" : "2018-05-28",
+        "plannedStartDate" : "2018-05-01",
         "templatePipelineName" : "Release Pipeline",
         "templatePipelineProjectName" : "MultiApplicationRelease",
         "pipelineName" : "Release Pipeline",
@@ -172,6 +176,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-05-01",
+                "plannedEndDate" : "2018-05-15",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -208,6 +214,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-05-17",
+                "plannedEndDate" : "2018-05-28",
                 "gates" : [
                   {
                     "gateType" : "PRE",
@@ -247,12 +255,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -263,12 +271,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -279,12 +287,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Feb-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Feb-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }
@@ -317,6 +325,8 @@
                 "description" : "This stage contains entry points to illustrate different types of tasks",
                 "colorCode" : "#ff8040",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-03-01",
+                "plannedEndDate" : "2018-03-19",
                 "gates" : [
                   {
                     "gateType" : "POST",
@@ -353,6 +363,8 @@
                 "description" : "This stage contains variations of task conditions, groups, and more",
                 "colorCode" : "#00ff00",
                 "completionType" : "auto",
+                "plannedStartDate" : "2018-03-20",
+                "plannedEndDate" : "2018-03-31",
                 "gates" : [
                   {
                     "gateType" : "PRE",
@@ -392,12 +404,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Website-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Website-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -408,12 +420,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Mobile-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Mobile-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod"
               }
             ]
@@ -424,12 +436,12 @@
             "deployerConfigurations" : [
               {
                 "name" : "Multi-Mar-Mainframe-preprod",
-                "environmentName" : "preprod",
+                "environmentName" : "svc-preprod",
                 "stageName" : "Pre-Prod"
               },
               {
                 "name" : "Multi-Mar-Mainframe-prod",
-                "environmentName" : "prod",
+                "environmentName" : "svc-prod",
                 "stageName" : "Prod",
                 "actualParameters" : [
                   { "name": "doManualCheck", "value" : "true" }

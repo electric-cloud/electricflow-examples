@@ -53,7 +53,7 @@
 
     "environments" : [
       {
-        "name" : "dev",
+        "name" : "complex-dev",
         "description" : "DEV Environment",
         "environmentTiers" : [
           {
@@ -71,7 +71,7 @@
         ]
       },
       {
-        "name" : "qa",
+        "name" : "complex-qa",
         "description" : "QA Environment",
         "environmentTiers" : [
           {
@@ -89,7 +89,7 @@
         ]
       },
       {
-        "name" : "prod",
+        "name" : "complex-prod",
         "description" : "PROD Environment",
         "environmentTiers" : [
           {
@@ -107,7 +107,7 @@
         ]
       },
       {
-        "name" : "cluster-dev",
+        "name" : "ccomplex-dev",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -120,7 +120,7 @@
         ]
       },
       {
-        "name" : "cluster-qa",
+        "name" : "ccomplex-qa",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -133,7 +133,7 @@
         ]
       },
       {
-        "name" : "cluster-prod",
+        "name" : "ccomplex-prod",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-dev",
+        "name" : "wcomplex-dev",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -159,7 +159,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-qa",
+        "name" : "wcomplex-qa",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -172,7 +172,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-prod",
+        "name" : "wcomplex-prod",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -538,7 +538,7 @@
         ],
         "tierMaps" : [
           { "applicationName" : "Two-Tier",
-            "environmentName" : "dev",
+            "environmentName" : "complex-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -551,7 +551,7 @@
             ]
           },
           { "applicationName" : "Two-Tier",
-            "environmentName" : "qa",
+            "environmentName" : "complex-qa",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -564,7 +564,7 @@
             ]
           },
           { "applicationName" : "Two-Tier",
-            "environmentName" : "prod",
+            "environmentName" : "complex-prod",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -652,7 +652,7 @@
             "tierMaps" : [
               {
                 "serviceName" : "WeaveWorks Front End",
-                "environmentName" : "cluster-dev",
+                "environmentName" : "ccomplex-dev",
                 "clusterName" : "openshiftcluster",
                 "serviceClusterMapping" : {
                   "actualParameters" : [
@@ -667,7 +667,7 @@
               },
               {
                 "serviceName" : "WeaveWorks Front End",
-                "environmentName": "cluster-qa",
+                "environmentName": "ccomplex-qa",
                 "clusterName" : "openshiftcluster",
                 "serviceClusterMapping" : {
                   "actualParameters" : [
@@ -682,7 +682,7 @@
               },
               {
                 "serviceName" : "WeaveWorks Front End",
-                "environmentName": "cluster-prod",
+                "environmentName": "ccomplex-prod",
                 "clusterName" : "openshiftcluster",
                 "serviceClusterMapping" : {
                   "actualParameters" : [
@@ -769,7 +769,7 @@
         "environmentMaps" : [
           {
             "serviceName" : "WeaveWorks FE Service",
-            "environmentName" : "ww-cluster-dev",
+            "environmentName" : "wcomplex-dev",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -784,7 +784,7 @@
           },
           {
             "serviceName" : "WeaveWorks FE Service",
-            "environmentName": "ww-cluster-qa",
+            "environmentName": "wcomplex-qa",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -799,7 +799,7 @@
           },
           {
             "serviceName" : "WeaveWorks FE Service",
-            "environmentName": "ww-cluster-prod",
+            "environmentName": "wcomplex-prod",
             "clusterName" : "openshiftcluster",
             "serviceClusterMapping" : {
               "actualParameters" : [
@@ -828,7 +828,7 @@
 
     "pipelines" : [
       {
-        "name": "Multi-purpose Pipeline",
+        "name": "Complex Pipeline",
         "description" : "Example of a pipeline with multiple types of task types and other features",
 
         "formalParameters": [
@@ -900,7 +900,7 @@
                 "description" : "Deploy an Application",
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
-                "environmentName" : "dev",
+                "environmentName" : "complex-dev",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
@@ -919,7 +919,7 @@
                 "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
-                "environmentName" : "cluster-dev",
+                "environmentName" : "ccomplex-dev",
                 "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",
@@ -1015,7 +1015,7 @@
                 "description" : "Deploy an Application",
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
-                "environmentName" : "qa",
+                "environmentName" : "complex-qa",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
@@ -1029,7 +1029,7 @@
                 "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
-                "environmentName" : "cluster-qa",
+                "environmentName" : "ccomplex-qa",
                 "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",
@@ -1075,7 +1075,7 @@
                 "description" : "Deploy an Application",
                 "taskType" : "PROCESS",
                 "groupName" : "Deploy Group",
-                "environmentName" : "prod",
+                "environmentName" : "complex-prod",
                 "environmentProjectName": "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "Two-Tier",
                 "subprocess" : "Deploy Application",
@@ -1089,7 +1089,7 @@
                 "taskProcessType" : "APPLICATION",
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
-                "environmentName" : "cluster-prod",
+                "environmentName" : "ccomplex-prod",
                 "environmentProjectName" : "@@PROJECTNAMETOKEN@@",
                 "subapplication" : "WeaveWorks Front End",
                 "subprocess" : "Deploy Service",

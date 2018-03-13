@@ -34,7 +34,7 @@
 
     "environments" : [
       {
-        "name" : "dev",
+        "name" : "svc-dev",
         "description" : "DEV Environment",
         "environmentTiers" : [
           {
@@ -64,7 +64,7 @@
         ]
       },
       {
-        "name" : "qa",
+        "name" : "svc-qa",
         "description" : "QA Environment",
         "environmentTiers" : [
           {
@@ -94,7 +94,7 @@
         ]
       },
       {
-        "name" : "stage",
+        "name" : "svc-dev",
         "description" : "Stage Environment",
         "environmentTiers" : [
           {
@@ -124,7 +124,7 @@
         ]
       },
       {
-        "name" : "preprod",
+        "name" : "svc-preprod",
         "description" : "PrePROD Environment",
         "environmentTiers" : [
           {
@@ -156,7 +156,7 @@
         ]
       },
       {
-        "name" : "prod",
+        "name" : "svc-prod",
         "description" : "PROD Environment",
         "environmentTiers" : [
           {
@@ -474,7 +474,7 @@
         ],
         "tierMaps" : [
           { "applicationName" : "Web Site",
-            "environmentName" : "dev",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -487,7 +487,7 @@
             ]
           },
           { "applicationName" : "Web Site",
-            "environmentName" : "qa",
+            "environmentName" : "svc-qa",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -500,7 +500,7 @@
             ]
           },
           { "applicationName" : "Web Site",
-            "environmentName" : "stage",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -513,7 +513,7 @@
             ]
           },
           { "applicationName" : "Web Site",
-            "environmentName" : "preprod",
+            "environmentName" : "svc-preprod",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -526,7 +526,7 @@
             ]
           },
           { "applicationName" : "Web Site",
-            "environmentName" : "prod",
+            "environmentName" : "svc-prod",
             "tierMappings" : [
               {
                 "applicationTierName" : "User Interface",
@@ -694,7 +694,7 @@
         ],
         "tierMaps" : [
           { "applicationName" : "Mobile",
-            "environmentName" : "dev",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "Mobile App",
@@ -703,7 +703,7 @@
             ]
           },
           { "applicationName" : "Mobile",
-            "environmentName" : "qa",
+            "environmentName" : "svc-qa",
             "tierMappings" : [
               {
                 "applicationTierName" : "Mobile App",
@@ -712,7 +712,7 @@
             ]
           },
           { "applicationName" : "Mobile",
-            "environmentName" : "stage",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "Mobile App",
@@ -721,7 +721,7 @@
             ]
           },
           { "applicationName" : "Mobile",
-            "environmentName" : "preprod",
+            "environmentName" : "svc-preprod",
             "tierMappings" : [
               {
                 "applicationTierName" : "Mobile App",
@@ -730,7 +730,7 @@
             ]
           },
           { "applicationName" : "Mobile",
-            "environmentName" : "prod",
+            "environmentName" : "svc-prod",
             "tierMappings" : [
               {
                 "applicationTierName" : "Mobile App",
@@ -894,7 +894,7 @@
         ],
         "tierMaps" : [
           { "applicationName" : "Mainframe",
-            "environmentName" : "dev",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -903,7 +903,7 @@
             ]
           },
           { "applicationName" : "Mainframe",
-            "environmentName" : "qa",
+            "environmentName" : "svc-qa",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -912,7 +912,7 @@
             ]
           },
           { "applicationName" : "Mainframe",
-            "environmentName" : "stage",
+            "environmentName" : "svc-dev",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -921,7 +921,7 @@
             ]
           },
           { "applicationName" : "Mainframe",
-            "environmentName" : "preprod",
+            "environmentName" : "svc-preprod",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -930,7 +930,7 @@
             ]
           },
           { "applicationName" : "Mainframe",
-            "environmentName" : "prod",
+            "environmentName" : "svc-prod",
             "tierMappings" : [
               {
                 "applicationTierName" : "MF App",
@@ -944,7 +944,7 @@
 
     "pipelines" : [
       {
-        "name": "Multi application pipeline",
+        "name": "Services Pipeline",
         "description" : "Example of a pipeline that happens to work through multiple applications at once using multiple features",
 
         "formalParameters": [

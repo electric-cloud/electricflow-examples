@@ -1,13 +1,9 @@
+artifacts/*.txt
 **/model.json
 **/new*.json
 **/release-model.json
 **/release-data.json
-**/*.json.groupid
-**/*.json.project
-**/*.json.application
-**/*.json.release
 **/export-*.dsl
 **/export-*.gdsl
-CommonPipeline/artifacts
 MultiEnvironmentInventory/Unplug/
 **/*.log

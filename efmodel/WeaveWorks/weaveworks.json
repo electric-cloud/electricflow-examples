@@ -45,7 +45,7 @@
 
     "environments" : [
       {
-        "name" : "ww-cluster-dev",
+        "name" : "ww-dev",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -58,7 +58,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-qa",
+        "name" : "ww-qa",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -71,7 +71,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-stage",
+        "name" : "ww-stage",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -84,7 +84,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-preprod",
+        "name" : "ww-preprod",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -97,7 +97,7 @@
         ]
       },
       {
-        "name" : "ww-cluster-prod",
+        "name" : "ww-prod",
         "clusters" : [
           {
             "name" : "openshiftcluster",
@@ -174,7 +174,7 @@
                 "taskProcessType" : "SERVICE",
                 "groupName" : "Deploy Group",
                 "condition" : "$[doService]",
-                "environmentName" : "ww-cluster-dev",
+                "environmentName" : "ww-dev",
                 "environmentProjectName" : "@@SERVICEPROJECTNAMETOKEN@@",
                 "subservice" : "Front End Service",
                 "subprocess" : "Deploy Front End Service",

@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    CYGWIN*)    machine=Cygwin;;
+    MINGW*)     machine=MinGw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+echo machine type is ${machine}
+
 PARAMETERSFILE=input-model.json
 
 ALL=1
@@ -108,9 +118,15 @@ done
 
 # Find the root directory.
 ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
-echo "root is $ROOT"
+
+if [ ${machine} = "Cygwin" ] ; then
+    echo "You are using Cygwin. Adjusting $ROOT path"
+    ROOT=`(cygpath $ROOT -w)`
+    echo "root is $ROOT"
+fi
 
 if [ $INSTALL = "1" ] ; then
+
     echo "installing to $INSTALLDIR"
     if [ ! -d $INSTALLDIR/efmodels ] ; then
         echo "creating $INSTALLDIR/efmodels"
@@ -131,7 +147,7 @@ fi
 # Run some essential tests to show the system works.  Good hygiene.
 if [ $TEST = "1" ] ; then
     echo "######### TESTING #########"
-    ectool evalDsl --dslFile $ROOT/efmodels/test.groovy --parametersFile $PARAMETERSFILE
+    ectool evalDsl --dslFile "$ROOT/efmodels/test.groovy" --parametersFile $PARAMETERSFILE
 fi
 
 # Run some essential tests to show the system works.  Good hygiene.
