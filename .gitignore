@@ -1,4 +1,4 @@
-**artifacts/*.txt
+artifacts/*.txt
 **/model.json
 **/new*.json
 **/release-model.json

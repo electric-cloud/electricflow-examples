@@ -42,28 +42,19 @@ project myProject.name, {
                     }
                 }
             }
-            step 'echo hello', {
-                description = 'Echo something simple to let us know we work'
-                alwaysRun = '0'
-                broadcast = '0'
-                command = 'echo "Hello World"'
-                errorHandling = 'failProcedure'
-                exclusiveMode = 'none'
-                parallel = '0'
-                releaseMode = 'none'
-                timeLimitUnits = 'minutes'
-            }
             myProcedure.steps?.each { myStep ->
                 step myStep.name, {
+                    actualParameter = myStep.actualParameters?.collectEntries { aParam ->
+                        [
+                                (aParam.name): aParam.value,
+                        ]
+                    }
                     description = myStep.description
                     alwaysRun = '0'
                     broadcast = '0'
                     // If the command has the defintion "READFROM:filename," then read that file into the command.  This path is for the server.  So if this file is on your local disk,
-
-                    if (myStep?.command.startsWith ("READFROM:")) {
+                    if (myStep.command?.startsWith ("READFROM:")) {
                         String path = args.MOUNTDIRECTORY + "/" + myStep.command.substring(9)
-                        println "Your full path is $path"
-
                         String fileContents = new File ("$path").text
                         command = fileContents
                     }

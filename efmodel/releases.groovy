@@ -165,6 +165,11 @@ def loadPipeline (def myPipeline) {
 
                 myStage.tasks.each { myTask ->
                     task myTask.name, {
+                        actualParameter = myTask.actualParameters?.collectEntries {aParam->
+                            [
+                                    (aParam.name) : aParam.value,
+                            ]
+                        }
                         description = myTask.description
                         advancedMode = '0'
                         alwaysRun = '0'
@@ -174,8 +179,7 @@ def loadPipeline (def myPipeline) {
                         insertRollingDeployManualStep = '0'
                         skippable = '0'
                         taskType = myTask.taskType
-                        // TODO: Need to verify this is the right way to make the assignment.  If the field .groupName
-                        // does not exist, the intention is to define the object groupName = null.
+                        // If the field .groupName does not exist, the intention is to define the object groupName = null.
                         groupName = myTask.groupName
 
                         switch (myTask.taskType) {
