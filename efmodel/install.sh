@@ -117,7 +117,6 @@ while getopts ":AtrepwaslRSci:G:f:P:" opt; do
 done
 
 # Find the root directory.
-
 ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 if [ ${machine} = "Cygwin" ] ; then
