@@ -7,12 +7,12 @@
       "environmentName": "prod",
       "buildStatus": "SUCCESS",
       "duration" : "75000000",
-      "endTime": "2018-01-12T17:26:44.126",
+      "endTime": "2018-02-13T17:26:44.126",
       "pluginConfiguration": "config",
       "pluginName": "EC-Jenkins",
       "sourceUrl": "http://10.200.1.210:8080/job/HelloWorld",
-      "startTime": "2018-01-11T20:36:44.126",
-      "timestamp": "2018-01-11T20:36:44.126"
+      "startTime": "2018-02-13T20:36:44.126",
+      "timestamp": "2018-02-13T20:36:44.126"
     }
   ],
   "tests" : [
@@ -28,21 +28,7 @@
       "source": "HPALM",
       "sourceUrl": "http://10.200.1.210:8080/qcbin/domain",
       "successfulTests": "17",
-      "timestamp": "2018-01-11T20:36:44.126"
-    },
-    {
-      "projectName" : "@@PROJECTNAMETOKEN@@",
-      "releaseName": "@@RELEASENAMETOKEN@@",
-      "releaseProjectName": "@@PROJECTNAMETOKEN@@",
-      "category": "unit-test",
-      "failedTests": "1",
-      "duration" : "25000000",
-      "pluginName": "EC-Jenkins",
-      "pluginConfiguration": "config",
-      "source": "Jenkins",
-      "sourceUrl": "http://10.200.1.210:8080/job/HelloWorld/1",
-      "successfulTests": "13",
-      "timestamp": "2018-01-11T20:36:44.126"
+      "timestamp": "2018-02-16T20:36:44.126"
     }
   ]
 }

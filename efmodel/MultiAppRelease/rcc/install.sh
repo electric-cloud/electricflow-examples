@@ -3,7 +3,7 @@
 PROJECTNAME=MultiApplicationRelease
 RELEASENAME="January Release"
 APPLICATIONNAME="Web Site"
-MYJSONFILE=release-data.json
+MYJSONFILE=input-release-data.json
 
 # Parse command line
 # Only a few options in place - see the help for details and update as needed.
@@ -35,10 +35,11 @@ done
 
 
 # Replace tokens with real names
-sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" $MYJSONFILE > $MYJSONFILE.project
-sed -e "s/@@RELEASENAMETOKEN@@/$RELEASENAME/" $MYJSONFILE.project> $MYJSONFILE.release
-sed -e "s/@@APPLICATIONNAMETOKEN@@/$APPLICATIONNAME/" $MYJSONFILE.release> $MYJSONFILE.application
-cp $MYJSONFILE.application input.json
+sed -e "s/@@PROJECTNAMETOKEN@@/$PROJECTNAME/" \
+    -e "s/@@RELEASENAMETOKEN@@/$RELEASENAME/" \
+    -e "s/@@APPLICATIONNAMETOKEN@@/$APPLICATIONNAME/" \
+    -e "s/@@GROUPID@@/$GROUPID/" $MYJSONFILE > input.json
+
 
 if [ "$JSONONLY" = "1" ]
 then
