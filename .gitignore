@@ -7,6 +7,6 @@
 **/export-*.gdsl
 MultiEnvironmentInventory/Unplug/
 **/*.log
-**/**.application
-**/**.project
-**/**.release
+**/*.application
+**/*.project
+**/*.release
