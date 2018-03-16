@@ -12,12 +12,25 @@ project myProject.name, {
             rollingDeployEnabled = null
             rollingDeployType = null
 
+            myEnvironment.rollingDeployPhases?.each {myRollingDeployPhase ->
+                rollingDeployPhase myRollingDeployPhase.name, {
+                    orderIndex = myRollingDeployPhase.orderIndex
+                    phaseExpression = myRollingDeployPhase.phaseExpression
+                    rollingDeployPhaseType = myRollingDeployPhase.rollingDeployPhaseType
+                }
+            }
+
             myEnvironment.environmentTiers?.each {myEnvironmentTier ->
                 environmentTier myEnvironmentTier.name, {
                     println "   EnvironmentTier : $myEnvironmentTier.name "
                     batchSize = null
                     batchSizeType = null
                     resourceName = myEnvironmentTier.resources
+                    resourcePhaseMapping = myEnvironmentTier.resourcePhaseMappings?.collectEntries {mapping ->
+                        [
+                                (mapping.name) : mapping.value,
+                        ]
+                    }
                 }
             }
             myEnvironment.clusters.each {myCluster ->
