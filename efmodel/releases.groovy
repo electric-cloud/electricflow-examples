@@ -15,6 +15,7 @@ project myProject.name, {
 
 def loadRelease (def myRelease) {
     release myRelease.name, {
+        println "  Release: $myRelease.name"
         description = myRelease.description
         plannedEndDate = myRelease.plannedEndDate
         plannedStartDate = myRelease.plannedStartDate
@@ -143,6 +144,11 @@ def loadPipeline (def myPipeline) {
 
                         task myGate.task.name, {
                             description = myGate.task.description
+                            actualParameter = myGate.task.actualParameters?.collectEntries {aParam->
+                                [
+                                        (aParam.name) : aParam.value,
+                                ]
+                            }
                             advancedMode = '0'
                             alwaysRun = '0'
                             condition = myGate.task.condition
@@ -150,15 +156,25 @@ def loadPipeline (def myPipeline) {
                             errorHandling = 'stopOnError'
                             gateType = myGate.gateType
                             insertRollingDeployManualStep = '0'
-                            instruction = null
-                            notificationTemplate = 'ec_default_gate_task_notification_template'
                             projectName = args.project.name
                             skippable = '0'
                             subproject = args.projName
-                            taskType = myGate.task.type
-                            approver = [
-                                    myGate.task.approver,
-                            ]
+                            taskType = myGate.task.taskType
+                            switch (myGate.task.taskType) {
+                                case ~/PROCEDURE/:
+                                    subprocedure = myGate.task.subprocedure
+                                    subproject = myGate.task.subproject
+                                    break
+                                case ~/APPROVAL/:
+                                    instruction = null
+                                    notificationTemplate = 'ec_default_gate_task_notification_template'
+                                    approver = [
+                                            myGate.task.approver,
+                                    ]
+                                    break
+                                default:
+                                    break
+                            }
                         }
                     }
                 }
