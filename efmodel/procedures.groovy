@@ -7,6 +7,7 @@ project myProject.name, {
         procedure myProcedure.name, {
             description = myProcedure.description
             timeLimitUnits = 'minutes'
+            jobNameTemplate = myProcedure.jobNameTemplate
 
             myProcedure.formalParameters?.each { myParameter ->
                 formalParameter myParameter.name, {
@@ -52,7 +53,9 @@ project myProject.name, {
                     description = myStep.description
                     alwaysRun = '0'
                     broadcast = '0'
-                    // If the command has the defintion "READFROM:filename," then read that file into the command.  This path is for the server.  So if this file is on your local disk,
+                    // If the command has the defintion "READFROM:filename," then read that file into the command.  This path is for the server.
+                    // So if this file is on your local disk, include the path/to/your/file here.  The assumption is the file
+                    // resides within the same directory structure as your original JSON file.
                     if (myStep.command?.startsWith ("READFROM:")) {
                         String path = args.MOUNTDIRECTORY + "/" + myStep.command.substring(9)
                         String fileContents = new File ("$path").text
