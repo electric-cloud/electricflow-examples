@@ -68,6 +68,7 @@ project myProject.name, {
                     exclusiveMode = 'none'
                     parallel = '0'
                     releaseMode = 'none'
+                    credentialName = myStep.credentialName
                     timeLimitUnits = myStep.timeLimitUnits
                     subprocedure = myStep.subprocedure
                     subproject = myStep.subproject

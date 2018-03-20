@@ -18,9 +18,19 @@ args.emailConfigs.each { myEmailConfig ->
 args.credentials.each { myCredential ->
     project myCredential.project, {
         credential myCredential.name, {
-            username = myCredential.username
+            userName = myCredential.userName
             passwordRecoveryAllowed = true
             projectName = myCredential.project
+            if (myCredential.password?.startsWith ("READFROM:")) {
+                String path = args.MOUNTDIRECTORY + "/" + myCredential.password.substring(9)
+                String fileContents = new File ("$path").text
+                println "Password is $fileContents"
+                password = fileContents
+            }
+            else {
+                println "Password : $myCredential.password"
+                password = myCredential.password
+            }
         }
     }
 }
