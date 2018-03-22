@@ -233,6 +233,12 @@ def loadPipeline (def myPipeline) {
                                 {
                                     subapplication = myTask.subapplication
                                 }
+
+                                rollingDeployEnabled = myTask.rollingDeployEnabled
+//                                rollingDeployManualStepCondition = myTask.rollingDeployManualStepCondition
+                                rollingDeployManualStepCondition = null
+                                rollingDeployPhase = myTask.rollingDeployPhase
+
                                 snapshotName = myTask.snapshotName
                                 subprocess = myTask.subprocess
                                 subproject = myTask.subproject
